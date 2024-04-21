@@ -1,5 +1,36 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h2 New Stores 
+  ul 
+    each store in new_stores 
+      li 
+        a(href=store.url)
+          img(src=store.logo) 
+          #{store.name}
+
+  h2 New Products 
+  ul 
+  each product in new_products 
+    li 
+      a(href=product.url)
+        img(src=product.image) 
+        #{product.name}
+      a(href=product.store.url) #{product.store.name}
+
+  h2 Featured Stores 
+  ul 
+    each store in featured_stores 
+      li 
+        a(href=store.url)
+          img(src=store.logo) 
+          #{store.name}
+
+  h2 Featured Products 
+  ul 
+  each product in featured_products 
+    li 
+      a(href=product.url)
+        img(src=product.image) 
+        #{product.name}
+      a(href=product.store.url) #{product.store.name}
