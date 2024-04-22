@@ -6,8 +6,16 @@ block content
   form(action="POST") 
     each product in cart 
       img(src=product.image)
-      label(for="checkout") #{product.name}  
+      a(href="/product.url") #{product.name}  
       a(href=product.store.url) #{product.store.name} 
-      p #{product.price}
-      input(type="checkbox", name="checkout")
-    button(type="submit") Checkout 
+      p Price #{product.price}
+      p Quantity #{product.quantity} 
+      button(onclick="update cart") +
+      button(onclick="update cart") -
+      p #{product.total_amount} 
+      button(onclick="update cart") Delete 
+    p Total amount #{cart.total_amount}
+    button(type="clear" onclick="update cart") 
+    button(type="submit") Place order  
+
+//Take notice of cart updates
