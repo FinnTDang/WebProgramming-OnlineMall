@@ -2,4 +2,39 @@ extends layout
 
 block content 
   h1 =title
-   
+  form(method="POST")
+    label(for="contact_purpose") 
+    select(name="contact_purpose")
+      option(value="Business Inquiry") 
+      option(value="Event hosting")
+      option(value="Other")
+    label(for="contact_name") Name 
+    input(name="contact_name")
+    label(for="contact_email") Email
+    input(name="contact_email")
+    label(for="contact_phone") Phone number 
+    input(name="contact_phone")
+    p Preference
+    input(name="contact_preference" type="radio" value="phone") 
+    label(for="contact_preference") Phone 
+    input(name="contact_preference" type="radio" value="email") 
+    label(for="contact_preference") Email
+    p Contact days 
+    input(name="contact_day" type="checkbox" value="monday") 
+    label(for="contact_day") Monday  
+    input(name="contact_day" type="checkbox" value="tuesday") 
+    label(for="contact_day") Tuesday 
+    input(name="contact_day" type="checkbox" value="wednesday") 
+    label(for="contact_day") Wednesday 
+    input(name="contact_day" type="checkbox" value="thursday") 
+    label(for="contact_day") Thursday 
+    input(name="contact_day" type="checkbox" value="friday") 
+    label(for="contact_day") Friday 
+    input(name="contact_day" type="checkbox" value="saturday") 
+    label(for="contact_day") Saturday 
+    input(name="contact_day" type="checkbox" value="sunday") 
+    label(for="contact_day") Sunday 
+    label(for="message") Message
+    textarea(name="message")
+    button(type="clear") Clear
+    button(type="submit") Send 
