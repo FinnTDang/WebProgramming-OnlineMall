@@ -2,4 +2,12 @@ extends layout
 
 block content 
   h1 =title
-   
+  
+  form(action="POST") 
+    each product in cart 
+      img(src=product.image)
+      label(for="checkout") #{product.name}  
+      a(href=product.store.url) #{product.store.name} 
+      p #{product.price}
+      input(type="checkbox", name="checkout")
+    button(type="submit") Checkout 
