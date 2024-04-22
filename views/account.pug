@@ -1,0 +1,86 @@
+extends layout 
+
+block content 
+  h1 =title
+
+  if account.type != "guest" 
+    img(src=account.profile_pic)
+    h2 Name #{account.full_name}
+    h2 Email address #{account.mail}
+    h2 Phone number #{account.phone}
+    h2 Country #{account.country}
+    h2 City #{account.city} 
+    h2 Zip code #{account.zip}
+    h2 Address #{account.address}
+    h2 Account type #{account.type}
+    if account.type == "store owner"
+      h2 Store(s)
+      a 
+        #{store.name}
+        #{store.logo}
+
+  else if account.type == "guest" && operation == "log in"
+    form(method='POST')
+      label(for='account_address') Email/Phone
+      input(name='account_address')
+      label(for='password') Password 
+      input(name='password' type="password") 
+      button(type='submit') Log in 
+    a(href="/register") Register 
+    a(href="/forgot") Forgor password
+  else if account.type == "guest" && operation == "register"
+    form(method='POST')
+      label(for='email') Email address
+      input(name="email")
+      label(for='phone') Phone number
+      input(name='phone')
+      label(for='password') Password
+      input(name='password')
+      label Retype password
+      input
+      label(for='profile_pic') Profile picture 
+      input(type='file')
+      label(for='first_name') First name
+      input(name='first_name')
+      label(for='last_name') Last name
+      input(name='last_name')
+      label(for='address') Address
+      label(for='city') City
+      label(for="city") 
+        input(name="city")
+      label(for='zipcode') Zipcode
+        input(name='zipcode')
+      label(for='country') Country 
+        select(name="country")
+          each country in countries 
+            option(value=country.code) #{country.name}
+      p Account type 
+      label(for="account_type") Store owner  
+      input(type="radio" value="store owner")
+      label(for="account_type") Shopper 
+      input(type="radio" value="shopper")
+
+      //show on store owner
+      label(for="business_name") Business name
+      input(name="business_name") 
+      label(for="store_name") Store name
+      input(name="store_name")
+      label(for="store_category") Store category
+      select(name="store_category") 
+        option(value="department store")
+        option(value="grocery store")
+        option(value="restaurant store")
+        option(value="clothing store")
+        option(value="accessory store")
+        option(value="pharmacy")
+        option(value="technology store") 
+        option(value="pet store") 
+        option(value="toy store") 
+        option(value="specialty store") 
+        option(value="thrift store")
+        option(value="service provider")
+        option(value="kiosk")
+      button(type='submit') Register
+
+
+   
