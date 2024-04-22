@@ -1,0 +1,16 @@
+extends layout 
+
+block content 
+  h1=title 
+  form(method="POST") 
+    label(for="product_name") Product name
+    input(name="product_name")
+    label(for="product_price") Product price
+    input(name="product_price")
+    label(for="product_description") Product description
+    input(name="product_description") 
+    label(for="product_quantity") Product quantity 
+    input(name="product_quantity")
+    label(for="product_image") Product image
+    input(name="product_image" type="file")
+    button(type="submit") Add product 
