@@ -1,36 +1,42 @@
 extends layout
 
 block content
-  h2 New Stores 
-  ul 
-    each store in new_stores 
+  section 
+    h2 New Stores 
+    ul 
+      each store in new_stores 
+        li 
+          a(href=store.url)
+            img(src=store.logo) 
+            #{store.name}
+
+  section 
+    h2 New Products 
+    ul 
+    each product in new_products 
       li 
-        a(href=store.url)
-          img(src=store.logo) 
-          #{store.name}
+        a(href=product.url)
+          img(src=product.image) 
+          #{product.name}
+        a(href=product.store_url) #{product.store_name}
+        p #{product.price}
 
-  h2 New Products 
-  ul 
-  each product in new_products 
-    li 
-      a(href=product.url)
-        img(src=product.image) 
-        #{product.name}
-      a(href=product.store.url) #{product.store.name}
+  section
+    h2 Featured Stores 
+    ul 
+      each store in featured_stores 
+        li 
+          a(href=store.url)
+            img(src=store.logo) 
+            #{store.name}
 
-  h2 Featured Stores 
-  ul 
-    each store in featured_stores 
+  section
+    h2 Featured Products 
+    ul 
+    each product in featured_products 
       li 
-        a(href=store.url)
-          img(src=store.logo) 
-          #{store.name}
-
-  h2 Featured Products 
-  ul 
-  each product in featured_products 
-    li 
-      a(href=product.url)
-        img(src=product.image) 
-        #{product.name}
-      a(href=product.store.url) #{product.store.name}
+        a(href=product.url)
+          img(src=product.image) 
+          #{product.name}
+        a(href=product.store_url) #{product.store_name}
+        p #{product.price}
