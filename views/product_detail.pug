@@ -2,4 +2,15 @@ extends layout
 
 block content 
   h1 =title
-   
+  
+  img(src=product.image)
+  h2 #{product.name}
+  p #{product.price}
+  p #{product.description}
+  p Available amount: #{product.quantity}
+
+  form(method="POST")
+    input(type="hidden", name="product" value=product.id)
+    input(name="product_quantity")
+    button(type="submit" formaction="/cart") Add to cart 
+    button(type="submit" formaction="/checkout") Order right away
