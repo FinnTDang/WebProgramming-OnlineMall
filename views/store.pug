@@ -1,0 +1,21 @@
+extends layout 
+
+block content
+  section 
+  h2 New items
+  ul 
+    each product in new_products 
+      li 
+        a(href=product.url)
+          img(src=product.image)
+          h3 #{product.name}
+        p #{product.price}
+  section 
+  h2 All items
+  ul 
+    each product in all_products 
+      li 
+        a(href=product.url)
+          img(src=product.image)
+          h3 #{product.name}
+        p #{product.price}

@@ -1,0 +1,16 @@
+extends layout 
+
+block content 
+  h1 =title
+
+  ul 
+    each product in order 
+      li 
+        p #{product.name}
+        p #{product.price}
+        p #{product.quantity}
+        p #{product.total_amount}
+        p #{product.store}
+  p Total amount #{order.total_amount}
+
+  button(href="/successful_order") Confirm
