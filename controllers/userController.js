@@ -1,6 +1,11 @@
 const User = require("../models/user");
 const asyncHandler = require("express-async-handler");
 
+//Check for authentication
+// exports.user_authenticate = asyncHandler(async (req, res, next) => {
+
+// })
+
 // Display list of all Users.
 exports.user_list = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: User list");
@@ -8,7 +13,9 @@ exports.user_list = asyncHandler(async (req, res, next) => {
 
 // Display detail page for a specific User.
 exports.user_detail = asyncHandler(async (req, res, next) => {
-  res.send(`NOT IMPLEMENTED: Author detail: ${req.params.id}`);
+  // res.send(`NOT IMPLEMENTED: Author detail: ${req.params.id}`);
+  console.log("Prompt user data");
+  next();
 });
 
 // Display User create form on GET.
@@ -35,3 +42,4 @@ exports.user_update_get = asyncHandler(async (req, res, next) => {
 exports.user_update_post = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: User update POST");
 });
+

@@ -13,12 +13,16 @@ exports.store_list_category = asyncHandler(async (req, res, next) => {
 
 //READ new Stores on GET
 exports.store_new = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: New stores");
+  // res.send("NOT IMPLEMENTED: New stores");
+  console.log('New stores');
+  next();
 });
 
 //READ featured Stores on GET
 exports.store_featured = asyncHandler((req, res, next) => {
-  res.send("NOT IMPLEMENTED: Featured stores");
+  // res.send("NOT IMPLEMENTED: Featured stores");
+  console.log('Featured Stores');
+  next();
 })
 
 //READ Store detail on GET

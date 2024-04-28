@@ -1,19 +1,23 @@
 const Product = require("../models/product");
 const asyncHandler = require("express-async-handler");
 
-//Display Cart on GET
+//Display all Products on GET
 exports.product_list = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: Product list");
 });
 
 //READ featured Products on GET
 exports.product_featured = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Featured products");
+  // res.send("NOT IMPLEMENTED: Featured products");
+  console.log('Featured products');
+  next();
 });
 
 //READ new Products on GET
 exports.product_new = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: New products");
+  // res.send("NOT IMPLEMENTED: New products");
+  console.log('New products');
+  next();
 });
 
 /**Featured and new Products, depending on the request head, will display it mall-wise or store-wise */

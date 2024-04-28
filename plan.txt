@@ -76,3 +76,4 @@ products/create-new/
 orders/
 orders/<order>/
 
+Use Passport middleware for authentication.
