@@ -1,7 +1,7 @@
 const Product = require("../models/product");
 const asyncHandler = require("express-async-handler");
 
-//READ all Product on GET
+//Display Cart on GET
 exports.product_list = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: Product list");
 });
