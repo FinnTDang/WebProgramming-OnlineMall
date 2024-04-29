@@ -25,7 +25,8 @@ const StoreSchema = new Schema({
       "Kiosk",
     ] 
   },
-  store_logo: { type: String, required: true }
+  store_logo: { type: String, required: true },
+  products: [{ type: Schema.Types.ObjectId, ref: 'Product'  }]
 });
 
 // Virtual for user's URL
@@ -34,4 +35,4 @@ StoreSchema.virtual("url").get(function () {
 });
 
 // Export model
-module.exports = mongoose.model("Store", Store);
+module.exports = mongoose.model("Store", StoreSchema);

@@ -26,4 +26,4 @@ UserSchema.virtual("url").get(function () {
 });
 
 // Export model
-module.exports = mongoose.model("User", User);
+module.exports = mongoose.model("User", UserSchema);

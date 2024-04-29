@@ -78,4 +78,6 @@ orders/<order>/
 
 Use Passport middleware for authentication.
 TO-DO: 
-Configure express-session to use mongodb.
+Create Product model
+Create Cart model
+Create Order model
