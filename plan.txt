@@ -78,6 +78,4 @@ orders/<order>/
 
 Use Passport middleware for authentication.
 TO-DO: 
-Create Product model
-Create Cart model
-Create Order model
+Run the app to see if there's any problem
