@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session');
 const passport = require('passport');
-const SQLiteStore = require('connect-sqlite3')(session);
+const MongoDBStore = require('connect-mongodb-session')(session);
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -13,6 +13,8 @@ const authRouter = require('./routes/auth');
 
 const app = express();
 
+
+//Establish connection to database for data CRUD
 const uri = "mongodb+srv://dctrung0108:xeXe-71.XeeX@cluster0.xqftmck.mongodb.net/mall?retryWrites=true&w=majority&appName=Cluster0";
 const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
 async function run() {
@@ -28,6 +30,28 @@ async function run() {
 }
 run().catch(console.dir);
 
+
+//Establish connection to database for session storage
+const store = new MongoDBStore({
+  uri: 'mongodb+srv://dctrung0108:xeXe-71.XeeX@cluster0.xqftmck.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
+  collection: 'mall'
+});
+//Catch errors
+store.on('error', function(error) {
+  console.log(error);
+});
+
+
+//Establish user session
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+  store: store
+}));
+app.use(passport.session());
+
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
@@ -37,13 +61,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: false,
-  store: new SQLiteStore({ db: 'sessions.db', dir: './var/db' })
-}));
-app.use(passport.session());
+
  
 
 app.use('/', indexRouter);

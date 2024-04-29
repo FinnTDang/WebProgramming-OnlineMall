@@ -9,7 +9,12 @@ const UserSchema = new Schema({
   city: { type: String, required: true, maxlength: 50 },
   address: { type: String, required: true, maxlength: 300 },
   zip: { type: String, required: true, maxlength: 10 },
-  account_type: { type: String, required: true, maxlength: 50 },
+  account_type: { 
+    type: String, 
+    required: true, 
+    maxlength: 50,
+    enum: ["Store owner", "Shopper"] 
+  },
   profile_image: { type: String },
   hashed_password: { type: String, required: true },
   salt: { type: String, required: true }

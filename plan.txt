@@ -78,6 +78,4 @@ orders/<order>/
 
 Use Passport middleware for authentication.
 TO-DO: 
-Establish database
-Create user schema and model
 Configure express-session to use mongodb.

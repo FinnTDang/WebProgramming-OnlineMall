@@ -8,7 +8,7 @@
     "serverstart": "SET DEBUG=express-locallibrary-tutorial:* & npm run devstart"
   },
   "dependencies": {
-    "connect-sqlite3": "^0.9.15",
+    "connect-mongodb-session": "^5.0.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
