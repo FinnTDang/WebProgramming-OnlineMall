@@ -29,8 +29,8 @@ app.use(session({
   saveUninitialized: false,
   store: new SQLiteStore({ db: 'sessions.db', dir: './var/db' })
 }));
-app.use(passport.authenticate('session'));
-
+app.use(passport.session());
+ 
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
