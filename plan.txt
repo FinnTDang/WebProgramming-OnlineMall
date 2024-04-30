@@ -78,4 +78,10 @@ orders/<order>/
 
 Use Passport middleware for authentication.
 TO-DO: 
+Find out why there aren't models in cloud.
 Run the app to see if there's any problem
+(Find out success console log for session storage).
+(Try mock data to see if there is )
+(Establish routes handler).
+  - Establish route handler for users
+
