@@ -27,7 +27,8 @@ async function main() {
 //Establish connection to database for session storage
 const store = new MongoDBStore({
   uri: 'mongodb+srv://dctrung0108:xeXe-71.XeeX@cluster0.xqftmck.mongodb.net/mall?retryWrites=true&w=majority&appName=Cluster0',
-  collection: 'mall'
+  databaseName: 'mall',
+  collection: 'session'
 });
 //Catch errors
 store.on('error', function(error) {
