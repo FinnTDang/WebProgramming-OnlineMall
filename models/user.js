@@ -13,9 +13,9 @@ const UserSchema = new Schema({
     type: String, 
     required: true, 
     maxlength: 50,
-    enum: ["Store owner", "Shopper"] 
+    enum: ["store owner", "shopper"] 
   },
-  profile_image: { type: String },
+  profile_image: { type: Buffer },
   hashed_password: { type: String, required: true },
   salt: { type: String, required: true }
 });

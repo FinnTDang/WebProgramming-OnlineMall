@@ -4,7 +4,8 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const crypto = require('crypto');
 const Store = require("../models/store");
-const { Schema } = require("mongoose");
+const countries = require("../public/countries.json");
+const mongoose = require("mongoose");
 
 //Configure passport strategy
 passport.use(new LocalStrategy(async function verify(username, password, cb) {
@@ -68,42 +69,47 @@ exports.user_detail = asyncHandler(async (req, res, next) => {
 
 // Display User create form on GET.
 exports.user_create_get = asyncHandler(async (req, res, next) => {
-  res.render('signup');
+  res.render('account', { 
+    operation: "register", 
+    countries: countries,
+    title: "Sign up"
+  });
 });
 
 // Handle User create on POST.
-exports.user_create_post = async function(req, res, next) {
+exports.user_create_post = asyncHandler(async (req, res, next) => {
   const salt = crypto.randomBytes(16);
   crypto.pbkdf2(req.body.password, salt, 310000, 32, 'sha256', async function(err, hashedPassword) {
     if (err) { return next(err); }
 
     const new_user = new User({
       _id: new mongoose.Types.ObjectId(),
-      name: req.body.name,
+      name: req.body.first_name + " " + req.body.last_name,
       mail: req.body.mail,
       phone: req.body.phone,
       country: req.body.country,
       city: req.body.city,
       address: req.body.address,
       zip: req.body.zip,
-      account_type: req.body.type,
-      profile_image: req.body.profile_image,
+      account_type: req.body.account_type,
+      profile_image: req.file,
       hashed_password: hashedPassword,
       salt: salt,
     });
     await new_user.save();
+  },
 
-    if (req.body.account_type == "store owner") {
-      const new_store = new Store({
-        _id: new mongoose.Types.ObjectId(),
-        owner: User.findOne({ mail: `${mail}` }).exec()._id,
-        business_name: req.body.business_name,
-        store_name: req.body.store_name,
-        store_category: req.body.store_category,
-        store_logo: req.body.store_logo,
-      });
-      await new_store.save();
-    }}, 
+    // if (req.body.account_type == "store owner") {
+    //   const new_store = new Store({
+    //     _id: new mongoose.Types.ObjectId(),
+    //     owner: User.findOne({ mail: `${mail}` }).exec()._id,
+    //     business_name: req.body.business_name,
+    //     store_name: req.body.store_name,
+    //     store_category: req.body.store_category,
+    //     store_logo: req.body.store_logo,
+    //   });
+    //   await new_store.save();
+    // }}, 
 
     function(err) {
       if (err) { return next(err); }
@@ -116,7 +122,7 @@ exports.user_create_post = async function(req, res, next) {
         res.redirect('/');
       });
     })
-  };
+  });
 
 
 // Handle User delete on POST.
