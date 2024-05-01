@@ -3,27 +3,6 @@ const asyncHandler = require("express-async-handler");
 const countries = require("../public/countries.json");
 const mongoose = require("mongoose");
 
-async function authenticate(req, res) {
-  const user = await User.findOne({ mail: `${req.body.mail}` }).exec(); 
-  console.log(user);
-  if (!user) { res.send('No account has been created with this email.') }
-  if (user.password == req.body.password) {
-    console.log('Session before user match:', req.session.user);
-    console.log('match!');
-    //handle session
-    req.session.regenerate(function (err) {
-      if (err) { console.log(err); }
-      req.session.user = user;
-      req.session.save(function (err) {
-        if (err) { console.log(err); }
-        console.log('Session after user match:', req.session.user);
-        res.redirect('/');
-      })
-    })
-  } else {
-    { res.redirect('back'); }
-  } 
-}
 
 exports.user_list = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: User list");
@@ -52,24 +31,34 @@ exports.user_create_get = asyncHandler(async (req, res, next) => {
 
 // Handle User create on POST.
 exports.user_create_post = asyncHandler(async (req, res, next) => {
-    const new_user = new User({
-      _id: new mongoose.Types.ObjectId(),
-      name: req.body.first_name + " " + req.body.last_name,
-      mail: req.body.mail,
-      phone: req.body.phone,
-      country: req.body.country,
-      city: req.body.city,
-      address: req.body.address,
-      zip: req.body.zip,
-      account_type: req.body.account_type,
-      profile_image: req.file,
-      password: req.body.password,
-    });
+  //Saving data to database
+  const new_user = new User({
+    _id: new mongoose.Types.ObjectId(),
+    name: req.body.first_name + " " + req.body.last_name,
+    mail: req.body.mail,
+    phone: req.body.phone,
+    country: req.body.country,
+    city: req.body.city,
+    address: req.body.address,
+    zip: req.body.zip,
+    account_type: req.body.account_type,
+    profile_image: req.file,
+    password: req.body.password,
+  });
+  await new_user.save();
 
-    await new_user.save();
-    res.redirect('/');
-})
-
+  //Instant signing in after signing up successfully
+  const user = await User.findOne({ mail: `${req.body.mail}` }).exec(); 
+  req.session.regenerate(function (err) {
+    if (err) { console.log(err); }
+    req.session.user = user;
+    req.session.save(function (err) {
+      if (err) { console.log(err); }
+      console.log('Session after user match:', req.session.user);
+      res.redirect('/');
+    })
+  }) 
+});
 
 // Handle User delete on POST.
 exports.author_delete_post = asyncHandler(async (req, res, next) => {
@@ -88,14 +77,49 @@ exports.user_update_post = asyncHandler(async (req, res, next) => {
 
 // Handle Authentication - Used as middleware
 exports.user_authenticate = asyncHandler(async (req, res, next) => {
+  // Checks to see if there is a session user. If yes then next. If not, redirect to the log in page.
+  if (req.session.user) {
+    next();
+  } else {
+    if (req.path == '*');
+    res.redirect("/signin");
+  }
+
+  // Handle sign in POST.
   if (req.method == "POST") {
-    authenticate(req, res);
-  }
-  if (req.method == "GET") {
-    if (req.session.user) {
-      next();
+    const user = await User.findOne({ mail: `${req.body.mail}` }).exec(); 
+    console.log(user);
+    if (!user) { res.send('No account has been created with this email.') }
+    if (user.password == req.body.password) {
+      console.log('Session before user match:', req.session.user);
+      console.log('match!');
+      //handle session
+      req.session.regenerate(function (err) {
+        if (err) { console.log(err); }
+        req.session.user = user;
+        req.session.save(function (err) {
+          if (err) { console.log(err); }
+          console.log('Session after user match:', req.session.user);
+          res.redirect('/');
+        })
+      })
     } else {
-      res.redirect("/signin");
-    }
+      { res.redirect('back'); }
+    }  
   }
-})
+});
+
+// Handle signing out.
+exports.user_signout = asyncHandler( async (req, res, next) => {
+  req.session.user = null
+  req.session.save(function (err) {
+    if (err) next(err)
+
+    req.session.regenerate(function (err) {
+      if (err) next(err)
+      res.redirect('/')
+    })
+  })
+});
+
+
