@@ -26,7 +26,8 @@ html
           if !user
             li 
               a(href='/signin') Sign in
-           
+            li 
+              a(href='/signup') Sign up
           else 
             li 
               a(href=user.url) #{user.name}

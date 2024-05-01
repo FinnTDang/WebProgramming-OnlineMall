@@ -12,7 +12,7 @@ const upload = multer({ dest: 'uploads/', storage: multer.memoryStorage() });
 
 router.get('/signin', user_controller.user_signin_get);
 
-router.post('/signin', user_controller.user_authenticate);
+router.post('/signin', user_controller.user_signin_post);
 
 router.get('/signup', user_controller.user_create_get);
 
