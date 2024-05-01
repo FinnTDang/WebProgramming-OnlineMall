@@ -23,8 +23,16 @@ html
             a(href='/faq') FAQs
           li 
             a(href='/contact') Contact 
-          li 
-            a(href='/account') Account
+          if !user
+            li 
+              a(href='/signin') Sign in
+            li 
+              a(href='/signout') Sign out
+          else 
+            li 
+              a(href=user.id) #{user.name}
+            
+
     main    
       block content
     footer

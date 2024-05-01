@@ -76,48 +76,69 @@ exports.user_update_post = asyncHandler(async (req, res, next) => {
 });
 
 // Handle Authentication - Used as middleware
-exports.user_authenticate = asyncHandler(async (req, res, next) => {
-  // Checks to see if there is a session user. If yes then next. If not, redirect to the log in page.
-  if (req.session.user) {
-    next();
-  } else {
-    if (req.path == '*');
-    res.redirect("/signin");
-  }
-
-  // Handle sign in POST.
+exports.user_signin_post = asyncHandler(async (req, res, next) => {
   if (req.method == "POST") {
     const user = await User.findOne({ mail: `${req.body.mail}` }).exec(); 
     console.log(user);
     if (!user) { res.send('No account has been created with this email.') }
     if (user.password == req.body.password) {
-      console.log('Session before user match:', req.session.user);
-      console.log('match!');
-      //handle session
       req.session.regenerate(function (err) {
-        if (err) { console.log(err); }
+        if (err) { return next(err) }
         req.session.user = user;
         req.session.save(function (err) {
-          if (err) { console.log(err); }
+          if (err) { return next(err) }
           console.log('Session after user match:', req.session.user);
           res.redirect('/');
         })
-      })
+      }) 
     } else {
-      { res.redirect('back'); }
+      res.redirect('back'); 
     }  
   }
 });
+
+// Handle user layout variable
+exports.user_brief = asyncHandler(async (req, res, next) => {
+  if (req.session.user) {
+    res.locals.user = req.session.user;
+  }
+  next();
+});
+
+//Handle authentication for sites
+exports.user_authenticate = asyncHandler(async (req, res, next) => {
+  if (!req.session.user) {
+    res.redirect('/signin');
+  }
+  next();
+})
+
+  // Handle sign in POST.
+
+    // Checks to see if there is a session user. If yes then next. If not, redirect to the log in page.
+  // if (req.session.user) {
+  //   res.redirect('/');
+  //   // res.locals.user = req.session.user;
+  //   next();
+  // } else {
+  //   if (req.path == '/order') {
+  //     res.redirect("/signin");
+  //   } 
+  //   // res.locals.user = null;
+  //   next();
+  // }
+
 
 // Handle signing out.
 exports.user_signout = asyncHandler( async (req, res, next) => {
   req.session.user = null
   req.session.save(function (err) {
-    if (err) next(err)
+    if (err) next(err);
 
-    req.session.regenerate(function (err) {
-      if (err) next(err)
-      res.redirect('/')
+    req.session.destroy(function (err) {
+      if (err) next(err);
+      res.locals.user = null;
+      res.redirect('/');
     })
   })
 });

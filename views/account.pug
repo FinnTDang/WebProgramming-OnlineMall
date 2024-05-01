@@ -20,7 +20,7 @@ block content
   //-       #{store.logo}
 
   if operation == "sign in"
-    form(action='/signin/verify' method='POST')
+    form(action='/signin' method='POST')
       label(for='mail') Email
       input(name='mail')
       label(for='password') Password 
