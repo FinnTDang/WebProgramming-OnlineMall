@@ -78,6 +78,8 @@ orders/<order>/
 
 Use Passport middleware for authentication.
 TO-DO: 
-Try to properly handle signup post
-Start with controller first.
+Create hand-made controller for logging in
+Use connect-mongo
+Problem: Image storage
 
+Whenever, I access a page, we can check for the current session id if it contains a shopper. If it doesn't then redirect to login page. If it does, proceed. Once log in validation is successful (we can get the user object inside the session body).

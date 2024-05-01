@@ -8,6 +8,7 @@
     "serverstart": "SET DEBUG=express-locallibrary-tutorial:* & npm run devstart"
   },
   "dependencies": {
+    "connect-mongo": "^5.1.0",
     "connect-mongodb-session": "^5.0.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",

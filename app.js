@@ -4,13 +4,11 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session');
-const passport = require('passport');
-const MongoDBStore = require('connect-mongodb-session')(session);
+const MongoStore = require('connect-mongo');
 const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const authRouter = require('./routes/auth');
+const authRouter = require('./routes/user');
 
 const app = express();
 
@@ -23,27 +21,16 @@ async function main() {
   await mongoose.connect(mongoDB);
 }
 
-
-//Establish connection to database for session storage
-const store = new MongoDBStore({
-  uri: 'mongodb+srv://dctrung0108:xeXe-71.XeeX@cluster0.xqftmck.mongodb.net/mall?retryWrites=true&w=majority&appName=Cluster0',
-  databaseName: 'mall',
-  collection: 'session'
-});
-//Catch errors
-store.on('error', function(error) {
-  console.log(error);
-});
-
-
 //Establish user session
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: false,
-  store: store
+  store: MongoStore.create({
+    mongoUrl: "mongodb+srv://dctrung0108:xeXe-71.XeeX@cluster0.xqftmck.mongodb.net/mall?retryWrites=true&w=majority&appName=Cluster0"
+  })
 }));
-app.use(passport.session());
+// app.use(passport.authenticate('session'));
 
 
 app.set('views', path.join(__dirname, 'views'));
@@ -56,10 +43,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
- 
-
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/', authRouter);
 
 

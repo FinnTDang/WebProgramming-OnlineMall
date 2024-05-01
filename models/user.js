@@ -16,8 +16,7 @@ const UserSchema = new Schema({
     enum: ["store owner", "shopper"] 
   },
   profile_image: { type: Buffer },
-  hashed_password: { type: String, required: true },
-  salt: { type: String, required: true }
+  password: { type: String, required: true },
 });
 
 // Virtual for user's URL

@@ -19,16 +19,18 @@ block content
   //-       #{store.name}
   //-       #{store.logo}
 
-  //- else if account.type == "guest" && operation == "log in"
-  //-   form(method='POST')
-  //-     label(for='account_address') Email/Phone
-  //-     input(name='account_address')
-  //-     label(for='password') Password 
-  //-     input(name='password' type="password") 
-  //-     button(type='submit') Log in 
-  //-   a(href="/register") Register 
-  //-   a(href="/forgot") Forgor password
-  if operation == "register"
+  if operation == "sign in"
+    form(action='/signin/verify' method='POST')
+      label(for='mail') Email
+      input(name='mail')
+      label(for='password') Password 
+      input(name='password') 
+      button(type='submit') Sign in 
+    if error 
+      p #{error}
+    //- a(href="/register") Register 
+    //- a(href="/forgot") Forgor password
+  else if operation == "sign up"
     form(method='POST' action='/signup' enctype="multipart/form-data")
       label(for='mail') Email address
       input(name="mail")
