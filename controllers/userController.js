@@ -113,32 +113,16 @@ exports.user_authenticate = asyncHandler(async (req, res, next) => {
   next();
 })
 
-  // Handle sign in POST.
-
-    // Checks to see if there is a session user. If yes then next. If not, redirect to the log in page.
-  // if (req.session.user) {
-  //   res.redirect('/');
-  //   // res.locals.user = req.session.user;
-  //   next();
-  // } else {
-  //   if (req.path == '/order') {
-  //     res.redirect("/signin");
-  //   } 
-  //   // res.locals.user = null;
-  //   next();
-  // }
-
 
 // Handle signing out.
 exports.user_signout = asyncHandler( async (req, res, next) => {
   req.session.user = null
   req.session.save(function (err) {
-    if (err) next(err);
+    if (err) next(err)
 
-    req.session.destroy(function (err) {
-      if (err) next(err);
-      res.locals.user = null;
-      res.redirect('/');
+    req.session.regenerate(function (err) {
+      if (err) next(err)
+      res.redirect('/')
     })
   })
 });
