@@ -2,8 +2,11 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
   body
+    script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js')
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js')
     header
       if store 
         h1 #{store.name}
@@ -12,7 +15,7 @@ html
       nav
         ul 
           li 
-            a(href='/home') Home
+            a(href='/') Home
           li 
             a(href='/about') About 
           li 
@@ -23,8 +26,18 @@ html
             a(href='/faq') FAQs
           li 
             a(href='/contact') Contact 
-          li 
-            a(href='/account') Account
+          if !user
+            li 
+              a(href='/signin') Sign in
+            li 
+              a(href='/signup') Sign up
+          else 
+            li 
+              a(href= '/users/' + user._id) #{user.name}
+            li 
+              a(href='/signout') Sign out
+            
+
     main    
       block content
     footer

@@ -32,7 +32,7 @@ stores/<specific-store>/products/
 stores/<specific-store>/products/<specific-product>/
 <shopper>/
 <shopper>/cart/
-<shopper>/checkout
+<shopper>/checkout/
 <shopper>/checkout/successful/
 
 Mall owners:
@@ -50,7 +50,7 @@ stores/<specific-store>/products/
 stores/<specific-store>/products/<specific-product>/
 <shopper>/
 <shopper>/cart/
-<shopper>/checkout
+<shopper>/checkout/
 <shopper>/checkout/successful/
 add-product/
 
@@ -76,3 +76,6 @@ products/create-new/
 orders/
 orders/<order>/
 
+Use Passport middleware for authentication.
+TO-DO: 
+Create the view and the controller for index page.
