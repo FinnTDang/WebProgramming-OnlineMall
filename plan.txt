@@ -78,7 +78,4 @@ orders/<order>/
 
 Use Passport middleware for authentication.
 TO-DO: 
-Fix the session to be stored locally.
-Fill the display index.
-Add the account to the navbar.
--> understand res.locals.layout
+Create the view and the controller for index page.

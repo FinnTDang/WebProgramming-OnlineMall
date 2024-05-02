@@ -7,6 +7,8 @@ const ProductSchema = new Schema({
   quantity: { type: Number, required: true },
   description: { type: String, required: true },
   image: { type: String, required: true },
+  time_sold: { type: Number, default: 0 },
+  date_added: { type: Date, default: Date.now }
 });
 
 // Virtual for user's URL

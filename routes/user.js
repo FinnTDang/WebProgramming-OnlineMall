@@ -23,9 +23,9 @@ router.get('/signout', user_controller.user_signout);
 
 
 
-router.get('/:user_id', user_controller.user_detail);
+router.get('/users/:id', user_controller.user_detail);
 
-router.get('/:user_id/cart', cart_controller.cart_display);
+router.get('/cart', user_controller.user_authenticate, cart_controller.cart_display);
 
 router.put('/:user_id', cart_controller.cart_update);
 

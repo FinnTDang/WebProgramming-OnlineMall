@@ -10,9 +10,9 @@ exports.user_list = asyncHandler(async (req, res, next) => {
 
 // Display detail page for a specific User.
 exports.user_detail = asyncHandler(async (req, res, next) => {
-  // res.send(`NOT IMPLEMENTED: Author detail: ${req.params.id}`);
-  console.log("Prompt user data");
-  next();
+  const user = await User.findOne({ _id: req.params.id }).exec();
+  res.render('user', { user: user });
+  console.log(req.params.id);
 });
 
 //Display user login
@@ -55,6 +55,7 @@ exports.user_create_post = asyncHandler(async (req, res, next) => {
     req.session.save(function (err) {
       if (err) { console.log(err); }
       console.log('Session after user match:', req.session.user);
+      if (user.account_type == "store owner") res.redirect('/stores/create');
       res.redirect('/');
     })
   }) 
