@@ -78,4 +78,4 @@ orders/<order>/
 
 Use Passport middleware for authentication.
 TO-DO: 
-Create the view and the controller for index page.
+Fix multer to make it inside the controllers.

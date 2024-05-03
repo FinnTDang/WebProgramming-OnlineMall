@@ -5,10 +5,19 @@ const cart_controller = require('../controllers/cartController');
 const order_controller = require('../controllers/orderController');
 const product_controller = require('../controllers/productController');
 const multer  = require('multer');
-const upload = multer({ dest: 'uploads/', storage: multer.memoryStorage() });
+const mongoose = require('mongoose');
 
-
-
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, 'public/images/users/');
+  },
+  filename: function(req, file, cb) {
+    const id = new mongoose.Types.ObjectId();
+    req.id = id;
+    cb(null, id.toString()); 
+  }
+});
+const upload = multer({ storage: storage });
 
 router.get('/signin', user_controller.user_signin_get);
 
@@ -19,9 +28,6 @@ router.get('/signup', user_controller.user_create_get);
 router.post('/signup', upload.single('profile_image'), user_controller.user_create_post);
 
 router.get('/signout', user_controller.user_signout);
-
-
-
 
 router.get('/users/:id', user_controller.user_detail);
 

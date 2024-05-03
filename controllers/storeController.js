@@ -1,4 +1,5 @@
-const Store = require("../models/product");
+const { default: mongoose } = require("mongoose");
+const Store = require("../models/store");
 const asyncHandler = require("express-async-handler");
 
 //READ all Stores alphabetically on GET
@@ -11,33 +12,31 @@ exports.store_list_category = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: Store list by category");
 });
 
-//READ new Stores on GET
-exports.store_new = asyncHandler(async (req, res, next) => {
-  // res.send("NOT IMPLEMENTED: New stores");
-  console.log('New stores');
-  next();
-});
-
-//READ featured Stores on GET
-exports.store_featured = asyncHandler((req, res, next) => {
-  // res.send("NOT IMPLEMENTED: Featured stores");
-  console.log('Featured Stores');
-  next();
-})
 
 //READ Store detail on GET
-exports.product_detail = asyncHandler(async (req, res, next) => {
-  res.send(`NOT IMPLEMENTED: Store detail: ${req.params.id}`);
+exports.store_page_get = asyncHandler(async (req, res, next) => {
+  const store = await Store.findOne({ _id: req.params.id }).exec();
+  res.render('store', { store: store });
 });
 
 //READ Store create-form on GET
-exports.product_create_get= asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Create store form");
+exports.store_create_get= asyncHandler(async (req, res, next) => {
+  res.render('store_create');
 });
 
 //CREATE Store on POST
-exports.product_create_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Create Store");
+exports.store_create_post = asyncHandler(async (req, res, next) => {
+  const new_store = new Store({
+    _id: req.id,
+    owner: req.session.user._id,
+    business_name: req.body.business_name,
+    store_name: req.body.store_name,
+    store_category: req.body.store_category,
+    store_logo: '/public/images/stores/' + req.id, 
+  });
+  await new_store.save();
+
+  res.redirect(`/stores/${req.id}`);
 });
 
 //READ Store update-form on GET

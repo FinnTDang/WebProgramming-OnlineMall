@@ -15,7 +15,7 @@ const UserSchema = new Schema({
     maxlength: 50,
     enum: ["store owner", "shopper"] 
   },
-  profile_image: { type: Buffer },
+  profile_image: { type: String },
   password: { type: String, required: true },
 });
 

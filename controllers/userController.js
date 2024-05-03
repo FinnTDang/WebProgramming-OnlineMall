@@ -1,8 +1,8 @@
 const User = require("../models/user");
+const Store = require("../models/store");
 const asyncHandler = require("express-async-handler");
 const countries = require("../public/countries.json");
 const mongoose = require("mongoose");
-
 
 exports.user_list = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: User list");
@@ -33,7 +33,7 @@ exports.user_create_get = asyncHandler(async (req, res, next) => {
 exports.user_create_post = asyncHandler(async (req, res, next) => {
   //Saving data to database
   const new_user = new User({
-    _id: new mongoose.Types.ObjectId(),
+    _id: req.id,
     name: req.body.first_name + " " + req.body.last_name,
     mail: req.body.mail,
     phone: req.body.phone,
@@ -42,23 +42,26 @@ exports.user_create_post = asyncHandler(async (req, res, next) => {
     address: req.body.address,
     zip: req.body.zip,
     account_type: req.body.account_type,
-    profile_image: req.file,
     password: req.body.password,
+    profile_image: '/public/images/user/' + req.id.toString(),
   });
   await new_user.save();
 
   //Instant signing in after signing up successfully
   const user = await User.findOne({ mail: `${req.body.mail}` }).exec(); 
   req.session.regenerate(function (err) {
-    if (err) { console.log(err); }
+    if (err) { return next(err) }
     req.session.user = user;
     req.session.save(function (err) {
-      if (err) { console.log(err); }
+      if (err) { return next(err) }
       console.log('Session after user match:', req.session.user);
-      if (user.account_type == "store owner") res.redirect('/stores/create');
-      res.redirect('/');
+      if (req.body.account_type == "store owner") {
+        res.redirect('/stores/create');
+      } else {
+        res.redirect('/');
+      }
     })
-  }) 
+  })  
 });
 
 // Handle User delete on POST.
@@ -113,7 +116,6 @@ exports.user_authenticate = asyncHandler(async (req, res, next) => {
   }
   next();
 })
-
 
 // Handle signing out.
 exports.user_signout = asyncHandler( async (req, res, next) => {
