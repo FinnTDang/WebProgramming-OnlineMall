@@ -7,6 +7,7 @@ const product_controller = require('../controllers/productController');
 const multer  = require('multer');
 const mongoose = require('mongoose');
 
+
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, 'public/images/users/');
@@ -18,6 +19,7 @@ const storage = multer.diskStorage({
   }
 });
 const upload = multer({ storage: storage });
+
 
 router.get('/signin', user_controller.user_signin_get);
 

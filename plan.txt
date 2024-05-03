@@ -78,4 +78,4 @@ orders/<order>/
 
 Use Passport middleware for authentication.
 TO-DO: 
-Fix multer to make it inside the controllers.
+Create index controller.
