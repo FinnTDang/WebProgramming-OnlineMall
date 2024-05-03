@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
   filename: function(req, file, cb) {
     const id = new mongoose.Types.ObjectId();
     req.id = id;
-    cb(null, id.toString()); 
+    cb(null, id.toString() + '.jpeg'); 
   }
 });
 const upload = multer({ storage: storage });

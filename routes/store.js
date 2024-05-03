@@ -11,11 +11,12 @@ const storage = multer.diskStorage({
   filename: function(req, file, cb) {
     const id = new mongoose.Types.ObjectId();
     req.id = id;
-    cb(null, id.toString());
+    cb(null, id.toString() + '.jpeg');
   }
 });
 const upload = multer({ storage: storage });
 
+router.get('/stores', store_controller.store_list);
 
 router.get('/stores/create', store_controller.store_create_get);
 

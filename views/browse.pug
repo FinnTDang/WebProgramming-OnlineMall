@@ -1,7 +1,7 @@
 extends layout 
 
 block content 
-  h1 =title
+  h1 #{title}
   
   button Browse by name 
   button Browse by category
@@ -9,6 +9,6 @@ block content
   each store in stores 
     ul 
       li 
-        img(src=store.logo)
-        a(href=store.url) #{store.name}
-        p= store.category 
+        img(src= store.store_logo)
+        a(href='/stores/' + store._id) #{store.store_name}
+        p= store.store_category 

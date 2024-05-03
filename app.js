@@ -6,6 +6,7 @@ const logger = require('morgan');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const mongoose = require('mongoose');
+const serveStatic = require('serve-static');
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/user');
@@ -42,7 +43,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('./public'));
 
 
 app.use('/', indexRouter);

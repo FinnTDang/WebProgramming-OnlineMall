@@ -43,7 +43,7 @@ exports.user_create_post = asyncHandler(async (req, res, next) => {
     zip: req.body.zip,
     account_type: req.body.account_type,
     password: req.body.password,
-    profile_image: '/public/images/user/' + req.id.toString(),
+    profile_image: '/images/user/' + req.id.toString() + '.jpeg',
   });
   await new_user.save();
 
