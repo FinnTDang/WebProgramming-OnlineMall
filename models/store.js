@@ -26,7 +26,7 @@ const StoreSchema = new Schema({
     ] 
   },
   store_logo: { type: String, required: true },
-  products: [{ type: Schema.Types.ObjectId, ref: 'Product'  }],
+  products: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
   date_added: { type: Date, default: Date.now },
   featured: { type: Boolean },
   date_added: { type: Date, default: Date.now },

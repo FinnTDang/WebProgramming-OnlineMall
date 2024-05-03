@@ -1,5 +1,6 @@
 const { default: mongoose } = require("mongoose");
 const Store = require("../models/store");
+const Product = require("../models/product");
 const asyncHandler = require("express-async-handler");
 
 exports.store_list = asyncHandler(async (req, res, next) => {
@@ -41,4 +42,12 @@ exports.store_update_post = asyncHandler(async (req, res, next) => {
 
 exports.store_delete_post = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: Delete store");
+});
+
+exports.all_products = asyncHandler(async (req, res, next) => {
+  const products = await Product.find({ store: req.params.id }).exec();
+
+  console.log(products);
+
+  res.render('all_products', { title: 'All Products', products: products });
 });

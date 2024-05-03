@@ -78,4 +78,4 @@ orders/<order>/
 
 Use Passport middleware for authentication.
 TO-DO: 
-Fix image display in browse
+Add product form

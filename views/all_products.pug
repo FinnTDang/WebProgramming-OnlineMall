@@ -1,0 +1,17 @@
+extends store 
+
+block content 
+  h1 #{title}
+  
+  if products
+    each product in products  
+      ul 
+        li 
+          img(src= product.image)
+          a(href='/stores/products/' + product._id) #{product.name}
+          p #{product.price}
+          p #{product.quantity}
+  
+  else 
+    p There's no product!
+         

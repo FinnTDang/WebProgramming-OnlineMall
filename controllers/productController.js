@@ -1,26 +1,7 @@
 const Product = require("../models/product");
+const Store = require("../models/store");
 const asyncHandler = require("express-async-handler");
-
-//Display all Products on GET
-exports.product_list = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Product list");
-});
-
-//READ featured Products on GET
-exports.product_featured = asyncHandler(async (req, res, next) => {
-  // res.send("NOT IMPLEMENTED: Featured products");
-  console.log('Featured products');
-  next();
-});
-
-//READ new Products on GET
-exports.product_new = asyncHandler(async (req, res, next) => {
-  // res.send("NOT IMPLEMENTED: New products");
-  console.log('New products');
-  next();
-});
-
-/**Featured and new Products, depending on the request head, will display it mall-wise or store-wise */
+const mongoose = require("mongoose");
 
 //READ Product detail on GET
 exports.product_detail = asyncHandler(async (req, res, next) => {
@@ -29,12 +10,29 @@ exports.product_detail = asyncHandler(async (req, res, next) => {
 
 //READ Product create-form on GET
 exports.product_create_get= asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Create product form");
+  res.render("add_product", { title: "Adding product", store_id: req.params.id });
 });
 
 //CREATE Product on POST
 exports.product_create_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Create product");
+  const new_product = new Product({
+    _id: req.id,
+    name: req.body.product_name,
+    store: req.params.id,
+    price: parseInt(req.body.product_price),
+    quantity: parseInt(req.body.product_quantity),
+    description: req.body.product_description,
+    image: '/images/products/' + req.id.toString() + '.jpeg'
+  });
+  await new_product.save();
+
+  const products_store = await Store.findById(new_product.store).exec();
+  products_store.products.push(new_product);
+  await products_store.save();
+  
+  console.log(products_store.products);
+
+  res.redirect(`/stores/${req.params.id}/products`);
 });
 
 //READ Product update-form on GET
