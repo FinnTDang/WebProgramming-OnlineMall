@@ -1,8 +1,72 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.header-nav {
+  background-color: white; 
+  border-bottom: 1px solid #D4AE63; 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 30px;
+}
+.navbar {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbar-nav {
+  align-items: center;
+}
+.nav-item {
+  margin: 0 30px; 
+}
+.link {
+  color: black;
+  font-size: 16px;
+}
+.link.active {
+  font-weight: bold;
+  text-decoration: underline;
 }
 
-a {
-  color: #00B7FF;
+.promo-banner {
+  background-color: #E6CE98; 
+  text-align: center;
+  padding: 10px 0;
+}
+.footer {
+  background-color: #E6CE98; 
+  padding: 20px 30px; 
+  border-top: 1px solid #D4AE63;
+}
+.footer-logo {
+  margin: 50px 80px 50px 50px;
+}
+.footer-columns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.footer-column {
+  flex: 1;
+}
+.footer-header {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.footer-column .link {
+  display: block;
+  text-decoration: none; 
+  margin-bottom: 20px;
+}
+.link:hover {
+  text-decoration: underline;
+}
+.copyright {
+  text-align: center;
+  margin-top: 20px;
+}
+.divider {
+  color: black;
+  width: 95%;
+  opacity: 1;
+  border-top: 1px solid black;
 }
