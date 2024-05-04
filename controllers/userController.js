@@ -71,7 +71,6 @@ exports.author_delete_post = asyncHandler(async (req, res, next) => {
 
 
 exports.user_info_update_get = asyncHandler(async (req, res, next) => {
-  console.log(req.session.user);
   res.render('user_info_update', { user: req.session.user, countries: countries, is_store_owner: req.session.user.account_type == "store owner" });
 });
 
@@ -100,9 +99,42 @@ exports.user_info_update_post = asyncHandler(async (req, res, next) => {
   res.redirect('/users/' + req.params.id);
 });
 
-exports.user_password_update_post = asyncHandler(async (req, res, next) => {
-
+exports.user_password_reset_get = asyncHandler(async (req, res, next) => {
+  res.render('password');
 })
+
+exports.user_password_reset_post = asyncHandler(async (req, res, next) => {
+  const user = await User.findOne({ mail: req.body.mail }).select("mail").exec();
+  const user_mail = user.mail;
+  console.log(user_mail);
+
+  if (!user_mail) {
+    res.redirect(404, "/reset-password");
+  } else {
+    res.redirect('/reset-password/' + user_mail);
+  }
+});
+
+exports.get_bridge = asyncHandler(async (req, res, next) => {
+  const password_reset_code = new mongoose.Types.ObjectId();
+  const reset_path = '/reset-password/' + req.params.mail + '/' + password_reset_code.toString();
+
+  res.render('password', { bridge: true, reset_url: reset_path, mail: req.params.mail });
+});
+
+exports.password_change_get = asyncHandler(async (req, res, next) => {
+  res.render('password', { change: true, path: req.path });
+})
+
+exports.password_change_post = asyncHandler(async (req, res, next) => {
+  const user = await User.findOne({ mail: req.params.mail }).exec();
+
+  user.password = req.body.new_password;
+
+  await user.save();
+
+  res.redirect('/signin');
+});
 
 // Handle Authentication - Used as middleware
 exports.user_signin_post = asyncHandler(async (req, res, next) => {

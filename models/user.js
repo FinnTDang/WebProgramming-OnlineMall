@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
   name: { type: String, required: true, maxLength: 100 },
-  mail: { type: String, required: true, maxlength: 200 },
+  mail: { type: String, required: true, maxlength: 200, unique: true },
   phone: { type: String, required: true, maxlength: 12 },
   country: { type: String, required: true, maxlength: 50 },
   city: { type: String, required: true, maxlength: 50 },
