@@ -24,7 +24,7 @@ const product_storage = multer.diskStorage({
     req.id = id;
     cb(null, id.toString() + '.jpeg');
   }
-})
+});
 const store_upload = multer({ storage: store_storage });
 const product_upload = multer({ storage: product_storage });
 
@@ -42,5 +42,7 @@ router.get('/stores/:id/products', store_controller.all_products);
 router.get('/stores/:id/products/create', product_controller.product_create_get);
 
 router.post('/stores/:id/products/create', product_upload.single('product_image'),  product_controller.product_create_post);
+
+router.get('/stores/:store_id/products/:product_id', product_controller.product_detail);
 
 module.exports = router;

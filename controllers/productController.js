@@ -5,7 +5,9 @@ const mongoose = require("mongoose");
 
 //READ Product detail on GET
 exports.product_detail = asyncHandler(async (req, res, next) => {
-  res.send(`NOT IMPLEMENTED: Product detail: ${req.params.id}`);
+  const product = await Product.findOne({ _id: req.params.product_id }).exec();
+
+  res.render('product_detail', { product: product });
 });
 
 //READ Product create-form on GET
@@ -32,7 +34,7 @@ exports.product_create_post = asyncHandler(async (req, res, next) => {
   
   console.log(products_store.products);
 
-  res.redirect(`/stores/${req.params.id}/products`);
+  res.redirect(`/stores/${req.params.id}/`);
 });
 
 //READ Product update-form on GET

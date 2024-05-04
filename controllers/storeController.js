@@ -10,8 +10,24 @@ exports.store_list = asyncHandler(async (req, res, next) => {
 });
 
 exports.store_page_get = asyncHandler(async (req, res, next) => {
+  const new_products = await Product.find({ store: req.params.id }).sort({ date_added: -1 }).limit(5).exec();
+
+  const all_products = await Product.find({ store: req.params.id }).exec();
+
   const store = await Store.findOne({ _id: req.params.id }).exec();
-  res.render('store', { store: store });
+
+  let is_store_owner;
+  if (req.session.user) {
+    is_store_owner = req.session.user._id == store.owner;
+  }
+  console.log(is_store_owner);
+
+  res.render('store', { 
+    store: store, 
+    all_products: all_products, 
+    new_products: new_products,
+    is_store_owner: is_store_owner 
+  });
 });
 
 exports.store_create_get= asyncHandler(async (req, res, next) => {
@@ -45,6 +61,7 @@ exports.store_delete_post = asyncHandler(async (req, res, next) => {
 });
 
 exports.all_products = asyncHandler(async (req, res, next) => {
+  const new_products = await Product.find().sort({ date_added: -1 }).limit(5).exec();
   const products = await Product.find({ store: req.params.id }).exec();
 
   console.log(products);

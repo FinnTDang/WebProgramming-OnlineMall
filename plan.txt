@@ -76,6 +76,14 @@ products/create-new/
 orders/
 orders/<order>/
 
-Use Passport middleware for authentication.
-TO-DO: 
-Add product form
+
+TO-DO:
+- Store display
+
+- Info cua 1 acc cu the
+- Cart display
+- Cart post 
+- Order get 
+- Order post 
+- Product update 
+- Contact post
