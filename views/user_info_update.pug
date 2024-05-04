@@ -1,0 +1,46 @@
+extends layout 
+
+block content 
+  h1 Update info 
+  form(method="POST" enctype="multipart/form-data" action="/users/" + user._id + "/update")
+    label(for='mail') Email address 
+    br
+    input(name="mail" value=user.mail)
+    br
+    label(for='phone') Phone number
+    br
+    input(name='phone' value=user.phone)
+    br
+    label(for='profile_image') Profile image 
+    br
+    input(type='file' accept='image/*' name='profile_image')
+    br
+    label(for='name' ) Name 
+    br
+    input(name='name' value=user.name)
+    br
+    label(for='address' ) Address
+    br
+    input(name='address' value=user.address)
+    br
+    label(for='city') City
+    br
+    input(name="city" value=user.city)
+    br
+    label(for='zip') Zipcode
+    br
+    input(name='zip' value=user.zip)
+    br
+    label(for='country') Country 
+      select(name="country" value=user.country)
+        each country in countries 
+          option(value=country.Name) #{country.Name}
+    br
+    p Account type 
+    label(for="account_type") Store owner  
+    input(id="store_owner" type="radio" name="account_type" value="store owner" checked= is_store_owner )
+    br
+    label(for="account_type") Shopper 
+    input(id="shopper" type="radio" name="account_type" value="shopper" checked= !user.is_store_owner )
+    br
+    button(type="submit") Submit

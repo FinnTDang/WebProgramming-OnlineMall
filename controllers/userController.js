@@ -69,15 +69,40 @@ exports.author_delete_post = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: User delete POST");
 });
 
-// Display User update form on GET.
-exports.user_update_get = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: User update GET");
+
+exports.user_info_update_get = asyncHandler(async (req, res, next) => {
+  console.log(req.session.user);
+  res.render('user_info_update', { user: req.session.user, countries: countries, is_store_owner: req.session.user.account_type == "store owner" });
 });
 
 // Handle User update on POST.
-exports.user_update_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: User update POST");
+exports.user_info_update_post = asyncHandler(async (req, res, next) => {
+  const current_user = await User.findOne({ _id: req.params.id });
+
+  const new_user_info = req.body;
+
+  current_user.mail = new_user_info.mail; 
+  current_user.name = new_user_info.name; 
+  current_user.phone = new_user_info.phone; 
+  current_user.zip = new_user_info.zip; 
+  current_user.country = new_user_info.country; 
+  current_user.account_type = new_user_info.account_type; 
+  current_user.address = new_user_info.address; 
+  current_user.city = new_user_info.city; 
+
+  await current_user.save();
+
+  req.session.user = current_user;
+
+  console.log(req.session.user);
+
+  res.redirect('/users/' + req.params.id);
+  // res.status(200).json({ message: 'User information updated successfully' });
 });
+
+exports.user_password_update_post = asyncHandler(async (req, res, next) => {
+
+})
 
 // Handle Authentication - Used as middleware
 exports.user_signin_post = asyncHandler(async (req, res, next) => {
