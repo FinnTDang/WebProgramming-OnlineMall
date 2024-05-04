@@ -89,6 +89,7 @@ exports.user_info_update_post = asyncHandler(async (req, res, next) => {
   current_user.account_type = new_user_info.account_type; 
   current_user.address = new_user_info.address; 
   current_user.city = new_user_info.city; 
+  current_user.password = new_user_info.password;
 
   await current_user.save();
 
@@ -97,7 +98,6 @@ exports.user_info_update_post = asyncHandler(async (req, res, next) => {
   console.log(req.session.user);
 
   res.redirect('/users/' + req.params.id);
-  // res.status(200).json({ message: 'User information updated successfully' });
 });
 
 exports.user_password_update_post = asyncHandler(async (req, res, next) => {
