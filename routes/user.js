@@ -14,22 +14,19 @@ const storage = multer.diskStorage({
     cb(null, 'public/images/users/');
   },
   filename: function(req, file, cb) {
-    console.log(req.path);
-    console.log(req.params.id);
     if (req.path == "/users/" + req.params.id + "/update") {
-      console.log("Prepare to delete file...");
-      fs.unlink(`public/images/users/${req.params.id}.jpeg`, (err) => {
+      fs.rm(`public/images/users/${req.params.id}.jpeg`, (err) => {
         if (err) {
-          res.status(500).json({ message: 'Server error. Unable to process.'});
           console.log(err);
         }
         console.log("Update successful");
         cb(null, req.params.id + '.jpeg');
       })
+    } else {
+      const id = new mongoose.Types.ObjectId();
+      req.id = id;
+      cb(null, id.toString() + '.jpeg');
     } 
-    const id = new mongoose.Types.ObjectId();
-    req.id = id;
-    cb(null, id.toString() + '.jpeg'); 
   }
 });
 const upload = multer({ storage: storage });
