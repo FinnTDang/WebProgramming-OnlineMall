@@ -64,9 +64,70 @@
   text-align: center;
   margin-top: 20px;
 }
+
 .divider {
   color: black;
   width: 95%;
   opacity: 1;
   border-top: 1px solid black;
+}
+
+.cornered-rectangle {
+  width: 20px; 
+  height: 40px; 
+  background-color: #DB4444; 
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+h2.text-danger {
+  color: #DB4444;
+  font-size: 1.2rem;
+  font-weight: bold; 
+}
+
+.circle-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+}
+
+
+.outer-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+}
+
+.inner-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bg-black {
+  background-color: black;
+}
+
+.text-white {
+  color: white;
+}
+
+.bg-gold {
+  background-color: #D4AE63;
+}
+
+.text-black {
+  color: black;
 }
