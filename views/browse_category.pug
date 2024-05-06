@@ -1,0 +1,18 @@
+extends layout 
+
+block content 
+  .container.my-5
+    .d-flex.align-items-center.mb-3
+      .cornered-rectangle
+      h2.text-danger.mb-0 Browse Stores by Category
+
+    each category in categories
+      h2= category._id
+      .row
+      each store in category.stores
+        .col-md-3.mb-3
+          a(href=`/store/${store._id}`)
+            .card
+              img.card-img-top(src=store.logo alt=store.name)
+              .card-body
+                p.card-text.text-center= store.name

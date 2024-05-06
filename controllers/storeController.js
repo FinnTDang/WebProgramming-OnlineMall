@@ -1,14 +1,20 @@
-const Store = require("../models/product");
+const Store = require("../models/store");
 const asyncHandler = require("express-async-handler");
 
 //READ all Stores alphabetically on GET
 exports.store_list_alphabet = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Store list by alphabet");
+  const stores = await Store.find({}).sort({ store_name: 1 }); // sort by name ascending
+  res.render("browse_name", { title: "Browse", stores });
 });
 
 //READ all Stores by category on GET
 exports.store_list_category = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Store list by category");
+  const categories = await Store.aggregate([
+    { $group: { _id: "$store_category", stores: { $push: "$$ROOT" } } },
+    { $sort: { _id: 1 } } // sort by category name ascending
+  ]);
+
+  res.render("browse_category", { title: "Browse", categories });
 });
 
 //READ new Stores on GET
@@ -26,8 +32,9 @@ exports.store_featured = asyncHandler((req, res, next) => {
 })
 
 //READ Store detail on GET
-exports.product_detail = asyncHandler(async (req, res, next) => {
-  res.send(`NOT IMPLEMENTED: Store detail: ${req.params.id}`);
+exports.store_detail = asyncHandler(async (req, res, next) => {
+  const store = await Store.findById(req.params.id);
+  res.render("store", { store });
 });
 
 //READ Store create-form on GET

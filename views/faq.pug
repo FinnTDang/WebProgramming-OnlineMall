@@ -1,5 +1,40 @@
 extends layout 
 
 block content 
-  h1 =title
-   
+  .faq-page
+    div.faq-left-box
+      .d-flex.align-items-center.mb-3
+        .cornered-rectangle
+        h2.text-danger.mb-0 Categories
+      ul
+        li.active(data-category='delivery')
+          i.fas.fa-truck
+          span Delivery & order tracking
+        li(data-category='returns')
+          i.fas.fa-undo-alt
+          span Returns, exchanges & refunds
+        li(data-category='payments')
+          i.fas.fa-credit-card
+          span Payments & promotions
+        li(data-category='sizes')
+          i.fas.fa-tshirt
+          span Information on sizes & products
+        li(data-category='personal')
+          i.fas.fa-user
+          span Personal data & notifications
+          
+    .vertical-divider
+
+    div.faq-right-box
+      .faq-content
+        h2 Delivery & order tracking
+        ul.questions-list
+          li.active(data-question='order-status') Where is my order?
+          li(data-question='types-delivery') What are the types of delivery and delivery times for a Mango order?
+          li(data-question='change-address') Can I change the delivery address of an order?
+          li(data-question='cancel-order') Can I cancel my order?
+          li(data-question='missing-items') What should I do if I have not received all the items in my purchase?
+          li(data-question='defective-items') What should I do if I have received an incorrect or defective item?
+      .faq-answer
+        h3 Where is my order?
+        p Check the details of your in-store and online purchases...
