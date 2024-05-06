@@ -10,13 +10,13 @@ block content
     .row
       each store in new_stores
         .col-md-3.mb-3
-          a(href=store.url)
+          a(href=`/store/${store._id}`)
             .card
               img.card-img-top(src=store.logo alt=store.name)
               .card-body
                 p.card-text.text-center= store.name
     .text-center.mt-4
-      a.btn.btn-danger.btn-lg(href="/browse") View All Stores
+      a.btn.btn-danger.btn-lg(href="/browse_name") View All Stores
 
     // New Products Section
     h2.text-center.mt-5 New Products
@@ -40,7 +40,7 @@ block content
     .row
       each store in featured_stores
         .col-md-3.mb-3
-          a(href=store.url)
+          a(href=`/store/${store._id}`)
             .card
               img.card-img-top(src=store.logo alt=store.name)
               .card-body

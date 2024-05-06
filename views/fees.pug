@@ -1,5 +1,46 @@
-extends layout 
+extends layout
 
-block content 
-  h1 =title
-   
+block content
+  h1.text-center.mt-3 Mall Fees 
+  p.text-center.mb-3 Here are the fees for using our mall services.
+  .container.my-3
+    .d-flex.align-items-center.mb-3
+      .cornered-rectangle
+      h2.text-danger.mb-0 for Shoppers
+    
+    table.fees-table
+      thead
+        tr
+          th Fee Type
+          th Amount
+          th Description
+      tbody
+        tr
+          td Premium Membership
+          td $20/year
+          td Annual fee for accessing exclusive discounts and promotions.
+        tr
+          td Transaction Fee
+          td $1 per Transaction
+          td Fixed fee for each purchase made through the mall's payment system.
+
+    .d-flex.align-items-center.mb-3
+      .cornered-rectangle
+      h2.text-danger.mb-0 for Store Owners
+    
+    table.fees-table
+      thead
+        tr
+          th Fee Type
+          th Amount
+          th Description
+      tbody
+        tr
+          td Monthly Renting Fee
+          td $50/month
+          td Monthly rent for using a store space in the mall.
+        tr
+          td Commission Fee
+          td 5% of Sales
+          td Percentage charged on each product sale made in the mall.
+  

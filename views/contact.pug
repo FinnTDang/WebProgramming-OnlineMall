@@ -1,40 +1,53 @@
 extends layout 
 
-block content 
-  h1 =title
-  form(method="POST")
-    label(for="contact_purpose") Contact purpose
-    select(name="contact_purpose")
-      option(value="Business inquiry") 
-      option(value="Event hosting")
-      option(value="Other")
-    label(for="contact_name") Name 
-    input(name="contact_name")
-    label(for="contact_email") Email
-    input(name="contact_email")
-    label(for="contact_phone") Phone number 
-    input(name="contact_phone")
-    p Preference
-    input(name="contact_preference" type="radio" value="phone") 
-    label(for="contact_preference") Phone 
-    input(name="contact_preference" type="radio" value="email") 
-    label(for="contact_preference") Email
-    p Contact days 
-    input(name="contact_day" type="checkbox" value="monday") 
-    label(for="contact_day") Monday  
-    input(name="contact_day" type="checkbox" value="tuesday") 
-    label(for="contact_day") Tuesday 
-    input(name="contact_day" type="checkbox" value="wednesday") 
-    label(for="contact_day") Wednesday 
-    input(name="contact_day" type="checkbox" value="thursday") 
-    label(for="contact_day") Thursday 
-    input(name="contact_day" type="checkbox" value="friday") 
-    label(for="contact_day") Friday 
-    input(name="contact_day" type="checkbox" value="saturday") 
-    label(for="contact_day") Saturday 
-    input(name="contact_day" type="checkbox" value="sunday") 
-    label(for="contact_day") Sunday 
-    label(for="message") Message
-    textarea(name="message")
-    button(type="clear") Clear
-    button(type="submit") Send 
+block content
+  .contact-page
+    div.contact-info-box.shadow-box
+        h4
+          i.fa.fa-phone(style='background-color: #DB4444; color: white; padding: 10px; border-radius: 30%; margin-right: 10px;') 
+          | Call Us
+        p We are available 24/7.
+        p Phone: +999-999-9999
+        hr
+        h4
+          i.fa.fa-envelope(style='background-color: #DB4444; color: white; padding: 10px; border-radius: 30%; margin-right: 10px;') 
+          | Write to Us
+        p Fill out our form and we will contact you within 24 hours.
+        p Emails: customer@exclusive.com
+        p Emails: support@exclusive.com 
+
+    div.contact-form-box.shadow-box
+      h3 Please fill out this form
+      form(action='/contact', method='post')
+        .form-group
+          label.form-label(for='contact_purpose') Contact Purpose
+          select#contact_purpose.form-input(name="contact_purpose")
+            option(value='Business inquiry') Business inquiry
+            option(value='Event hosting') Event hosting
+            option(value='Other') Other
+        .form-group
+          label.form-label(for='contact_name') Name
+          input#contact_name.form-input(type='text', name='contact_name' placeholder='Your Name *', required=true)
+        .form-group
+          label.form-label(for='contact_email') Email
+          input#contact_email.form-input(type='email', name='contact_email' placeholder='Your Email *', required=true)
+        .form-group 
+          label.form-label(for='contact_phone') Phone
+          input#contact_phone.form-input(type='text', name='contact_phone' placeholder='Your Phone *', required=true)
+        .form-group
+          label.form-label Contact Preference
+          input#contact_preference.form-input(name="contact_preference" type="radio" value="phone") 
+          label(for="contact_preference") Phone 
+          input#contact_preference.form-input(name="contact_preference" type="radio" value="email") 
+          label(for="contact_preference") Email
+        .form-group
+          label.form-label Contact Days
+          each day in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            input#contact_day.form-input(type='checkbox', name='contact_day', value=day)
+            label(for="contact_day") #{day}
+        .form-group
+          label.form-label(for='contact_message') Message
+          textarea#contact_message.form-input(name='message' placeholder='What do you want to say to us? *')
+
+        button.form-button(type="clear") Clear
+        button.form-button(type="submit") Send 

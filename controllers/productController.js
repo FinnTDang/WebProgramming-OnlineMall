@@ -3,7 +3,8 @@ const asyncHandler = require("express-async-handler");
 
 //Display all Products on GET
 exports.product_list = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Product list");
+  const products = await Product.find({});
+  res.render("product_list", { products });
 });
 
 //READ featured Products on GET
