@@ -70,6 +70,9 @@
 }
 
 /* Homepage */
+.index-container {
+  padding: 30px 50px;
+}
 .divider {
   color: black;
   width: 95%;
@@ -100,7 +103,6 @@ h2.text-danger {
   justify-content: center;
   margin: 0 auto 10px;
 }
-
 
 .outer-circle {
   width: 80px;
@@ -137,7 +139,12 @@ h2.text-danger {
   color: black;
 }
 
-/*  Contact page */
+/* Browse page */
+.browse-container {
+  padding: 30px 50px;
+}
+
+/* Contact page */
 .contact-page {
   display: flex;
   justify-content: space-between;
@@ -197,16 +204,7 @@ label[for='contact_day'] {
   margin-bottom: 0;
   margin-right: 65px;
 }
-.form-button {
-  background-color: #DB4444; 
-  border: none;
-  border-radius: 4px; 
-  color: white;
-  margin: 20px 20px 0 0; 
-  padding: 8px 15px;
-  text-align: center;
-  cursor: pointer;
-}
+
 
 /* Fees Page */
 .fees-table {
@@ -232,7 +230,7 @@ label[for='contact_day'] {
 .faq-page {
   display: flex;
   justify-content: space-between;
-  padding: 0 30px;
+  padding: 0 50px;
 }
 
 .faq-left-box {
@@ -241,7 +239,7 @@ label[for='contact_day'] {
   height: 100%;
 }
 
-.faq-left-box ul, .questions-list {
+.faq-left-box ul, .faq-questions {
   list-style: none;
 }
 
@@ -249,21 +247,27 @@ label[for='contact_day'] {
   padding: 12px 8px;
   border-left: 5px solid transparent;
 }
-.questions-list li {
+.faq-questions li {
   padding: 12px 8px;
   border-bottom: 1px solid #eaeaea;
 }
 
-.faq-left-box li:hover, .questions-list li:hover {
+.faq-left-box li:hover, .faq-questions li:hover {
   cursor: pointer;
   background-color: #f9f9f9;
   padding-left: 12px;
   border-left: 5px solid transparent;
 }
 
-.faq-left-box li.active, .questions-list li.active{
+.faq-left-box li.active, .faq-questions li.active{
   font-weight: bold;
   border-left: 5px solid #DB4444;
+}
+
+.faq-page a {
+  text-decoration: none;
+  color: black;
+  display: block;
 }
 
 .faq-left-box li i {
@@ -283,5 +287,34 @@ label[for='contact_day'] {
   width: 1px;
   background-color: #D4AE63;
   margin: 0 20px;
-  height: 50vh; 
+  height: 60vh; 
+}
+
+/* Error page */
+.error-container {
+  text-align: center;
+  padding: 50px;
+}
+
+.error-container h1 {
+  font-size: 5rem;
+}
+
+.error-container p {
+  margin-top: 20px;
+}
+/* Buttons styling */
+.form-button, .browse-button, .error-button {
+  background-color: #DB4444; 
+  border: none;
+  border-radius: 4px; 
+  color: white;
+  margin: 20px 20px 0 0; 
+  padding: 8px 15px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.form-button:hover, .browse-button:hover, .error-button:hover {
+  background-color: #c62828;
 }

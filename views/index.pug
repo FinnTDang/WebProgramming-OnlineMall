@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  .container.my-5
+  .index-container
     .d-flex.align-items-center.mb-3
       .cornered-rectangle
       h2.text-danger.mb-0 New Arrival
@@ -15,8 +15,9 @@ block content
               img.card-img-top(src=store.logo alt=store.name)
               .card-body
                 p.card-text.text-center= store.name
-    .text-center.mt-4
-      a.btn.btn-danger.btn-lg(href="/browse_name") View All Stores
+    .text-center
+      a(href='/browse_name') 
+        button.browse-button View All Stores
 
     // New Products Section
     h2.text-center.mt-5 New Products
@@ -45,8 +46,9 @@ block content
               img.card-img-top(src=store.logo alt=store.name)
               .card-body
                 p.card-text.text-center= store.name
-    .text-center.mt-4
-      a.btn.btn-danger.btn-lg(href="/browse") View All Stores
+    .text-center
+      a(href='/browse_name') 
+        button.browse-button View All Stores
 
     // Featured Products Section
     h2.text-center.mt-5 Featured Products
