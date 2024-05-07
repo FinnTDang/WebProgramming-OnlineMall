@@ -4,13 +4,11 @@ body {
   }
   
   :root {
-    /* fonts */
-    --title-16px-regular: Poppins;
-    --heading-32px-medium: Inter;
+    
   
     /* font sizes */
     --title-16px-regular-size: 16px;
-    --heading-32px-medium-size: 32px;
+    --heading-32px-medium-size: 28px;
     --font-size-lgi: 19px;
     --font-size-7xl: 26px;
     --font-size-32xl: 51px;
@@ -44,7 +42,7 @@ body {
     margin: 0;
     width: 2387px;
     position: relative;
-    font-size: inherit;
+    font-size: 80px;
     letter-spacing: 0.06em;
     line-height: 64px;
     font-weight: 600;
@@ -63,7 +61,7 @@ body {
     position: relative;
     letter-spacing: 0.06em;
     line-height: 64px;
-    font-weight: 600;
+    font-weight: 400;
     flex-shrink: 0;  
   }
   .lorem-ipsum-is-simply-dummy-te-wrapper {
@@ -109,19 +107,7 @@ body {
     background-repeat: no-repeat;
     background-position: top;
   }
-  .dang-minh-triet {
-    position: relative;
-    letter-spacing: 0.04em;
-    line-height: 30px;
-    font-weight: 500;
-  }
-  .managing-director {
-    position: relative;
-    font-size: var(--title-16px-regular-size);
-    line-height: 24px;
-    font-family: var(--title-16px-regular);
-    color: var(--color-red);
-  }
+  
   .name-p-mem {
     gap: var(--gap-5xs);
   }
@@ -154,38 +140,6 @@ body {
     background-repeat: no-repeat;
     background-position: top;
   }
-  .do-phuong-linh {
-    position: relative;
-    letter-spacing: 0.04em;
-    line-height: 30px;
-    font-weight: 500;
-  }
-  .front-end {
-    position: relative;
-    font-size: var(--title-16px-regular-size);
-    line-height: 24px;
-    font-family: var(--title-16px-regular);
-    color: var(--color-red);
-    display: inline-block;
-    min-width: 81px;
-  }
-  .name-p-mem1 {
-    gap: var(--gap-5xs);
-  }
-  .info-mem1,
-  .member1,
-  .name-p-mem1 {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-  }
-  .member1 {
-    height: 524px;
-    width: 370px;
-    gap: var(--gap-13xl);
-    max-width: 100%;
-  }
   .img-mem2 {
     cursor: pointer;
     border: 0;
@@ -201,38 +155,6 @@ body {
     background-repeat: no-repeat;
     background-position: top;
   }
-  .le-duc-trung {
-    position: relative;
-    letter-spacing: 0.04em;
-    line-height: 30px;
-    font-weight: 500;
-  }
-  .back-end {
-    position: relative;
-    font-size: var(--title-16px-regular-size);
-    line-height: 24px;
-    font-family: var(--title-16px-regular);
-    color: var(--color-red);
-    display: inline-block;
-    min-width: 79px;
-  }
-  .name-p-mem2 {
-    gap: var(--gap-5xs);
-  }
-  .info-mem2,
-  .member2,
-  .name-p-mem2 {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-  }
-  .member2 {
-    height: 524px;
-    width: 370px;
-    gap: var(--gap-13xl);
-    max-width: 100%;
-  }
   .img-mem3 {
     cursor: pointer;
     border: 0;
@@ -247,45 +169,13 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top;
-  }
-  .pham-trong-nghia {
-    position: relative;
-    letter-spacing: 0.04em;
-    line-height: 30px;
-    font-weight: 500;
-  }
-  .front-end1 {
-    position: relative;
-    font-size: var(--title-16px-regular-size);
-    line-height: 24px;
-    font-family: var(--title-16px-regular);
-    color: var(--color-red);
-    display: inline-block;
-    min-width: 81px;
-  }
-  .name-p-mem3 {
-    gap: var(--gap-5xs);
-  }
-  .info-mem3,
-  .name-p-mem3 {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-  }
+  } 
   .group-member,
   .group-member-wrapper,
   .member3 {
     display: flex;
     align-items: flex-start;
     max-width: 100%;
-  }
-  .member3 {
-    height: 524px;
-    width: 370px;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: var(--gap-13xl);
   }
   .group-member,
   .group-member-wrapper {
@@ -392,13 +282,7 @@ body {
     .frame-group {
       flex-wrap: wrap;
     }
-    .dang-minh-triet,
-    .do-phuong-linh,
-    .le-duc-trung,
-    .pham-trong-nghia {
-      font-size: var(--font-size-7xl);
-      line-height: 24px;
-    }
+    
     .frame-parent {
       gap: 35px;
     }
@@ -423,33 +307,10 @@ body {
     .frame-group {
       flex-wrap: wrap;
     }
-    .dang-minh-triet {
-      font-size: var(--font-size-lgi);
-      line-height: 18px;
-    }
+    
     .member {
       gap: var(--gap-base);
     }
-    .do-phuong-linh {
-      font-size: var(--font-size-lgi);
-      line-height: 18px;
-    }
-    .member1 {
-      gap: var(--gap-base);
-    }
-    .le-duc-trung {
-      font-size: var(--font-size-lgi);
-      line-height: 18px;
-    }
-    .member2 {
-      gap: var(--gap-base);
-    }
-    .pham-trong-nghia {
-      font-size: var(--font-size-lgi);
-      line-height: 18px;
-    }
-    .member3 {
-      gap: var(--gap-base);
     }
     .frame-parent {
       gap: 18px;
@@ -457,5 +318,5 @@ body {
     .about-us {
       gap: var(--gap-50xl);
     }
-  }
+  
   
