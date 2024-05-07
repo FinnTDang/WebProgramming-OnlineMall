@@ -13,6 +13,9 @@ const contactRouter = require('./routes/contact');
 const feesRouter = require('./routes/fees');
 const faqRouter = require('./routes/faq');
 const aboutRouter = require('./routes/about');
+const copyrightRouter = require('./routes/copyright');
+const termsRouter = require('./routes/terms');
+const policyRouter = require('./routes/policy');
 
 const app = express();
 
@@ -54,6 +57,9 @@ app.use('/contact', contactRouter);
 app.use('/fees', feesRouter);
 app.use('/faq', faqRouter);
 app.use('/about', aboutRouter)
+app.use('/copyright', copyrightRouter);
+app.use('/terms', termsRouter);
+app.use('/policy', policyRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

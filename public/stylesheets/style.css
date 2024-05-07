@@ -290,6 +290,37 @@ label[for='contact_day'] {
   height: 60vh; 
 }
 
+/* Copyright, Terms of Service, Privacy Policy page */
+.box-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+.header-section {
+  text-align: center;
+  border-bottom: 2px solid #f1f1f1;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+}
+.copyright-guidelines li {
+  margin-bottom: 15px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #333333;
+}
+.box-container p {
+  font-size: 1rem;
+  line-height: 2rem;
+  color: #555555;
+}
+
 /* Error page */
 .error-container {
   text-align: center;
@@ -303,8 +334,9 @@ label[for='contact_day'] {
 .error-container p {
   margin-top: 20px;
 }
+
 /* Buttons styling */
-.form-button, .browse-button, .error-button {
+button {
   background-color: #DB4444; 
   border: none;
   border-radius: 4px; 
@@ -315,6 +347,6 @@ label[for='contact_day'] {
   cursor: pointer;
 }
 
-.form-button:hover, .browse-button:hover, .error-button:hover {
+button:hover {
   background-color: #c62828;
 }

@@ -1,5 +1,26 @@
-extends layout 
+extends layout
 
-block content 
-  h1 =title
-   
+block content
+  .box-container
+    .header-section
+      h1.copyright-title Copyright Information
+      p.copyright-subtitle Protecting Intellectual Property Rights
+
+    .content-section
+      p.copyright-intro
+        | This website and its contents, including images, graphics, text, and trademarks, are protected by copyright laws. Unauthorized reproduction or distribution of the content is prohibited.
+
+      h3.section-title Copyright Guidelines
+      ul.copyright-guidelines
+        li All rights are reserved for the content published on this site.
+        li Commercial use of the site's materials requires explicit permission.
+        li Sharing or linking is permitted only with proper attribution.
+
+      h3.section-title Contact Information
+      p.copyright-contact
+        | If you have any questions or require additional clarification regarding our copyright policy, please 
+        a(href='/contact' class='contact-link') contact us.
+    
+    .d-flex.justify-content-center
+      a(href='/')
+        button Back to Home
