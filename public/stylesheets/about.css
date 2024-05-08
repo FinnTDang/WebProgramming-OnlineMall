@@ -318,5 +318,21 @@ body {
     .about-us {
       gap: var(--gap-50xl);
     }
+   
+    .modal-dialog.custom-modal-size {
+        max-width: 250px; /* Smaller width */
+        margin: auto; /* Centering the modal */
+    }
+    .modal-content {
+        padding: 10px; /* Smaller padding */
+    }
+    .modal-title, .modal-body p {
+        font-size: 0.85rem; /* Smaller font size */
+    }
+    .img-fluid {
+        max-height: 100px; /* Limiting image height to keep the modal compact */
+    }
+
   
+
   
