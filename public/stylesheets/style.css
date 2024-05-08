@@ -285,3 +285,31 @@ label[for='contact_day'] {
   margin: 0 20px;
   height: 50vh; 
 }
+/*login page*/
+.login-container {
+  max-width: 40%;
+  margin: auto;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background-color: white;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.action-links {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row; /* default direction */
+}
+@media (max-width: 768px) {
+  .login-container {
+    max-width: 80%;
+  }
+  .action-links {
+    flex-direction: column; /* stack vertically on small screens */
+  }
+  .btn, a {
+    width: 100%; /* full width for small screens */
+    margin-top: 10px;
+  }
+}
