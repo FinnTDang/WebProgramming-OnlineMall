@@ -3,68 +3,73 @@ html
   head
     title #{title}
     link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css')
+
+    link(rel='stylesheet' href='stylesheets/style.css')
+
   body
     script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js')
     script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js')
-    header
+    p.promo-banner Summer Sale For All Swim Suits And Free Express Delivery – OFF 50%! ShopNow
+    header.header-nav
       if store 
         h1 #{store.name}
       else 
-        h1 Mall
-      nav
-        ul 
-          li 
-            a(href='/') Home
-          li 
-            a(href='/about') About 
-          li 
-            a(href='/fees') Fees
-          li 
-            a(href='/stores') Browse
-          li 
-            a(href='/faq') FAQs
-          li 
-            a(href='/contact') Contact 
+        h1 Mall Logo
+      nav.navbar.navbar-expand-lg
+        ul.navbar-nav
+          li.nav-item
+            a.link(href='/' class=(title === 'Home' ? 'active' : '')) Home
+          li.nav-item.dropdown
+              a.link.dropdown-toggle(href='/browse_name' class=(title === 'Browse' ? 'active' : ''), id='navbarDropdown', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Browse
+              .dropdown-menu(aria-labelledby='navbarDropdown')
+                a.dropdown-item(href='/browse_name') Browse Stores by Name
+                a.dropdown-item(href='/browse_category') Browse Stores by Category
+          li.nav-item
+            a.link(href='/about' class=(title === 'About' ? 'active' : '')) About 
+          li.nav-item
+            a.link(href='/contact' class=(title === 'Contact' ? 'active' : '')) Contact 
+          li.nav-item
+            a.link(href='/faq' class=(title === 'FAQ' ? 'active' : '')) FAQs
+          li.nav-item
+            a.link(href='/fees' class=(title === 'Fees' ? 'active' : '')) Fees 
           if !user
-            li 
-              a(href='/signin') Sign in
-            li 
-              a(href='/signup') Sign up
+            li.nav-item
+              a.link(href='/signin') Sign in
+            li.nav-item
+              a.link(href='/signup') Sign up
           else 
-            li 
-              a(href= '/users/' + user._id) #{user.name}
-            li 
-              a(href='/signout') Sign out
+            li.nav-item
+              a.link(href= '/users/' + user._id) #{user.name}
+            li.nav-item
+              a.link(href='/signout') Sign out
             
-
     main    
       block content
-    footer
-      if store 
-        h1 #{store.name}
-      else 
-        h1 Mall
-      nav
-        ul 
-          li 
-            a(href='/home') Home
-          li 
-            a(href='/about') About 
-          li 
-            a(href='/fees') Fees
-          li 
-            a(href='/browse') Browse
-          li 
-            a(href='/faq') FAQs
-          li 
-            a(href='/contact') Contact 
-          li 
-            a(href='/account') Account
-          li 
-            a(href='/copyright') Copyright
-          li 
-            a(href='/terms') Terms of Service 
-          li 
-            a(href='/privacy') Privacy Policy
 
+    footer.footer
+      div.footer-columns
+        div.footer-logo
+          if store 
+            h1 #{store.name}
+          else 
+            h1 Mall Logo
+        div.footer-column
+          h5.footer-header Support
+          p RMIT University - SGS Campus, Vietnam
+          p exclusive@gmail.com
+          p +999-999-9999
+        div.footer-column
+          h5.footer-header Account
+          a.link(href='/myaccount') My Account
+          a.link(href='/wishlist') Wishlist
+          a.link(href='/cart') Cart
+        div.footer-column
+          h5.footer-header Quick Link
+          a.link(href='/copyright') Copyright
+          a.link(href='/terms') Terms of Service 
+          a.link(href='/policy') Privacy Policy
+      hr.divider
+      .copyright| © Copyright 2024. All rights reserved.  

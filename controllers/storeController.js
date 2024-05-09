@@ -1,33 +1,40 @@
-const { default: mongoose } = require("mongoose");
 const Store = require("../models/store");
-const Product = require("../models/product");
 const asyncHandler = require("express-async-handler");
 
-exports.store_list = asyncHandler(async (req, res, next) => {
-  const stores = await Store.find({}).exec();
-
-  res.render('browse', {stores: stores, title: "Stores"});
+//READ all Stores alphabetically on GET
+exports.store_list_alphabet = asyncHandler(async (req, res, next) => {
+  const stores = await Store.find({}).sort({ store_name: 1 }); // sort by name ascending
+  res.render("browse_name", { title: "Browse", stores });
 });
 
-exports.store_page_get = asyncHandler(async (req, res, next) => {
-  const new_products = await Product.find({ store: req.params.id }).sort({ date_added: -1 }).limit(5).exec();
+//READ all Stores by category on GET
+exports.store_list_category = asyncHandler(async (req, res, next) => {
+  const categories = await Store.aggregate([
+    { $group: { _id: "$store_category", stores: { $push: "$$ROOT" } } },
+    { $sort: { _id: 1 } } // sort by category name ascending
+  ]);
 
-  const all_products = await Product.find({ store: req.params.id }).exec();
+  res.render("browse_category", { title: "Browse", categories });
+});
 
-  const store = await Store.findOne({ _id: req.params.id }).exec();
+//READ new Stores on GET
+exports.store_new = asyncHandler(async (req, res, next) => {
+  // res.send("NOT IMPLEMENTED: New stores");
+  console.log('New stores');
+  next();
+});
 
-  let is_store_owner;
-  if (req.session.user) {
-    is_store_owner = req.session.user._id == store.owner;
-  }
-  console.log(is_store_owner);
+//READ featured Stores on GET
+exports.store_featured = asyncHandler((req, res, next) => {
+  // res.send("NOT IMPLEMENTED: Featured stores");
+  console.log('Featured Stores');
+  next();
+})
 
-  res.render('store', { 
-    store: store, 
-    all_products: all_products, 
-    new_products: new_products,
-    is_store_owner: is_store_owner 
-  });
+//READ Store detail on GET
+exports.store_detail = asyncHandler(async (req, res, next) => {
+  const store = await Store.findById(req.params.id);
+  res.render("store", { store });
 });
 
 exports.store_create_get= asyncHandler(async (req, res, next) => {

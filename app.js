@@ -10,6 +10,13 @@ const serveStatic = require('serve-static');
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/user');
+const contactRouter = require('./routes/contact');
+const feesRouter = require('./routes/fees');
+const faqRouter = require('./routes/faq');
+const aboutRouter = require('./routes/about');
+const copyrightRouter = require('./routes/copyright');
+const termsRouter = require('./routes/terms');
+const policyRouter = require('./routes/policy');
 const storeRouter = require('./routes/store');
 
 const app = express();
@@ -48,6 +55,13 @@ app.use(express.static('./public'));
 
 app.use('/', indexRouter);
 app.use('/', authRouter);
+app.use('/contact', contactRouter);
+app.use('/fees', feesRouter);
+app.use('/faq', faqRouter);
+app.use('/about', aboutRouter)
+app.use('/copyright', copyrightRouter);
+app.use('/terms', termsRouter);
+app.use('/policy', policyRouter);
 app.use('/', storeRouter);
 
 

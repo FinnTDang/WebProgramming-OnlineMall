@@ -1,5 +1,51 @@
 extends layout 
 
 block content 
-  h1 =title
-   
+  .faq-page
+    div.faq-left-box
+      .d-flex.align-items-center.mb-3
+        .cornered-rectangle
+        h2.text-danger.mb-0 Categories
+      ul
+        li(class=(selectedCategory === 'Delivery & Order Tracking' ? 'active' : ''))
+          a(href=`/faq?category=${encodeURIComponent('Delivery & Order Tracking')}`)
+            i.fas.fa-truck
+            span Delivery & Order Tracking
+            
+        li(class=(selectedCategory === 'Returns, Exchanges & Refunds' ? 'active' : ''))
+          a(href=`/faq?category=${encodeURIComponent('Returns, Exchanges & Refunds')}`)
+            i.fas.fa-undo-alt
+            span Returns, Exchanges & Refunds
+            
+        li(class=(selectedCategory === 'Payments & Promotions' ? 'active' : ''))
+          a(href=`/faq?category=${encodeURIComponent('Payments & Promotions')}`)
+            i.fas.fa-credit-card
+            span Payments & Promotions
+            
+        li(class=(selectedCategory === 'Information on Sizes & Products' ? 'active' : ''))
+          a(href=`/faq?category=${encodeURIComponent('Information on Sizes & Products')}`)
+            i.fas.fa-tshirt
+            span Information on Sizes & Products
+            
+        li(class=(selectedCategory === 'Account & Membership' ? 'active' : ''))
+          a(href=`/faq?category=${encodeURIComponent('Account & Membership')}`)
+            i.fas.fa-user
+            span Account & Membership
+
+    .vertical-divider
+
+    div.faq-right-box
+      h2= selectedCategory
+
+      // Questions
+      ul.faq-questions
+        each question in questions
+          li(class=(selectedQuestion === question.question ? 'active' : ''))
+            a(href=`/faq?category=${encodeURIComponent(selectedCategory)}&question=${encodeURIComponent(question.question)}`)
+              = question.question
+
+      // display answer if a question is selected
+      if selectedQuestion
+        .faq-answer
+          h3= selectedQuestion
+          p= answer

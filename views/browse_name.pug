@@ -1,0 +1,16 @@
+extends layout 
+
+block content 
+  .browse-container
+    .d-flex.align-items-center.mb-3
+      .cornered-rectangle
+      h2.text-danger.mb-0 Browse Stores by Name
+
+    .row
+      each store in stores
+        .col-md-3.mb-3
+          a(href=`/store/${store._id}`)
+            .card
+              img.card-img-top(src=store.logo alt=store.name)
+              .card-body
+                p.card-text.text-center= store.name
