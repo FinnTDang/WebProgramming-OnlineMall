@@ -1,0 +1,14 @@
+extends layout 
+
+block content 
+  h1 #{title}
+  
+  button Browse by name 
+  button Browse by category
+
+  each store in stores 
+    ul 
+      li 
+        img(src= store.store_logo)
+        a(href='/stores/' + store._id) #{store.store_name}
+        p= store.store_category 

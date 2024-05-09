@@ -1,5 +1,28 @@
 extends layout 
 
 block content 
-  form(method="POST" action="/stores/create")
+  form(method="POST" action="/stores/create" enctype="multipart/form-data")
+    div(id="store_form")
+    label(for="business_name") Business name
+    input(name="business_name") 
+    label(for="store_name") Store name
+    input(name="store_name")
+    label(for="store_category") Store category
+    select(name="store_category") 
+      option(value="Department store") Department store
+      option(value="Grocery store") Grocery store
+      option(value="Restaurant store") Restaurant store
+      option(value="Clothing store") Clothing store
+      option(value="Accessory store") Accessory store
+      option(value="Pharmacy") Pharmacy
+      option(value="Technology store") Technology store
+      option(value="Pet store") Pet store
+      option(value="Toy store") Toy store
+      option(value="Specialty store") Specialty store
+      option(value="Thrift store") Thrift store
+      option(value="Service provider") Service provider
+      option(value="Kiosk") Kiosk
+    label(for="store_logo") Logo 
+    input(type="file" accept="image/*" name="store_logo")
+    button(type="submit") Submit
   
