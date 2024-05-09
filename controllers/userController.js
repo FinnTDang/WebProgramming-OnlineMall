@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const Store = require("../models/store");
+const Cart = require("../models/cart");
 const asyncHandler = require("express-async-handler");
 const countries = require("../public/countries.json");
 const mongoose = require("mongoose");
@@ -46,6 +47,13 @@ exports.user_create_post = asyncHandler(async (req, res, next) => {
     profile_image: '/images/users/' + req.id.toString() + '.jpeg',
   });
   await new_user.save();
+
+  const new_cart = new Cart({
+    _id: new mongoose.Types.ObjectId(),
+    user: new_user,
+    items: []
+  });
+  await new_cart.save();
 
   //Instant signing in after signing up successfully
   const user = await User.findOne({ mail: `${req.body.mail}` }).exec(); 

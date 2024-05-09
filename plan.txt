@@ -78,10 +78,6 @@ orders/<order>/
 
 
 TO-DO:
-- user update post
-- Cho json response vao user created successfully hoac sai mat khau... 
-- Update info cua acc
-- Change password
 - Cart display
 - Cart post 
 - Order get 

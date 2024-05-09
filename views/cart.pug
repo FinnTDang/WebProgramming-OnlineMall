@@ -2,22 +2,25 @@ extends layout
 
 block content 
   h1 =title
-  
-  form(method="POST" action="/checkout") 
-    each product in cart 
-      img(src=product.image)
-      a(href="/product.url") #{product.name}  
-      a(href=product.store.url) #{product.store.name} 
-      p Price #{product.price}
-      p Quantity #{product.quantity} 
-      button(onclick="update cart") +
-      button(onclick="update cart") -
-      p #{product.total_amount} 
-      button(onclick="update cart") Delete 
-      input(type="checkbox" name="products" value=product.id)
 
-    p Total amount #{cart.total_amount}
-    button(type="clear" onclick="update cart") 
-    button(type="submit") Place order  
+  if items
+    form(method="POST" action="/checkout") 
+      each item in items 
+        img(src=product.image)
+        a(href="/product.url") #{product.name}  
+        a(href=product.store.url) #{product.store.name} 
+        p Price #{product.price}
+        p Quantity #{product.quantity} 
+        button(onclick="update cart") +
+        button(onclick="update cart") -
+        p #{product.total_amount} 
+        button(onclick="update cart") Delete 
+        input(type="checkbox" name="products" value=product.id)
+
+      p Total amount #{cart.total_amount}
+      button(type="clear" onclick="update cart") 
+      button(type="submit") Place order  
+  else 
+    p No item in the cart
 
 //Take notice of cart updates
