@@ -8,6 +8,8 @@ const store_controller = require("../controllers/storeController");
 router.get("/browse_name", store_controller.store_list_alphabet);
 router.get("/browse_category", store_controller.store_list_category);
 
-router.all('/', user_controller.user_brief, index_controller.display_index);
+router.get('/', user_controller.user_brief, index_controller.display_index);
+
+router.all('*', user_controller.user_brief)
 
 module.exports = router;
