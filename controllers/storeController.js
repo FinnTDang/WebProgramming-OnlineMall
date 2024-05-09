@@ -1,3 +1,7 @@
+const { default: mongoose } = require("mongoose");
+const Store = require("../models/store");
+const Product = require("../models/product");
+const asyncHandler = require("express-async-handler");
 const Store = require("../models/store");
 const asyncHandler = require("express-async-handler");
 
@@ -17,24 +21,32 @@ exports.store_list_category = asyncHandler(async (req, res, next) => {
   res.render("browse_category", { title: "Browse", categories });
 });
 
-//READ new Stores on GET
-exports.store_new = asyncHandler(async (req, res, next) => {
-  // res.send("NOT IMPLEMENTED: New stores");
-  console.log('New stores');
-  next();
+
+exports.store_list = asyncHandler(async (req, res, next) => {
+  const stores = await Store.find({}).exec();
+
+  res.render('browse', {stores: stores, title: "Stores"});
 });
 
-//READ featured Stores on GET
-exports.store_featured = asyncHandler((req, res, next) => {
-  // res.send("NOT IMPLEMENTED: Featured stores");
-  console.log('Featured Stores');
-  next();
-})
+exports.store_page_get = asyncHandler(async (req, res, next) => {
+  const new_products = await Product.find({ store: req.params.id }).sort({ date_added: -1 }).limit(5).exec();
 
-//READ Store detail on GET
-exports.store_detail = asyncHandler(async (req, res, next) => {
-  const store = await Store.findById(req.params.id);
-  res.render("store", { store });
+  const all_products = await Product.find({ store: req.params.id }).exec();
+
+  const store = await Store.findOne({ _id: req.params.id }).exec();
+
+  let is_store_owner;
+  if (req.session.user) {
+    is_store_owner = req.session.user._id == store.owner;
+  }
+  console.log(is_store_owner);
+
+  res.render('store', { 
+    store: store, 
+    all_products: all_products, 
+    new_products: new_products,
+    is_store_owner: is_store_owner 
+  });
 });
 
 exports.store_create_get= asyncHandler(async (req, res, next) => {
@@ -51,8 +63,12 @@ exports.store_create_post = asyncHandler(async (req, res, next) => {
     store_logo: '/images/stores/' + req.id + '.jpeg', 
   });
   await new_store.save();
+});
 
-  res.redirect(`/stores/${req.id}`);
+//READ Store detail on GET
+exports.store_detail = asyncHandler(async (req, res, next) => {
+  const store = await Store.findById(req.params.id);
+  res.render("store", { store });
 });
 
 exports.store_update_get = asyncHandler(async (req, res, next) => {

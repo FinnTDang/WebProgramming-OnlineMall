@@ -24,3 +24,29 @@ block content
   //-         img(src=product.image)
   //-         h3 #{product.name}
   //-       p #{product.price}
+  h1 #{store.store_name}
+  p #{store.business_name}
+
+  block content
+    if all_products
+      h2 New items
+      ul 
+        each product in new_products 
+          li 
+            a(href=product.url)
+              img(src=product.image)
+              h3 #{product.name}
+            p #{product.price}
+      h2 All items
+      ul 
+        each product in all_products 
+          li 
+            a(href=product.url)
+              img(src=product.image)
+              h3 #{product.name}
+            p #{product.price}
+    else 
+      p There is no product updated yet.
+    
+    if is_store_owner 
+      a(href='/stores/' + store._id + '/products/create') Add product to your store
