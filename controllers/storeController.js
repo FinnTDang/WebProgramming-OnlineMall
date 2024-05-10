@@ -1,5 +1,5 @@
-// ---------------------------------------------------------------------------------------------
-// Current Changes
+const { default: mongoose } = require("mongoose");
+const Product = require("../models/product");
 const Store = require("../models/store");
 const asyncHandler = require("express-async-handler");
 
@@ -17,13 +17,8 @@ exports.store_list_category = asyncHandler(async (req, res, next) => {
   ]);
 
   res.render("browse_category", { title: "Browse", categories });
-//  End of Current Changes
+});
 
-// Incoming Changes
-const { default: mongoose } = require("mongoose");
-const Store = require("../models/store");
-const Product = require("../models/product");
-const asyncHandler = require("express-async-handler");
 
 exports.store_list = asyncHandler(async (req, res, next) => {
   const stores = await Store.find({}).exec();
@@ -50,8 +45,6 @@ exports.store_page_get = asyncHandler(async (req, res, next) => {
     new_products: new_products,
     is_store_owner: is_store_owner 
   });
-// End of Incoming Changes
-// ---------------------------------------------------------------------------------------------  
 });
 
 exports.store_create_get= asyncHandler(async (req, res, next) => {
@@ -68,19 +61,12 @@ exports.store_create_post = asyncHandler(async (req, res, next) => {
     store_logo: '/images/stores/' + req.id + '.jpeg', 
   });
   await new_store.save();
+});
 
-// ---------------------------------------------------------------------------------------------
-// Current Changes
 //READ Store detail on GET
 exports.store_detail = asyncHandler(async (req, res, next) => {
   const store = await Store.findById(req.params.id);
   res.render("store", { store });
-// End of Current Changes
-
-// Incoming Changes  
-  res.redirect(`/stores/${req.id}`);
-// End of Incoming Changes
-// --------------------------------------------------------------------------------------------- 
 });
 
 exports.store_update_get = asyncHandler(async (req, res, next) => {

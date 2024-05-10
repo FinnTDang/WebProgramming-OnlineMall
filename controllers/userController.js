@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const Store = require("../models/store");
+const Cart = require("../models/cart");
 const asyncHandler = require("express-async-handler");
 const countries = require("../public/countries.json");
 const mongoose = require("mongoose");
@@ -46,6 +47,13 @@ exports.user_create_post = asyncHandler(async (req, res, next) => {
     profile_image: '/images/users/' + req.id.toString() + '.jpeg',
   });
   await new_user.save();
+
+  const new_cart = new Cart({
+    _id: new mongoose.Types.ObjectId(),
+    user: new_user,
+    items: []
+  });
+  await new_cart.save();
 
   //Instant signing in after signing up successfully
   const user = await User.findOne({ mail: `${req.body.mail}` }).exec(); 
@@ -187,4 +195,26 @@ exports.user_signout = asyncHandler( async (req, res, next) => {
   })
 });
 
+exports.user_cart_get = asyncHandler( async (req, res, next) => {
+  const cart = await Cart.findOne({ user: req.session.user._id }).exec();
 
+  console.log(cart);
+  res.render('cart', { items: cart.items });
+});
+
+exports.user_cart_add_post = asyncHandler( async (req, res, next) => {
+  const cart = await Cart.findOne({ user: req.session.user._id }).exec();
+
+  cart.items.push({
+    product: req.body.product_id,
+    quantity: req.body.quantity,
+    aggregated_price: req.body.aggregated_price
+  });
+
+  await cart.save();
+});
+
+exports.user_cart_update_post = asyncHandler( async(req, res, next) => {
+  const cart = await Cart.findOne({ user: req.session.user._id }).exec();
+});
+//Acc creation + cart creation successful
