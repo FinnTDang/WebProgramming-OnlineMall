@@ -51,6 +51,8 @@ router.post('/users/:id/update', upload.single('profile_image'), user_controller
 
 router.get('/cart', user_controller.user_cart_get);
 
+router.post('/cart', user_controller.user_cart_add_post);
+
 router.get('/reset-password', user_controller.user_password_reset_get);
 
 router.post('/reset-password', user_controller.user_password_reset_post);
@@ -60,5 +62,9 @@ router.get('/reset-password/:mail', user_controller.get_bridge);
 router.get('/reset-password/:mail/:code', user_controller.password_change_get);
 
 router.post('/reset-password/:mail/:code', user_controller.password_change_post);
+
+router.post('/cart/item-delete', user_controller.user_cart_update_post);
+
+router.post('/cart/item-update', user_controller.user_cart_update_post);
 
 module.exports = router;
