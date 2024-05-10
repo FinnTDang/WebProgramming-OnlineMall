@@ -216,11 +216,5 @@ exports.user_cart_add_post = asyncHandler( async (req, res, next) => {
 
 exports.user_cart_update_post = asyncHandler( async(req, res, next) => {
   const cart = await Cart.findOne({ user: req.session.user._id }).exec();
-
-  const all_items = cart.items;
-
-  for (item in all_items) {
-    ite
-  }
 });
 //Acc creation + cart creation successful
