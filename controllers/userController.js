@@ -197,9 +197,8 @@ exports.user_signout = asyncHandler( async (req, res, next) => {
 });
 
 exports.user_cart_get = asyncHandler( async (req, res, next) => {
-  const cart = await Cart.findOne({ user: req.session.user._id }).exec();
+  const cart = await Cart.findOne({ user: req.session.user._id }).populate('items').exec();
 
-  console.log(cart);
   res.render('cart', { items: cart.items });
 });
 
