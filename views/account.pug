@@ -3,21 +3,6 @@ extends layout
 block content 
   h1 #{title}
 
-  //- if account.type != "guest" 
-  //-   img(src=account.profile_pic)
-  //-   h2 Name #{account.full_name}
-  //-   h2 Email address #{account.mail}
-  //-   h2 Phone number #{account.phone}
-  //-   h2 Country #{account.country}
-  //-   h2 City #{account.city} 
-  //-   h2 Zip code #{account.zip}
-  //-   h2 Address #{account.address}
-  //-   h2 Account type #{account.type}
-  //-   if account.type == "store owner"
-  //-     h2 Store(s)
-  //-     a 
-  //-       #{store.name}
-  //-       #{store.logo}
 
   if operation == "sign in"
     form(action='/signin' method='POST')
@@ -29,8 +14,7 @@ block content
     a(href='/reset-password') Forgot password?
     if error 
       p #{error}
-    //- a(href="/register") Register 
-    //- a(href="/forgot") Forgor password
+
   else if operation == "sign up"
     form(method='POST' action='/signup' enctype="multipart/form-data")
       label(for='mail') Email address

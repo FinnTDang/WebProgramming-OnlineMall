@@ -195,4 +195,32 @@ exports.user_signout = asyncHandler( async (req, res, next) => {
   })
 });
 
+exports.user_cart_get = asyncHandler( async (req, res, next) => {
+  const cart = await Cart.findOne({ user: req.session.user._id }).exec();
 
+  console.log(cart);
+  res.render('cart', { items: cart.items });
+});
+
+exports.user_cart_add_post = asyncHandler( async (req, res, next) => {
+  const cart = await Cart.findOne({ user: req.session.user._id }).exec();
+
+  cart.items.push({
+    product: req.body.product_id,
+    quantity: req.body.quantity,
+    aggregated_price: req.body.aggregated_price
+  });
+
+  await cart.save();
+});
+
+exports.user_cart_update_post = asyncHandler( async(req, res, next) => {
+  const cart = await Cart.findOne({ user: req.session.user._id }).exec();
+
+  const all_items = cart.items;
+
+  for (item in all_items) {
+    ite
+  }
+});
+//Acc creation + cart creation successful

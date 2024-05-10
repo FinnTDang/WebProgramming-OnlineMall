@@ -78,8 +78,8 @@ orders/<order>/
 
 
 TO-DO:
-- Cart display
-- Cart post 
+- Cart post
+  -> Create a new Item model for carts. 
 - Order get 
 - Order post 
 - Product update 
