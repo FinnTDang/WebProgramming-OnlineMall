@@ -1,20 +1,20 @@
 extends layout 
 
 block content
-  .contact-page
+  .contact-container
     div.contact-info-box.shadow-box
-        h4
-          i.fa.fa-phone(style='background-color: #DB4444; color: white; padding: 10px; border-radius: 30%; margin-right: 10px;') 
-          | Call Us
-        p We are available 24/7.
-        p Phone: +999-999-9999
-        hr
-        h4
-          i.fa.fa-envelope(style='background-color: #DB4444; color: white; padding: 10px; border-radius: 30%; margin-right: 10px;') 
-          | Write to Us
-        p Fill out our form and we will contact you within 24 hours.
-        p Emails: customer@exclusive.com
-        p Emails: support@exclusive.com 
+      h4
+        i.fa.fa-phone(style='background-color: #DB4444; color: white; padding: 10px; border-radius: 30%; margin-right: 10px;') 
+        | Call Us
+      p We are available 24/7.
+      p Phone: +999-999-9999
+      hr
+      h4
+        i.fa.fa-envelope(style='background-color: #DB4444; color: white; padding: 10px; border-radius: 30%; margin-right: 10px;') 
+        | Write to Us
+      p Fill out our form and we will contact you within 24 hours.
+      p Emails: customer@exclusive.com
+      p Emails: support@exclusive.com 
 
     div.contact-form-box.shadow-box
       h3 Please fill out this form
@@ -36,15 +36,18 @@ block content
           input#contact_phone.form-input(type='text', name='contact_phone' placeholder='Your Phone *', required=true)
         .form-group
           label.form-label Contact Preference
-          input#contact_preference.form-input(name="contact_preference" type="radio" value="phone") 
-          label(for="contact_preference") Phone 
-          input#contact_preference.form-input(name="contact_preference" type="radio" value="email") 
-          label(for="contact_preference") Email
+          .form-group
+            input#contact_preference.form-input(name="contact_preference" type="radio" value="phone") 
+            label(for="contact_preference") Phone 
+          .form-group
+            input#contact_preference.form-input(name="contact_preference" type="radio" value="email") 
+            label(for="contact_preference") Email
         .form-group
           label.form-label Contact Days
           each day in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-            input#contact_day.form-input(type='checkbox', name='contact_day', value=day)
-            label(for="contact_day") #{day}
+            .form-group
+              input#contact_day.form-input(type='checkbox', name='contact_day', value=day)
+              label(for="contact_day") #{day}
         .form-group
           label.form-label(for='contact_message') Message
           textarea#contact_message.form-input(name='message' placeholder='What do you want to say to us? *')
