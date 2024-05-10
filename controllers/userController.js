@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const Store = require("../models/store");
 const Cart = require("../models/cart");
+const Item = require("../models/item");
 const asyncHandler = require("express-async-handler");
 const countries = require("../public/countries.json");
 const mongoose = require("mongoose");
@@ -196,25 +197,30 @@ exports.user_signout = asyncHandler( async (req, res, next) => {
 });
 
 exports.user_cart_get = asyncHandler( async (req, res, next) => {
-  const cart = await Cart.findOne({ user: req.session.user._id }).exec();
+  const cart = await Cart.findOne({ user: req.session.user._id }).populate('items').exec();
 
-  console.log(cart);
   res.render('cart', { items: cart.items });
 });
 
 exports.user_cart_add_post = asyncHandler( async (req, res, next) => {
   const cart = await Cart.findOne({ user: req.session.user._id }).exec();
 
-  cart.items.push({
+  const new_item = new Item({
+    _id: new mongoose.Types.ObjectId(),
+    cart: cart,
     product: req.body.product_id,
     quantity: req.body.quantity,
-    aggregated_price: req.body.aggregated_price
+    aggregate_price: req.body.aggregate_price
   });
 
-  await cart.save();
+  await new_item.save();
 });
 
 exports.user_cart_update_post = asyncHandler( async(req, res, next) => {
-  const cart = await Cart.findOne({ user: req.session.user._id }).exec();
+  if (req.path == "/cart/item-delete") {
+    await Item.deleteOne({ _id: req.body.item_id  }).exec();
+  } else if (req.path == "/cart/item-update") {
+    await Item.findOneAndUpdate({_id: req.body.item_id}, { quantity: req.body.quantity, aggregate_price: req.body.aggregate_price }).exec();
+  }
 });
 //Acc creation + cart creation successful
