@@ -2,9 +2,14 @@ extends layout
 
 block content 
   .browse-container
-    .d-flex.align-items-center.mb-3
-      .cornered-rectangle
-      h2.text-danger.mb-0 Browse Stores by Category
+    .browse-header
+      div.d-flex.align-items-center
+        .cornered-rectangle
+        h2.text-danger.mb-0 Browse Stores by Category
+      form.search-bar(method="get")
+        input.form-input(type="text", name="search", placeholder="Search a store")
+        button(type="submit")
+          i.fa.fa-search
 
     each category in categories
       h2= category._id
