@@ -150,6 +150,18 @@ h2.text-danger {
 .browse-container {
   padding: 30px 50px;
 }
+.browse-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.search-bar input {
+  width: 265px;
+}
+.search-bar button {
+  margin: 0;
+}
 
 /* Contact page */
 .contact-container {
@@ -186,7 +198,7 @@ h2.text-danger {
 .form-input {
   padding: 8px;
   border: 1px solid #D4AE63; 
-  background-color: #F5F5F5; 
+  background-color: #F9F9F9; 
   border-radius: 4px;
 }
 textarea.form-input {
@@ -576,6 +588,21 @@ button:hover {
   .browse-container {
     padding: 30px 30px 0 30px;
   }
+  .browse-header {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+  .search-bar {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .search-bar input {
+    width: 85%;
+  }
+  .search-bar button {
+    width: 15%;
+  }
+  
   /* Contact page */
   .contact-container {
     flex-direction: column ;
