@@ -1,0 +1,338 @@
+body {
+    margin: 0;
+    line-height: normal;
+  }
+  
+  :root {
+    
+  
+    /* font sizes */
+    --title-16px-regular-size: 16px;
+    --heading-32px-medium-size: 28px;
+    --font-size-lgi: 19px;
+    --font-size-7xl: 26px;
+    --font-size-32xl: 51px;
+    --font-size-19xl: 38px;
+    --font-size-45xl: 64px;
+    --font-size-29xl: 48px;
+  
+    /* Colors */
+    --color-red: #fa001a;
+    --color-black: #000;
+    --color-navajowhite: #e6ce98;
+  
+    /* Gaps */
+    --gap-50xl: 69px;
+    --gap-xl: 20px;
+    --gap-13xl: 32px;
+    --gap-base: 16px;
+    --gap-5xs: 8px;
+  
+    /* Paddings */
+    --padding-xl: 20px;
+    --padding-2xl: 21px;
+    --padding-4xl: 23px;
+  
+    /* Border radiuses */
+    --br-9xs: 4px;
+  }
+  
+
+.h1-about {
+    margin: 0;
+    width: 2387px;
+    position: relative;
+    font-size: 80px;
+    letter-spacing: 0.06em;
+    line-height: 64px;
+    font-weight: 600;
+    font-family: inherit;
+    display: inline-block;
+    max-width: 100%;
+  }
+  .blank-line,
+  .it-has-survived,
+  .lorem-ipsum-is-simply {
+    display: block;
+  }
+  .lorem-ipsum-is-simply-container {
+    margin: 0;
+    align-self: stretch;
+    position: relative;
+    letter-spacing: 0.06em;
+    line-height: 64px;
+    font-weight: 400;
+    flex-shrink: 0;  
+  }
+  .lorem-ipsum-is-simply-dummy-te-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0;
+    box-sizing: border-box;
+    min-width: 896px;
+    max-width: 100%;
+  }
+  .img-story-icon {
+    width: 1045px;
+    position: relative;
+    max-height: 100%;
+    object-fit: cover;
+    flex-shrink: 0; 
+    max-width: 100%;
+  }
+  .frame-group {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    max-width: 100%;
+    row-gap: 20px;
+  }
+  .img-mem {
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+    align-self: stretch;
+    flex: 1;
+    position: relative;
+    border-radius: var(--br-9xs);
+    overflow: hidden;
+    background-image: url(./public/imgmem@3x.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+  }
+  
+  .name-p-mem {
+    gap: var(--gap-5xs);
+  }
+  .info-mem,
+  .member,
+  .name-p-mem {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .member {
+    height: 524px;
+    width: 370px;
+    gap: var(--gap-13xl);
+    max-width: 100%;
+  }
+  .img-mem1 {
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+    align-self: stretch;
+    flex: 1;
+    position: relative;
+    border-radius: var(--br-9xs);
+    overflow: hidden;
+    background-image: url(./public/imgmem@3x.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+  }
+  .img-mem2 {
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+    align-self: stretch;
+    flex: 1;
+    position: relative;
+    border-radius: var(--br-9xs);
+    overflow: hidden;
+    background-image: url(./public/imgmem@3x.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+  }
+  .img-mem3 {
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+    align-self: stretch;
+    flex: 1;
+    position: relative;
+    border-radius: var(--br-9xs);
+    overflow: hidden;
+    background-image: url(./public/imgmem@3x.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+  } 
+  .group-member,
+  .group-member-wrapper,
+  .member3 {
+    display: flex;
+    align-items: flex-start;
+    max-width: 100%;
+  }
+  .group-member,
+  .group-member-wrapper {
+    flex-direction: row;
+  }
+  .group-member {
+    width: 1900px;
+    justify-content: space-between;
+    gap: var(--gap-xl);
+  }
+  .group-member-wrapper {
+    width: 2336px;
+    justify-content: center;
+    padding: 0 var(--padding-xl);
+    box-sizing: border-box;
+    font-size: var(--heading-32px-medium-size);
+  }
+  .about-us,
+  .frame-parent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .frame-parent {
+    align-self: stretch;
+    gap: 203px;
+    max-width: 100%;
+    text-align: left;
+    font-size: 40px;
+    color: var(--color-black);
+  }
+  .about-us {
+    width: 100%;
+    position: relative;
+    background-color: #fff;
+    overflow: hidden;
+    padding: 107px 44px 207px;
+    box-sizing: border-box;
+    gap: 135px;
+    letter-spacing: normal;
+    line-height: normal;
+    text-align: center;
+    font-size: 128px;
+    color: var(--color-navajowhite);
+    font-family: var(--heading-32px-medium);
+  }
+  @media screen and (max-width: 2025px) {
+    .img-story-icon {
+      flex: 1;
+    }
+    .frame-group,
+    .group-member {
+      flex-wrap: wrap;
+    }
+    .group-member {
+      justify-content: center;
+    }
+  }
+  @media screen and (max-width: 1950px) {
+    .img-story-icon {
+      flex: 1;
+    }
+    .frame-group,
+    .group-member {
+      flex-wrap: wrap;
+    }
+    .group-member {
+      justify-content: center;
+    }
+  }
+  @media screen and (max-width: 1500px) {
+    .lorem-ipsum-is-simply-dummy-te-wrapper {
+      min-width: 100%;
+    }
+    .img-story-icon {
+      flex: 1;
+    }
+    .frame-group {
+      flex-wrap: wrap;
+    }
+    .frame-parent {
+      gap: 71px;
+    }
+    .about-us {
+      gap: 277px;
+      padding-left: 22px;
+      padding-right: 52px;
+      box-sizing: border-box;
+    }
+  }
+  @media screen and (max-width: 975px) {
+    .h1-about {
+      font-size: var(--font-size-32xl);
+      line-height: 38px;
+    }
+    .lorem-ipsum-is-simply-container {
+      font-size: var(--heading-32px-medium-size);
+      line-height: 51px;
+    }
+    .img-story-icon {
+      flex: 1;
+    }
+    .frame-group {
+      flex-wrap: wrap;
+    }
+    
+    .frame-parent {
+      gap: 35px;
+    }
+    .about-us {
+      gap: 139px;
+      padding-right: 26px;
+      box-sizing: border-box;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    .h1-about {
+      font-size: var(--heading-32px-medium-size);
+      line-height: 26px;
+    }
+    .lorem-ipsum-is-simply-container {
+      font-size: 24px;
+      line-height: 38px;
+    }
+    .img-story-icon {
+      flex: 1;
+    }
+    .frame-group {
+      flex-wrap: wrap;
+    }
+    
+    .member {
+      gap: var(--gap-base);
+    }
+    }
+    .frame-parent {
+      gap: 18px;
+    }
+    .about-us {
+      gap: var(--gap-50xl);
+    }
+   
+    .modal-dialog.custom-modal-size {
+        max-width: 250px; /* Smaller width */
+        margin: auto; /* Centering the modal */
+    }
+    .modal-content {
+        padding: 10px; /* Smaller padding */
+    }
+    .modal-title, .modal-body p {
+        font-size: 0.85rem; /* Smaller font size */
+    }
+    .img-fluid {
+        max-height: 100px; /* Limiting image height to keep the modal compact */
+    }
+
+  
+
+  
