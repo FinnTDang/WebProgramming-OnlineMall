@@ -2,6 +2,24 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Mall Logo */
+@import url('https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kurale&display=swap');
+
+.logo-1 {
+  font-family: "Petrona", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+.logo {
+  font-family: "Kurale", serif;
+  font-weight: 700;
+  font-style: normal;
+  font-style: italic;
+}
+
+
 /* Header & Footer */
 .header-nav {
   background-color: white; 
@@ -481,7 +499,7 @@ button:hover {
     box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
   }
   .navbar-nav .link {
-    font-size: 30px;
+    font-size: 28px;
   }
   .link.active {
     font-weight: bold;
@@ -509,7 +527,7 @@ button:hover {
     box-shadow: none; 
     padding-left: 20px;
     margin: 0;
-    font-size: 24px;
+    font-size: 20px;
   }
   /* Footer */
   .footer-column .link {

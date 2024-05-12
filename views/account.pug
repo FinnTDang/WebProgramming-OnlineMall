@@ -26,15 +26,16 @@ block content
             .cornered-rectangle
             h2.text-danger.mb-0 Sign In
         .sign-card.shadow-box
-          h2.mb-2.mt-2 Sign in to Exclusive
+          h2.mb-2.mt-2 Sign in to 
+            span.logo Exclusive
           p.mb-5 Log in to your account to continue shopping!
           form(action='/signin', method='POST')
             .form-group
               label.form-label(for='mail') Email or Phone Number:
-              input.form-input(type='email', name='mail', id='mail', required=true, placeholder='Enter your email or phone')
+              input.form-input(type='email', name='mail', id='mail', required=true, placeholder='Enter your email or phone *')
             .form-group
               label.form-label(for='password') Password:
-              input.form-input(type='password', name='password', id='password', required=true, placeholder='Enter your password')
+              input.form-input(type='password', name='password', id='password', required=true, placeholder='Enter your password *')
             a.forgot-password(href='/reset-password', style='color: #DB4444;') Forgot Password?
             div.d-flex.justify-content-center
               button(type='submit') Log In
@@ -48,22 +49,23 @@ block content
             .cornered-rectangle
             h2.text-danger.mb-0 Sign Up
         .sign-card.shadow-box
-          h2 Welcome to Exclusive
+          h2 Welcome to 
+            span.logo Exclusive
           p.mb-5 Create your account to start shopping!
           form(method='POST', action='/signup', enctype='multipart/form-data', class='needs-validation')
             .form-group
               label.form-label(for='mail') Email address
-              input.form-input(name='mail', type='email', placeholder='Enter your email' required)
+              input.form-input(name='mail', type='email', placeholder='Enter your email *' required)
               div.invalid-feedback Please provide a valid email.
               
             .form-group
               label.form-label(for='phone') Phone number
-              input.form-input(name='phone', type='tel', placeholder='Enter your phone' required)
+              input.form-input(name='phone', type='tel', placeholder='Enter your phone *' required)
               div.invalid-feedback Please provide a valid phone number.
 
             .form-group
               label.form-label(for='password') Password
-              input.form-input(name='password', type='password', placeholder='Enter your password' required)
+              input.form-input(name='password', type='password', placeholder='Enter your password *' required)
               div.invalid-feedback Please enter a password.
 
             .form-group
@@ -72,23 +74,23 @@ block content
 
             .form-group
               label.form-label(for='first_name') First name
-              input.form-input(name='first_name', placeholder='Enter your first name' required)
+              input.form-input(name='first_name', placeholder='Enter your first name *' required)
 
             .form-group
               label.form-label(for='last_name') Last name
-              input.form-input(name='last_name', placeholder='Enter your last name' required)
+              input.form-input(name='last_name', placeholder='Enter your last name *' required)
 
             .form-group
               label.form-label(for='address') Address
-              input.form-input(name='address', placeholder='Enter your address' required)
+              input.form-input(name='address', placeholder='Enter your address *' required)
 
             .form-group
               label.form-label(for='city') City
-              input.form-input(name='city',placeholder='Enter your city'  required)
+              input.form-input(name='city',placeholder='Enter your city *'  required)
 
             .form-group
               label.form-label(for='zip') Zipcode
-              input.form-input(name='zip', type='number', placeholder='Enter the zipcode of your city' required)
+              input.form-input(name='zip', type='number', placeholder='Enter the zipcode of your city *' required)
 
             .form-group
               label.form-label(for='country') Country
@@ -112,7 +114,7 @@ block content
 
               .form-group
                 label.form-label(for='store_name') Store name
-                input.form-input(name='store_name' placeholder='What\'s your store name?' required)
+                input.form-input(name='store_name' placeholder='What\'s your store name? *' required)
 
               .form-group
                 label.form-label(for='store_category') Store category
