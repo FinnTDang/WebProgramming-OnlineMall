@@ -1,11 +1,8 @@
 body {
-    margin: 0;
-    line-height: normal;
-  }
-  
+  margin: 0;
+  line-height: normal;
+}
   :root {
-    
-  
     /* font sizes */
     --title-16px-regular-size: 16px;
     --heading-32px-medium-size: 28px;
@@ -36,8 +33,6 @@ body {
     /* Border radiuses */
     --br-9xs: 4px;
   }
-  
-
 .h1-about {
     margin: 0;
     width: 2387px;
@@ -55,7 +50,7 @@ body {
   .lorem-ipsum-is-simply {
     display: block;
   }
-  .lorem-ipsum-is-simply-container {
+  .info-container {
     margin: 0;
     align-self: stretch;
     position: relative;
@@ -64,7 +59,7 @@ body {
     font-weight: 400;
     flex-shrink: 0;  
   }
-  .lorem-ipsum-is-simply-dummy-te-wrapper {
+  .about-info-container {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -98,7 +93,7 @@ body {
     padding: 0;
     background-color: transparent;
     align-self: stretch;
-    flex: 1;
+    flex: 1; /* Maintains full width within the flex container */
     position: relative;
     border-radius: var(--br-9xs);
     overflow: hidden;
@@ -106,13 +101,14 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top;
-  }
+    width: 100%; /* Ensures full container width is used */
+    height: 300px; /* Default height, can adjust based on media query */
+}
   
   .name-p-mem {
     gap: var(--gap-5xs);
   }
   .info-mem,
-  .member,
   .name-p-mem {
     display: flex;
     flex-direction: column;
@@ -124,69 +120,28 @@ body {
     width: 370px;
     gap: var(--gap-13xl);
     max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
   }
-  .img-mem1 {
-    cursor: pointer;
-    border: 0;
-    padding: 0;
-    background-color: transparent;
-    align-self: stretch;
-    flex: 1;
-    position: relative;
-    border-radius: var(--br-9xs);
-    overflow: hidden;
-    background-image: url(./public/imgmem@3x.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: top;
-  }
-  .img-mem2 {
-    cursor: pointer;
-    border: 0;
-    padding: 0;
-    background-color: transparent;
-    align-self: stretch;
-    flex: 1;
-    position: relative;
-    border-radius: var(--br-9xs);
-    overflow: hidden;
-    background-image: url(./public/imgmem@3x.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: top;
-  }
-  .img-mem3 {
-    cursor: pointer;
-    border: 0;
-    padding: 0;
-    background-color: transparent;
-    align-self: stretch;
-    flex: 1;
-    position: relative;
-    border-radius: var(--br-9xs);
-    overflow: hidden;
-    background-image: url(./public/imgmem@3x.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: top;
-  } 
-  .group-member,
-  .group-member-wrapper,
-  .member3 {
+  .group-member-container
+  {
     display: flex;
     align-items: flex-start;
     max-width: 100%;
   }
-  .group-member,
-  .group-member-wrapper {
+  .group-member-container {
     flex-direction: row;
   }
   .group-member {
     width: 1900px;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    gap: var(--gap-xl);
+    gap: 20px;
   }
-  .group-member-wrapper {
+  .group-member-container {
     width: 2336px;
     justify-content: center;
     padding: 0 var(--padding-xl);
@@ -223,101 +178,7 @@ body {
     color: var(--color-navajowhite);
     font-family: var(--heading-32px-medium);
   }
-  @media screen and (max-width: 2025px) {
-    .img-story-icon {
-      flex: 1;
-    }
-    .frame-group,
-    .group-member {
-      flex-wrap: wrap;
-    }
-    .group-member {
-      justify-content: center;
-    }
-  }
-  @media screen and (max-width: 1950px) {
-    .img-story-icon {
-      flex: 1;
-    }
-    .frame-group,
-    .group-member {
-      flex-wrap: wrap;
-    }
-    .group-member {
-      justify-content: center;
-    }
-  }
-  @media screen and (max-width: 1500px) {
-    .lorem-ipsum-is-simply-dummy-te-wrapper {
-      min-width: 100%;
-    }
-    .img-story-icon {
-      flex: 1;
-    }
-    .frame-group {
-      flex-wrap: wrap;
-    }
-    .frame-parent {
-      gap: 71px;
-    }
-    .about-us {
-      gap: 277px;
-      padding-left: 22px;
-      padding-right: 52px;
-      box-sizing: border-box;
-    }
-  }
-  @media screen and (max-width: 975px) {
-    .h1-about {
-      font-size: var(--font-size-32xl);
-      line-height: 38px;
-    }
-    .lorem-ipsum-is-simply-container {
-      font-size: var(--heading-32px-medium-size);
-      line-height: 51px;
-    }
-    .img-story-icon {
-      flex: 1;
-    }
-    .frame-group {
-      flex-wrap: wrap;
-    }
-    
-    .frame-parent {
-      gap: 35px;
-    }
-    .about-us {
-      gap: 139px;
-      padding-right: 26px;
-      box-sizing: border-box;
-    }
-  }
-  @media screen and (max-width: 450px) {
-    .h1-about {
-      font-size: var(--heading-32px-medium-size);
-      line-height: 26px;
-    }
-    .lorem-ipsum-is-simply-container {
-      font-size: 24px;
-      line-height: 38px;
-    }
-    .img-story-icon {
-      flex: 1;
-    }
-    .frame-group {
-      flex-wrap: wrap;
-    }
-    
-    .member {
-      gap: var(--gap-base);
-    }
-    }
-    .frame-parent {
-      gap: 18px;
-    }
-    .about-us {
-      gap: var(--gap-50xl);
-    }
+  
    
     .modal-dialog.custom-modal-size {
         max-width: 250px; /* Smaller width */
@@ -333,6 +194,8 @@ body {
         max-height: 100px; /* Limiting image height to keep the modal compact */
     }
 
-  
+    .modal-dialog-centered {
+      max-width: 950px;
+  }
 
   
