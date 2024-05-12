@@ -211,18 +211,18 @@ textarea.form-input {
   width: 15px;
   height: 15px;
 }
-label[for='contact_preference']{
+label[for='phone_prefer'], label[for='email_prefer']{
   margin-bottom: 0;
   margin-right: 50px;
 }
-label[for='contact_day'] {
+label.contact-day {
   margin-bottom: 0;
   margin-right: 65px;
 }
 .form-group .form-group {
   margin: auto 0;
 }
-.form-group:last-of-type {
+.form-group.message {
   align-items: flex-start;
   margin-bottom: 10px;
 }
@@ -310,6 +310,66 @@ label[for='contact_day'] {
   height: 60vh; 
 }
 
+/* Sign in, Sign up page */
+.sign-container {
+  padding: 30px 50px;
+}
+.sign-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.sign-container .sign-card {
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.sign-card form {
+  width: 100%;
+  padding: 0 25px;
+}
+.sign-card form .form-input {
+  width: 70%;
+}
+.forgot-password {
+  display: flex;
+  justify-content: flex-end;
+}
+.sign-card form .form-input[type='radio'] {
+  margin-right: 10px;
+  width: 15px;
+  height: 15px;
+}
+label[for='store_owner'], label[for='shopper']{
+  margin-bottom: 0;
+  margin-right: 50px;
+}
+
+/* Forgot Password */
+.sign-container .password-card {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+.password-card form {
+  width: 100%;
+  padding: 0 25px;
+}
+.password-card .form-group .form-label {
+  flex-basis: 0;
+}
+.password-card form .form-input {
+  width: 80%;
+}
+
 /* Copyright, Terms of Service, Privacy Policy page */
 .box-container {
   max-width: 900px;
@@ -374,6 +434,10 @@ button:hover {
 /* Responsive styling */
 /* For tablets */
 @media (max-width: 1199px) {
+  /* Header */
+  .header-nav {
+    padding: 40px 30px;
+  }
   /* Side nav */
   .navbar-nav {
     display: flex;
@@ -388,7 +452,7 @@ button:hover {
     background-color: white;
     border-right: 1px solid #D4AE63; 
     box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
-    padding: 80px 0 0 10px;
+    padding: 130px 0 0 10px;
     transition: left 0.3s ease;
   }
   .navbar-nav.show {
@@ -402,7 +466,7 @@ button:hover {
     align-items: center;
   }
   .mobile-nav i {
-    font-size: 24px;
+    font-size: 30px;
     margin-right: 20px;
   }
   #sidenav-header {
@@ -412,25 +476,25 @@ button:hover {
     left: 0;
     right: 0;
     align-items: center;
-    padding: 20px;
+    padding: 40px 30px;
     border-bottom: 1px solid #D4AE63; 
     box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
   }
   .navbar-nav .link {
-    font-size: 20px;
+    font-size: 30px;
   }
   .link.active {
     font-weight: bold;
     text-decoration: none;
   }
   #sidenav-close {
-    font-size: 30px;
+    font-size: 36px;
     margin-left: auto;
     color: #D4AE63;
   }
   .sidenav-icon {
     display: inline;
-    font-size: 24px;
+    font-size: 30px;
     color: #D4AE63;
     margin-right: 20px;
   }
@@ -445,6 +509,7 @@ button:hover {
     box-shadow: none; 
     padding-left: 20px;
     margin: 0;
+    font-size: 24px;
   }
   /* Footer */
   .footer-column .link {
@@ -525,6 +590,14 @@ button:hover {
   }
   .fee-type, .fee-amount{
     width: 25%;
+  }
+  /* Sign in Sign up */
+  .sign-card form .form-input {
+    width: 100%;
+  }
+  /* Forgot password */
+  .password-card form .form-input {
+    width: 100%;
   }
   /* Copyright, Terms of Service, Privacy Policy page */
   .box-container {
@@ -668,33 +741,5 @@ button:hover {
     margin-top: 10px;
     width: 100%;
     text-align: right;
-  }
-}
-/*login page*/
-.login-container {
-  max-width: 40%;
-  margin: auto;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  background-color: white;
-}
-.form-group {
-  margin-bottom: 20px;
-}
-.action-links {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row; /* default direction */
-}
-@media (max-width: 768px) {
-  .login-container {
-    max-width: 80%;
-  }
-  .action-links {
-    flex-direction: column; /* stack vertically on small screens */
-  }
-  .btn, a {
-    width: 100%; /* full width for small screens */
-    margin-top: 10px;
   }
 }

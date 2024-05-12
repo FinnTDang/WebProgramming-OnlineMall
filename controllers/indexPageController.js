@@ -17,6 +17,7 @@ exports.display_index = asyncHandler(async (req, res, next) => {
   console.log(new_stores, new_products, featured_stores, featured_products);
 
   res.render("index", {
+    title: "Home",
     new_stores: new_stores,
     new_products: new_products,
     featured_stores: featured_stores,

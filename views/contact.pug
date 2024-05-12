@@ -37,18 +37,18 @@ block content
         .form-group
           label.form-label Contact Preference
           .form-group
-            input#contact_preference.form-input(name="contact_preference" type="radio" value="phone") 
-            label(for="contact_preference") Phone 
+            input#phone_prefer.form-input(name="contact_preference" type="radio" value="phone") 
+            label(for="phone_prefer") Phone 
           .form-group
-            input#contact_preference.form-input(name="contact_preference" type="radio" value="email") 
-            label(for="contact_preference") Email
+            input#email_prefer.form-input(name="contact_preference" type="radio" value="email") 
+            label(for="email_prefer") Email
         .form-group
           label.form-label Contact Days
           each day in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
             .form-group
-              input#contact_day.form-input(type='checkbox', name='contact_day', value=day)
-              label(for="contact_day") #{day}
-        .form-group
+              input.form-input(id=day, type='checkbox', name='contact_day', value=day)
+              label.contact-day(for=day) #{day}
+        .form-group.message
           label.form-label(for='contact_message') Message
           textarea#contact_message.form-input(name='message' placeholder='What do you want to say to us? *')
 
