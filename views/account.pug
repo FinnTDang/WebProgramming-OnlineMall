@@ -1,125 +1,139 @@
 extends layout 
 
 block content
-  h1 Sign in
+  if user
+    h1 My Account
+    p Welcome #{user.name}
+    //-   img(src=account.profile_pic)
+    //-   h2 Name #{account.full_name}
+    //-   h2 Email address #{account.mail}
+    //-   h2 Phone number #{account.phone}
+    //-   h2 Country #{account.country}
+    //-   h2 City #{account.city} 
+    //-   h2 Zip code #{account.zip}
+    //-   h2 Address #{account.address}
+    //-   h2 Account type #{account.type}
+    //-   if account.type == "store owner"
+    //-     h2 Store(s)
+    //-     a 
+    //-       #{store.name}
+    //-       #{store.logo}
+  else
+    .sign-container
+      if operation == "sign in"
+        .sign-header
+          div.d-flex.align-items-center
+            .cornered-rectangle
+            h2.text-danger.mb-0 Sign In
+        .sign-card.shadow-box
+          h2.mb-2.mt-2 Sign in to Exclusive
+          p.mb-5 Log in to your account to continue shopping!
+          form(action='/signin', method='POST')
+            .form-group
+              label.form-label(for='mail') Email or Phone Number:
+              input.form-input(type='email', name='mail', id='mail', required=true, placeholder='Enter your email or phone')
+            .form-group
+              label.form-label(for='password') Password:
+              input.form-input(type='password', name='password', id='password', required=true, placeholder='Enter your password')
+            a.forgot-password(href='/reset-password', style='color: #DB4444;') Forgot Password?
+            div.d-flex.justify-content-center
+              button(type='submit') Log In
+          p.mt-3 Not yet registered? 
+            a(href='/signup', style='color: #DB4444;') Sign Up
+        if error 
+            p #{error}
+      else if operation == "sign up"
+        .sign-header
+          div.d-flex.align-items-center
+            .cornered-rectangle
+            h2.text-danger.mb-0 Sign Up
+        .sign-card.shadow-box
+          h2 Welcome to Exclusive
+          p.mb-5 Create your account to start shopping!
+          form(method='POST', action='/signup', enctype='multipart/form-data', class='needs-validation')
+            .form-group
+              label.form-label(for='mail') Email address
+              input.form-input(name='mail', type='email', placeholder='Enter your email' required)
+              div.invalid-feedback Please provide a valid email.
+              
+            .form-group
+              label.form-label(for='phone') Phone number
+              input.form-input(name='phone', type='tel', placeholder='Enter your phone' required)
+              div.invalid-feedback Please provide a valid phone number.
 
-  //- if account.type != "guest" 
-  //-   img(src=account.profile_pic)
-  //-   h2 Name #{account.full_name}
-  //-   h2 Email address #{account.mail}
-  //-   h2 Phone number #{account.phone}
-  //-   h2 Country #{account.country}
-  //-   h2 City #{account.city} 
-  //-   h2 Zip code #{account.zip}
-  //-   h2 Address #{account.address}
-  //-   h2 Account type #{account.type}
-  //-   if account.type == "store owner"
-  //-     h2 Store(s)
-  //-     a 
-  //-       #{store.name}
-  //-       #{store.logo}
-  if operation == "sign in"
-    .container.mt-5
-        .row.justify-content-center
-          .col-lg-8.col-md-10
-            .card
-              .card-body
-                h2.mb-3 Log in to Exclusive
-                p Enter your details below
-                form(action='/signin', method='POST')
-                  .form-group
-                    label(for='mail') Email or Phone Number
-                    input.form-control(type='email', name='mail', id='mail', required=true, placeholder='Enter your email or phone')
-                  .form-group
-                    label(for='password') Password
-                    input.form-control(type='password', name='password', id='password', required=true, placeholder='Enter your password')
-                  .action-links
-                    button.btn.btn-outline-danger.btn-lg(type='submit') Log In
-                    .mt-3
-                      a(href='#', style='color: #DB4444;') Forgot Password?
-                    p.mt-2 Not yet registered? 
-                      a(href='#', style='color: #DB4444;') Sign up
-  if error 
-      p #{error}
-  else if operation == "sign up"
-    .container.mt-5
-      h2 Sign Up
-      form(method='POST', action='/signup', enctype='multipart/form-data', class='needs-validation', novalidate)
-        .form-group
-          label(for='mail') Email address
-          input.form-control(name='mail', type='email', required)
-          div.invalid-feedback Please provide a valid email.
-          
-        .form-group
-          label(for='phone') Phone number
-          input.form-control(name='phone', type='tel', required)
-          div.invalid-feedback Please provide a valid phone number.
+            .form-group
+              label.form-label(for='password') Password
+              input.form-input(name='password', type='password', placeholder='Enter your password' required)
+              div.invalid-feedback Please enter a password.
 
-        .form-group
-          label(for='password') Password
-          input.form-control(name='password', type='password', required)
-          div.invalid-feedback Please enter a password.
+            .form-group
+              label.form-label(for='profile_image') Profile image
+              input.form-input-file(name='profile_image', type='file', accept='image/*')
 
-        .form-group
-          label(for='profile_image') Profile image
-          input.form-control-file(name='profile_image', type='file', accept='image/*')
+            .form-group
+              label.form-label(for='first_name') First name
+              input.form-input(name='first_name', placeholder='Enter your first name' required)
 
-        .form-group
-          label(for='first_name') First name
-          input.form-control(name='first_name', required)
+            .form-group
+              label.form-label(for='last_name') Last name
+              input.form-input(name='last_name', placeholder='Enter your last name' required)
 
-        .form-group
-          label(for='last_name') Last name
-          input.form-control(name='last_name', required)
+            .form-group
+              label.form-label(for='address') Address
+              input.form-input(name='address', placeholder='Enter your address' required)
 
-        .form-group
-          label(for='address') Address
-          input.form-control(name='address', required)
+            .form-group
+              label.form-label(for='city') City
+              input.form-input(name='city',placeholder='Enter your city'  required)
 
-        .form-group
-          label(for='city') City
-          input.form-control(name='city', required)
+            .form-group
+              label.form-label(for='zip') Zipcode
+              input.form-input(name='zip', type='number', placeholder='Enter the zipcode of your city' required)
 
-        .form-group
-          label(for='zip') Zipcode
-          input.form-control(name='zip', type='number', required)
+            .form-group
+              label.form-label(for='country') Country
+              select.form-input(name='country')
+                each country in countries
+                  option(value=country.Name)= country.Name
 
-        .form-group
-          label(for='country') Country
-          select.form-control(name='country')
-            each country in countries
-              option(value=country.Name)= country.Name
+            .form-group
+              p.form-label Account type
+              .form-group
+                input#store_owner.form-input(type='radio', name='account_type', value='store owner')
+                label(for='store_owner') Store owner
+              .form-group
+                input#shopper.form-input(type='radio', name='account_type', value='shopper')
+                label(for='shopper') Shopper
 
-        .form-group
-          p Account type
-          .form-check
-            input#store_owner.form-check-input(type='radio', name='account_type', value='store owner')
-            label.form-check-label(for='store_owner') Store owner
-          .form-check
-            input#shopper.form-check-input(type='radio', name='account_type', value='shopper')
-            label.form-check-label(for='shopper') Shopper
+            #store_form.d-none
+              .form-group
+                label.form-label(for='business_name') Business name
+                input.form-input(name='business_name' placeholder='What\'s your business name?')
 
-        #store_form.d-none
-          .form-group
-            label(for='business_name') Business name
-            input.form-control(name='business_name')
+              .form-group
+                label.form-label(for='store_name') Store name
+                input.form-input(name='store_name' placeholder='What\'s your store name?' required)
 
-          .form-group
-            label(for='store_name') Store name
-            input.form-control(name='store_name')
-
-          .form-group
-            label(for='store_category') Store category
-            select.form-control(name='store_category')
-              option(value='Department store') Department store
-              option(value='Electronics Store') Electronics Store
-              option(value='Furniture Store') Furniture Store
-
-          .form-group
-            label(for='store_logo') Logo
-            input.form-control-file(name='store_logo', type='file', accept='image/*')
-
-        button.btn.btn-primary(type='submit') Register
+              .form-group
+                label.form-label(for='store_category') Store category
+                select.form-input(name='store_category')
+                  option(value='Department store') Department store
+                  option(value='Grocery Store') Grocery Store
+                  option(value='Clothing Store') Clothing Store
+                  option(value='Accessory Store') Accessory Store
+                  option(value='Pharmacy') Pharmacy
+                  option(value='Electronics Store') Electronics Store
+                  option(value='Furniture Store') Furniture Store
+                  option(value='Pet Store') Pet Store
+                  option(value='Toy Store') Toy Store
+                  option(value='Others') Others 
+              .form-group
+                label.form-label(for='store_logo') Logo
+                input.form-input-file(name='store_logo', type='file', accept='image/*')
+            div.d-flex.justify-content-center
+              button(type='submit') Register
+          p.mt-3 Already have an account? 
+            a(href='/signin', style='color: #DB4444;') Sign In
     script.
       $(document).ready(function() {
         $('input[name="account_type"]').change(function() {
