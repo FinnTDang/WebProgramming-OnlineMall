@@ -13,15 +13,15 @@ block content
       img.img-story-icon(alt='' src='./public/imgstory@2x.png')
     .group-member-container
       .group-member
-        each member, index in [["Dang Minh Triet", "Managing Director"], ["Do Phuong Linh", "Front-end"], ["Le Duc Trung", "Back-end"], ["Pham Trong Nghia", "Front-end"]]
+         each member, index in [["Dang Minh Triet", "Managing Director", "url('./public/images/users/user.jpeg')"], ["Do Phuong Linh", "Front-end", "url('path-to-image-for-linh.jpg')"], ["Le Duc Trung", "Back-end", "url('path-to-image-for-trung.jpg')"], ["Pham Trong Nghia", "Front-end", "url('path-to-image-for-nghia.jpg')"]]
           .member
-            button.img-mem(type='button', 'data-toggle'='modal', 'data-target'=`#modal${index}`)
+            button.img-mem(type='button', 'data-toggle'='modal', 'data-target'=`#modal${index}`,style= 'style=`background-image: ${member[2]};')
             .info-mem
               .name-p-mem
                 span.sinfo-mem(style='font-weight: 600;') #{member[0]}
                 span(style='color: #DB4444; font-size: 22px;') #{member[1]}
     // Define Modals for each member
-    each member, index in [["Dang Minh Triet", "Managing Director","" ,"23",'Information Technology'], ["Do Phuong Linh", "Front-end", "path_to_do_phuong_linh_image.jpg",'22','Software Design'], ["Le Duc Trung", "Back-end", "path_to_le_duc_trung_image.jpg",'22','Information-Technology'], ["Pham Trong Nghia", "Front-end", "path_to_pham_trong_nghia_image.jpg",'20','Data-Science']]
+    each member, index in [["Dang Minh Triet", "Managing Director","/public/images/users/user.jpeg" ,"23",'Information Technology'], ["Do Phuong Linh", "Front-end", "path_to_do_phuong_linh_image.jpg",'22','Software Design'], ["Le Duc Trung", "Back-end", "path_to_le_duc_trung_image.jpg",'22','Information-Technology'], ["Pham Trong Nghia", "Front-end", "path_to_pham_trong_nghia_image.jpg",'20','Data-Science']]
       .modal.fade(tabindex='-1', role='dialog', id=`modal${index}`, aria-labelledby=`modalTitle${index}`, aria-hidden='true')
         .modal-dialog.modal-dialog-centered
           .modal-content
