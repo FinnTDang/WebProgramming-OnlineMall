@@ -181,6 +181,97 @@ h2.text-danger {
   margin: 0;
 }
 
+/* About page */
+.about-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 50px;
+}
+.about-info-container {
+  display: flex;
+  flex-direction: row;
+}
+.about-left {
+  width: 40%; 
+  margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.h1-about {
+  color: #D4AE63;
+  text-align: center;
+  /* color:  #E6CE98; */
+}
+.about-right {
+  width: 60%; 
+}
+.group-member-container
+{
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  max-width: 100%;
+  justify-content: center;
+}
+.group-member {
+  width: 1900px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+.member {
+  height: 60vh;
+  width: 250px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+.img-mem {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  align-self: stretch;
+  flex: 1; 
+  position: relative;
+  border-radius: var(--br-9xs);
+  overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  width: 100%; 
+  height: 300px; 
+}
+.info-mem,
+.name-p-mem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.modal-dialog.custom-modal-size {
+  max-width: 250px; 
+  margin: auto; 
+}
+.modal-content {
+  padding: 10px; 
+}
+.modal-title, .modal-body p {
+  font-size: 0.85rem;
+}
+.img-fluid {
+  max-height: 100px;
+}
+.modal-dialog-centered {
+max-width: 950px;
+}
+
 /* Contact page */
 .contact-container {
   display: flex;
@@ -454,7 +545,7 @@ button:hover {
 @media (max-width: 1199px) {
   /* Header */
   .header-nav {
-    padding: 40px 30px;
+    padding: 30px;
   }
   /* Side nav */
   .navbar-nav {
@@ -470,7 +561,7 @@ button:hover {
     background-color: white;
     border-right: 1px solid #D4AE63; 
     box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
-    padding: 130px 0 0 10px;
+    padding: 110px 0 0 10px;
     transition: left 0.3s ease;
   }
   .navbar-nav.show {
@@ -494,12 +585,12 @@ button:hover {
     left: 0;
     right: 0;
     align-items: center;
-    padding: 40px 30px;
+    padding: 30px;
     border-bottom: 1px solid #D4AE63; 
     box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
   }
   .navbar-nav .link {
-    font-size: 28px;
+    font-size: 20px;
   }
   .link.active {
     font-weight: bold;
@@ -512,7 +603,7 @@ button:hover {
   }
   .sidenav-icon {
     display: inline;
-    font-size: 30px;
+    font-size: 24px;
     color: #D4AE63;
     margin-right: 20px;
   }
@@ -566,6 +657,10 @@ button:hover {
   /* Browse page */
   .browse-container {
     padding: 30px 40px 10px 40px;
+  }
+  /* About page */
+  .group-member {
+    gap: 100px;
   }
   /* Contact page */
   .contact-info-box {
@@ -630,12 +725,8 @@ button:hover {
   }
   /* Side nav */
   .navbar-nav {
-    width: 70%;
+    width: 60%;
     padding-left: 0; 
-  }
-  #sidenav-header h1{
-    font-size: 24px;
-    margin: 0;
   }
   .navbar-nav .link {
     font-size: 18px;
@@ -647,6 +738,9 @@ button:hover {
   .sidenav-divider {
     width: 90%;
     margin: 40px 20px 0 20px;
+  }
+  .dropdown-menu {
+    font-size: 16px;
   }
   /* Footer */
   .footer-columns {
@@ -693,7 +787,18 @@ button:hover {
   .search-bar button {
     width: 15%;
   }
-  
+  /* About page */
+  .about-info-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .about-left {
+    width: 100%; 
+  }
+  .about-right {
+    width: 100%; 
+  }
+
   /* Contact page */
   .contact-container {
     flex-direction: column ;
@@ -749,6 +854,9 @@ button:hover {
     border: 1px solid #D4AE63;
     border-radius: 8px;
     background-color: #f9f9f9;
+  }
+  .fee-details {
+    width: 100%;
   }
   .fee-details h4 {
     font-weight: bold;
