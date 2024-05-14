@@ -3,9 +3,6 @@ const Store = require("../models/store");
 const asyncHandler = require("express-async-handler");
 
 exports.display_index = asyncHandler(async (req, res, next) => {
-  const recentDate = new Date();
-  recentDate.setDate(recentDate.getDate() - 30);  
-
   const new_stores = await Store.find().sort({_id: -1}).limit(5).exec();
 
   const new_products = await Product.find().sort({_id: -1}).limit(5).exec();

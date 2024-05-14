@@ -47,6 +47,8 @@ exports.store_page_get = asyncHandler(async (req, res, next) => {
   const all_products = await Product.find({ store: req.params.id }).exec();
 
   const store = await Store.findOne({ _id: req.params.id }).exec();
+  console.log(!store);
+  if (!store) res.redirect('/');
 
   let is_store_owner;
   if (req.session.user) {
@@ -76,12 +78,6 @@ exports.store_create_post = asyncHandler(async (req, res, next) => {
     store_logo: '/images/stores/' + req.id + '.jpeg', 
   });
   await new_store.save();
-});
-
-//READ Store detail on GET
-exports.store_detail = asyncHandler(async (req, res, next) => {
-  const store = await Store.findById(req.params.id);
-  res.render("store", { store });
 });
 
 exports.store_update_get = asyncHandler(async (req, res, next) => {
