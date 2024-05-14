@@ -10,7 +10,7 @@ block content
     .row
       each store in new_stores
         .col-lg-3.mb-3.col-md-6.col-sm-12
-          a(href=`/store/${store._id}`)
+          a(href=`/stores/${store._id}`)
             .card
               img.card-img-top(src=store.logo alt=store.name)
               .card-body
@@ -41,7 +41,7 @@ block content
     .row
       each store in featured_stores
         .col-lg-3.mb-3.col-md-6.col-sm-12
-          a(href=`/store/${store._id}`)
+          a(href=`/stores/${store._id}`)
             .card
               img.card-img-top(src=store.logo alt=store.name)
               .card-body
