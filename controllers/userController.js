@@ -14,12 +14,13 @@ exports.user_list = asyncHandler(async (req, res, next) => {
 exports.user_detail = asyncHandler(async (req, res, next) => {
   const user = await User.findOne({ _id: req.params.id }).exec();
   res.render('user', { user: user });
+  // res.render('account', { title: 'Account', user: user });
   console.log(req.params.id);
 });
 
 //Display user login
 exports.user_signin_get = asyncHandler(async (req, res, next) => {
-  res.render('account.pug', { title: 'Sign in', operation: 'sign in', error: req.path == "/signin/verify" ? "Wrong email or password" : null });
+  res.render('account', { title: 'Sign in', operation: 'sign in', error: req.path == "/signin/verify" ? "Wrong email or password" : null });
 });
 
 // Display User create form on GET.
@@ -150,7 +151,7 @@ exports.user_signin_post = asyncHandler(async (req, res, next) => {
   if (req.method == "POST") {
     const user = await User.findOne({ mail: `${req.body.mail}` }).exec(); 
     console.log(user);
-    if (!user) { res.send('No account has been created with this email.') }
+    if (!user) { res.send('No account has been created with this email.'); }
     if (user.password == req.body.password) {
       req.session.regenerate(function (err) {
         if (err) { return next(err) }
@@ -158,7 +159,8 @@ exports.user_signin_post = asyncHandler(async (req, res, next) => {
         req.session.save(function (err) {
           if (err) { return next(err) }
           console.log('Session after user match:', req.session.user);
-          res.redirect('/');
+          // res.render('account', { title: 'Account', user: user });
+          res.redirect('/users/' + user._id);
         })
       }) 
     } else {

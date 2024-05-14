@@ -5,8 +5,7 @@ html
     link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
     link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css')
-    link(rel='stylesheet' href='stylesheets/style.css')
-    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet' href='stylesheets/style.css')    
 
   body
     script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js')
@@ -16,7 +15,7 @@ html
     header.header-nav
       div.mobile-nav
         i#menubar.fas.fa-bars
-      h1 Mall Logo
+      h1.logo Exclusive
       div.navbar.navbar-expand-lg
         ul.navbar-nav
           li.nav-item
@@ -41,22 +40,28 @@ html
             i.fa-solid.fa-credit-card.sidenav-icon
             a.link(href='/fees' class=(title === 'Fees' ? 'active' : '')) Fees 
           hr.sidenav-divider
-          if !user
-            li.nav-item
-              i.fa-solid.fa-user.sidenav-icon
-              a.link(href='/signin') Sign in
-            li.nav-item
-              i.fas.fa-user-plus.sidenav-icon
-              a.link(href='/signup') Sign up
-          else 
-            li.nav-item
-              i.fa-solid.fa-user.sidenav-icon
-              a.link(href= '/users/' + user._id) #{user.name}
-            li.nav-item
-              i.fas.fa-sign-out-alt.sidenav-icon
-              a.link(href='/signout') Sign out
+          li.nav-item
+            i.fa-solid.fa-user.sidenav-icon
+            if user
+              a.link(href='/users/' + user._id) My Account
+            else
+              a.link(href='/signin') My Account
+          //- if !user
+          //-   li.nav-item
+          //-     i.fa-solid.fa-user.sidenav-icon
+          //-     a.link(href='/signin') Sign in
+          //-   li.nav-item
+          //-     i.fas.fa-user-plus.sidenav-icon
+          //-     a.link(href='/signup') Sign up
+          //- else 
+          //-   li.nav-item
+          //-     i.fa-solid.fa-user.sidenav-icon
+          //-     a.link(href= '/users/' + user._id) #{user.name}
+          //-   li.nav-item
+          //-     i.fas.fa-sign-out-alt.sidenav-icon
+          //-     a.link(href='/signout') Sign out
           div#sidenav-header
-            h1 Mall Logo
+            h1.logo Exclusive
             a#sidenav-close.link(href='#')
               i.fa-solid.fa-circle-arrow-right
       script(src='script.js')      
@@ -66,7 +71,7 @@ html
     footer.footer
       div.footer-columns
         div.footer-logo 
-          h1 Mall Logo
+          h1.logo Exclusive
         div.footer-column
           h5.footer-header Support
           p RMIT University - SGS Campus, Vietnam
@@ -75,9 +80,14 @@ html
         div.account-quicklink-row
           div.footer-column
             h5.footer-header Account
-            a.link(href='/myaccount') My Account
-            a.link(href='/wishlist') Wishlist
-            a.link(href='/cart') Cart
+            if user
+              a.link(href='/users/' + user._id) My Account
+              a.link(href='/wishlist') Wishlist
+              a.link(href='/cart') Cart
+            else
+              a.link(href='/signin') My Account
+              a.link(href='/signin') Wishlist
+              a.link(href='/signin') Cart
           div.footer-column
             h5.footer-header Quick Link
             a.link(href='/copyright') Copyright

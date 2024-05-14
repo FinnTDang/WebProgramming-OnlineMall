@@ -2,6 +2,24 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Mall Logo */
+@import url('https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kurale&display=swap');
+
+.logo-1 {
+  font-family: "Petrona", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+.logo {
+  font-family: "Kurale", serif;
+  font-weight: 700;
+  font-style: normal;
+  font-style: italic;
+}
+
+
 /* Header & Footer */
 .header-nav {
   background-color: white; 
@@ -150,6 +168,109 @@ h2.text-danger {
 .browse-container {
   padding: 30px 50px;
 }
+.browse-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.search-bar input {
+  width: 265px;
+}
+.search-bar button {
+  margin: 0;
+}
+
+/* About page */
+.about-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 50px;
+}
+.about-info-container {
+  display: flex;
+  flex-direction: row;
+}
+.about-left {
+  width: 40%; 
+  margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.h1-about {
+  color: #D4AE63;
+  text-align: center;
+  /* color:  #E6CE98; */
+}
+.about-right {
+  width: 60%; 
+}
+.group-member-container
+{
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  max-width: 100%;
+  justify-content: center;
+}
+.group-member {
+  width: 1900px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+.member {
+  height: 60vh;
+  width: 250px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+.img-mem {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  align-self: stretch;
+  flex: 1; 
+  position: relative;
+  border-radius: var(--br-9xs);
+  overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  width: 100%; 
+  height: 300px; 
+}
+.info-mem,
+.name-p-mem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.modal-dialog.custom-modal-size {
+  max-width: 250px; 
+  margin: auto; 
+}
+.modal-content {
+  padding: 10px; 
+}
+.modal-title, .modal-body p {
+  font-size: 0.85rem;
+}
+.img-fluid {
+  max-height: 100px;
+}
+.modal-dialog-centered {
+max-width: 950px;
+}
 
 /* Contact page */
 .contact-container {
@@ -186,7 +307,7 @@ h2.text-danger {
 .form-input {
   padding: 8px;
   border: 1px solid #D4AE63; 
-  background-color: #F5F5F5; 
+  background-color: #F9F9F9; 
   border-radius: 4px;
 }
 textarea.form-input {
@@ -199,18 +320,18 @@ textarea.form-input {
   width: 15px;
   height: 15px;
 }
-label[for='contact_preference']{
+label[for='phone_prefer'], label[for='email_prefer']{
   margin-bottom: 0;
   margin-right: 50px;
 }
-label[for='contact_day'] {
+label.contact-day {
   margin-bottom: 0;
   margin-right: 65px;
 }
 .form-group .form-group {
   margin: auto 0;
 }
-.form-group:last-of-type {
+.form-group.message {
   align-items: flex-start;
   margin-bottom: 10px;
 }
@@ -298,6 +419,66 @@ label[for='contact_day'] {
   height: 60vh; 
 }
 
+/* Sign in, Sign up page */
+.sign-container {
+  padding: 30px 50px;
+}
+.sign-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.sign-container .sign-card {
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.sign-card form {
+  width: 100%;
+  padding: 0 25px;
+}
+.sign-card form .form-input {
+  width: 70%;
+}
+.forgot-password {
+  display: flex;
+  justify-content: flex-end;
+}
+.sign-card form .form-input[type='radio'] {
+  margin-right: 10px;
+  width: 15px;
+  height: 15px;
+}
+label[for='store_owner'], label[for='shopper']{
+  margin-bottom: 0;
+  margin-right: 50px;
+}
+
+/* Forgot Password */
+.sign-container .password-card {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+.password-card form {
+  width: 100%;
+  padding: 0 25px;
+}
+.password-card .form-group .form-label {
+  flex-basis: 0;
+}
+.password-card form .form-input {
+  width: 80%;
+}
+
 /* Copyright, Terms of Service, Privacy Policy page */
 .box-container {
   max-width: 900px;
@@ -362,6 +543,10 @@ button:hover {
 /* Responsive styling */
 /* For tablets */
 @media (max-width: 1199px) {
+  /* Header */
+  .header-nav {
+    padding: 30px;
+  }
   /* Side nav */
   .navbar-nav {
     display: flex;
@@ -376,7 +561,7 @@ button:hover {
     background-color: white;
     border-right: 1px solid #D4AE63; 
     box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
-    padding: 80px 0 0 10px;
+    padding: 110px 0 0 10px;
     transition: left 0.3s ease;
   }
   .navbar-nav.show {
@@ -390,7 +575,7 @@ button:hover {
     align-items: center;
   }
   .mobile-nav i {
-    font-size: 24px;
+    font-size: 30px;
     margin-right: 20px;
   }
   #sidenav-header {
@@ -400,7 +585,7 @@ button:hover {
     left: 0;
     right: 0;
     align-items: center;
-    padding: 20px;
+    padding: 30px;
     border-bottom: 1px solid #D4AE63; 
     box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
   }
@@ -412,7 +597,7 @@ button:hover {
     text-decoration: none;
   }
   #sidenav-close {
-    font-size: 30px;
+    font-size: 36px;
     margin-left: auto;
     color: #D4AE63;
   }
@@ -433,6 +618,7 @@ button:hover {
     box-shadow: none; 
     padding-left: 20px;
     margin: 0;
+    font-size: 20px;
   }
   /* Footer */
   .footer-column .link {
@@ -471,6 +657,10 @@ button:hover {
   /* Browse page */
   .browse-container {
     padding: 30px 40px 10px 40px;
+  }
+  /* About page */
+  .group-member {
+    gap: 100px;
   }
   /* Contact page */
   .contact-info-box {
@@ -514,6 +704,14 @@ button:hover {
   .fee-type, .fee-amount{
     width: 25%;
   }
+  /* Sign in Sign up */
+  .sign-card form .form-input {
+    width: 100%;
+  }
+  /* Forgot password */
+  .password-card form .form-input {
+    width: 100%;
+  }
   /* Copyright, Terms of Service, Privacy Policy page */
   .box-container {
     width: 90%;
@@ -527,12 +725,8 @@ button:hover {
   }
   /* Side nav */
   .navbar-nav {
-    width: 70%;
+    width: 60%;
     padding-left: 0; 
-  }
-  #sidenav-header h1{
-    font-size: 24px;
-    margin: 0;
   }
   .navbar-nav .link {
     font-size: 18px;
@@ -544,6 +738,9 @@ button:hover {
   .sidenav-divider {
     width: 90%;
     margin: 40px 20px 0 20px;
+  }
+  .dropdown-menu {
+    font-size: 16px;
   }
   /* Footer */
   .footer-columns {
@@ -576,6 +773,32 @@ button:hover {
   .browse-container {
     padding: 30px 30px 0 30px;
   }
+  .browse-header {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+  .search-bar {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .search-bar input {
+    width: 85%;
+  }
+  .search-bar button {
+    width: 15%;
+  }
+  /* About page */
+  .about-info-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .about-left {
+    width: 100%; 
+  }
+  .about-right {
+    width: 100%; 
+  }
+
   /* Contact page */
   .contact-container {
     flex-direction: column ;
@@ -631,6 +854,9 @@ button:hover {
     border: 1px solid #D4AE63;
     border-radius: 8px;
     background-color: #f9f9f9;
+  }
+  .fee-details {
+    width: 100%;
   }
   .fee-details h4 {
     font-weight: bold;

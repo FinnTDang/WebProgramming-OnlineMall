@@ -5,15 +5,30 @@ const asyncHandler = require("express-async-handler");
 
 //READ all Stores alphabetically on GET
 exports.store_list_alphabet = asyncHandler(async (req, res, next) => {
-  const stores = await Store.find({}).sort({ store_name: 1 }); // sort by name ascending
-  res.render("browse_name", { title: "Browse", stores });
+  // const stores = await Store.find({}).sort({ store_name: 1 }); // sort by name ascending
+  // res.render("browse_name", { title: "Browse", stores });
+  let query = {};
+  if (req.query.search) {
+    query.store_name = { $regex: req.query.search, $options: 'i' }; // Case-insensitive regex search
+  }
+  const stores = await Store.find(query).sort({ store_name: 1 });
+  res.render('browse_name', { title: 'Browse', stores });
 });
 
 //READ all Stores by category on GET
 exports.store_list_category = asyncHandler(async (req, res, next) => {
+  // const categories = await Store.aggregate([
+  //   { $group: { _id: "$store_category", stores: { $push: "$$ROOT" } } },
+  //   { $sort: { _id: 1 } } // sort by category name ascending
+  // ]);
+  let query = {};
+  if (req.query.search) {
+    query.store_category = { $regex: req.query.search, $options: 'i' }; // Case-insensitive regex search
+  }
   const categories = await Store.aggregate([
+    { $match: query },
     { $group: { _id: "$store_category", stores: { $push: "$$ROOT" } } },
-    { $sort: { _id: 1 } } // sort by category name ascending
+    { $sort: { _id: 1 } }
   ]);
 
   res.render("browse_category", { title: "Browse", categories });

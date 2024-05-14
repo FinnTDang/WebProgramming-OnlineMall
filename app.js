@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 const serveStatic = require('serve-static');
 
 const indexRouter = require('./routes/index');
-const authRouter = require('./routes/user');
+const userRouter = require('./routes/user');
 const contactRouter = require('./routes/contact');
 const feesRouter = require('./routes/fees');
 const faqRouter = require('./routes/faq');
@@ -54,7 +54,7 @@ app.use(express.static('./public'));
 
 
 app.use('/', indexRouter);
-app.use('/', authRouter);
+app.use('/', userRouter);
 app.use('/contact', contactRouter);
 app.use('/fees', feesRouter);
 app.use('/faq', faqRouter);

@@ -2,10 +2,14 @@ extends layout
 
 block content 
   .browse-container
-    .d-flex.align-items-center.mb-3
-      .cornered-rectangle
-      h2.text-danger.mb-0 Browse Stores by Name
-
+    .browse-header
+      div.d-flex.align-items-center
+        .cornered-rectangle
+        h2.text-danger.mb-0 Browse Stores by Name
+      form.search-bar(method="get")
+        input.form-input(type="text", name="search", placeholder="Search a store")
+        button(type="submit" name="action")
+          i.fa.fa-search
     .row
       each store in stores
         .col-lg-3.mb-3.col-md-6.col-sm-12
