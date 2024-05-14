@@ -2,22 +2,69 @@ extends layout
 
 block content
   if user
-    h1 My Account
-    p Welcome #{user.name}
-    //-   img(src=account.profile_pic)
-    //-   h2 Name #{account.full_name}
-    //-   h2 Email address #{account.mail}
-    //-   h2 Phone number #{account.phone}
-    //-   h2 Country #{account.country}
-    //-   h2 City #{account.city} 
-    //-   h2 Zip code #{account.zip}
-    //-   h2 Address #{account.address}
-    //-   h2 Account type #{account.type}
-    //-   if account.type == "store owner"
-    //-     h2 Store(s)
-    //-     a 
-    //-       #{store.name}
-    //-       #{store.logo}
+    .account-container 
+      .account-left-box
+        .profile-box
+          img(src=user.profile_image alt='Profile Picture')
+          h2.text-center.mb-0 #{user.name}
+        hr
+        .account-menu(style='background-color: #E6CE98;')
+          a.link(href="/account" style='font-weight: bold;') 
+            i.fas.fa-user
+            span My Account
+        .account-menu
+          a.link(href="/cart")
+            i.fas.fa-shopping-cart
+            span My Cart
+        .account-menu
+          a.link(href="/wishlist")
+            i.fas.fa-heart
+            span My Wishlist
+        hr   
+        .account-signout
+          a.link(href='/signout') 
+            i.fas.fa-sign-out-alt
+            span Sign out
+      .account-right-box.shadow-box
+        .account-header 
+          h2 Account Details
+          a.link(href="/users/" + user._id + "/update")
+            i.fas.fa-edit.mr-2
+            span Edit
+        .account-detail
+          i.fas.fa-user
+          h5.form-label Name
+          p.form-input #{user.name}
+        .account-detail
+          i.fas.fa-envelope
+          h5 Mail
+          p.form-input #{user.mail}
+        .account-detail
+          i.fas.fa-phone
+          h5 Phone
+          p.form-input #{user.phone}
+        .account-detail
+          i.fas.fa-home
+          h5 Address
+          p.form-input #{user.address}
+        .account-detail
+          i.fas.fa-city
+          h5 City
+          p.form-input #{user.city}
+        .account-detail
+          i.fas.fa-map-marker-alt
+          h5 Zip Code
+          p.form-input #{user.zip}
+        .account-detail
+          i.fas.fa-globe
+          h5 Country
+          p.form-input #{user.country}
+        
+        //- .account-detail
+        //-   h5 Account type
+        //-   h6.form-input #{user.account_type}
+        //- if user.type == "store owner"
+
   else
     .sign-container
       if operation == "sign in"

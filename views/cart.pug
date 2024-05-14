@@ -1,12 +1,21 @@
 extends layout 
 
 block content 
-  h1 My Cart 
+  .browse-container
+    //- .browse-header
+    //-   div.d-flex.align-items-center
+    //-     .cornered-rectangle
+    //-     h2.text-danger.mb-0 My Cart
 
-  if items.length != 0
-    p There's item
-  else 
-    p There's no item
+    if items.length != 0
+      p There's item
+    else
+      .text-center.my-5
+        i.fa.fa-shopping-cart.fa-5x(style="color: #D4AE63")
+        h3.mt-3 Oops! Your cart is empty.
+        p No item is found in your cart.
+        a(href='/') 
+          button Shop Now 
   //- if items
   //-   form(method="POST" action="/checkout") 
   //-     each item in items 

@@ -43,7 +43,7 @@ router.get('/signout', user_controller.user_signout);
 
 router.all('/users/*', user_controller.user_authenticate);
 
-router.get('/users/:id', user_controller.user_detail);
+router.get('/account', user_controller.user_detail);
 
 router.get('/users/:id/update', user_controller.user_info_update_get);
 
