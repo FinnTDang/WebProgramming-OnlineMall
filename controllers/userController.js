@@ -4,6 +4,7 @@ const Cart = require("../models/cart");
 const Item = require("../models/item");
 const asyncHandler = require("express-async-handler");
 const countries = require("../public/countries.json");
+const { body, validationResult } = require('express-validator');
 const mongoose = require("mongoose");
 
 exports.user_list = asyncHandler(async (req, res, next) => {
@@ -44,20 +45,46 @@ exports.user_create_get = asyncHandler(async (req, res, next) => {
 
 // Handle User create on POST.
 exports.user_create_post = asyncHandler(async (req, res, next) => {
-  //Saving data to database
+  const { first_name, last_name, mail, phone, country, city, address, zip, account_type, password } = req.body;
+
+  // Server-side validation
+  if (!first_name || !last_name || !mail || !phone || !country || !city || !address || !zip || !account_type || !password) {
+    return res.status(400).send('All required fields must be filled out.');
+  }
+
+  if (!/\S+@\S+\.\S+/.test(mail)) {
+    return res.status(400).send('Invalid email format.');
+  }
+
+  if (!/^\d{10,12}$/.test(phone)) {
+    return res.status(400).send('Phone number must be between 10 and 12 digits.');
+  }
+
+  if (password.length < 6) {
+    return res.status(400).send('Password must be at least 6 characters long.');
+  }
+
+  // Check if email already exists
+  const existingUser = await User.findOne({ mail }).exec();
+  if (existingUser) {
+    return res.status(400).send('Email already in use.');
+  }
+
+  // Saving data to database
   const new_user = new User({
     _id: req.id,
-    name: req.body.first_name + " " + req.body.last_name,
-    mail: req.body.mail,
-    phone: req.body.phone,
-    country: req.body.country,
-    city: req.body.city,
-    address: req.body.address,
-    zip: req.body.zip,
-    account_type: req.body.account_type,
-    password: req.body.password,
-    profile_image: '/images/users/' + req.id.toString() + '.jpeg',
+    name: `${first_name} ${last_name}`,
+    mail,
+    phone,
+    country,
+    city,
+    address,
+    zip,
+    account_type,
+    password,
+    profile_image: `/images/users/${req.id.toString()}.jpeg`,
   });
+
   await new_user.save();
 
   const new_cart = new Cart({
@@ -65,9 +92,10 @@ exports.user_create_post = asyncHandler(async (req, res, next) => {
     user: new_user,
     items: []
   });
+
   await new_cart.save();
 
-  //Instant signing in after signing up successfully
+    //Instant signing in after signing up successfully
   const user = await User.findOne({ mail: `${req.body.mail}` }).exec(); 
   req.session.regenerate(function (err) {
     if (err) { return next(err) }
