@@ -472,11 +472,19 @@ label[for='store_owner'], label[for='shopper']{
   width: 100%;
   padding: 0 25px;
 }
+.password-card .form-group {
+  display: flex;
+  justify-content: center;
+}
 .password-card .form-group .form-label {
   flex-basis: 0;
 }
 .password-card form .form-input {
   width: 80%;
+}
+.password-card .form-label i {
+  font-size: 24px;
+  color: #D4AE63;
 }
 
 /* Copyright, Terms of Service, Privacy Policy page */

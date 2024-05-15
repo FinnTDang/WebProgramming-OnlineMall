@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  section
+    h2 Administrator Detail
+      p Name: #{admin.name}
+
+  section
+    h2 Administrator List
+      ul
+        each admin in administrators
+          li= admin.name
+
+  section
+    h2 Create New Administrator
+      form(action="/administrators/create-new", method="POST")
+        label(for="name") Name:
+        input(type="text", name="name", required)
+        button(type="submit") Create
+
+  section
+    h2 Update Administrator
+      form(action=`/administrators/${admin._id}/edit`, method="POST")
+        label(for="name") Name:
+        input(type="text", name="name", value=admin.name, required)
+        button(type="submit") Update
