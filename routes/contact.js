@@ -11,19 +11,6 @@ router.get('/', (req, res) => {
 router.post('/', async (req, res) => {
   const { contact_purpose, contact_name, contact_email, contact_phone, contact_preference, contact_day, message } = req.body;
 
-  // Server-side validation
-  if (!contact_purpose || !contact_name || !contact_email || !contact_phone || !contact_preference || !message) {
-    return res.status(400).send('All required fields must be filled out.');
-  }
-
-  if (!/\S+@\S+\.\S+/.test(contact_email)) {
-    return res.status(400).send('Invalid email format.');
-  }
-
-  if (!/^\d{10,12}$/.test(contact_phone)) {
-    return res.status(400).send('Phone number must be between 10 and 12 digits.');
-  }
-
   // Create a new contact document
   const newContact = new Contact({
     contact_purpose,
@@ -44,3 +31,5 @@ router.post('/', async (req, res) => {
     res.status(500).send('Error saving contact information.');
   }
 });
+
+module.exports = router;
