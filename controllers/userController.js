@@ -91,7 +91,7 @@ exports.author_delete_post = asyncHandler(async (req, res, next) => {
 
 
 exports.user_info_update_get = asyncHandler(async (req, res, next) => {
-  res.render('user_info_update', { user: req.session.user, countries: countries, is_store_owner: req.session.user.account_type == "store owner" });
+  res.render('account_info_update', { user: req.session.user, countries: countries, is_store_owner: req.session.user.account_type == "store owner" });
 });
 
 // Handle User update on POST.
@@ -105,10 +105,10 @@ exports.user_info_update_post = asyncHandler(async (req, res, next) => {
   current_user.phone = new_user_info.phone; 
   current_user.zip = new_user_info.zip; 
   current_user.country = new_user_info.country; 
-  current_user.account_type = new_user_info.account_type; 
   current_user.address = new_user_info.address; 
   current_user.city = new_user_info.city; 
   current_user.password = new_user_info.password;
+  current_user.profile_image = new_user_info.profile_image;
 
   await current_user.save();
 
@@ -116,7 +116,7 @@ exports.user_info_update_post = asyncHandler(async (req, res, next) => {
 
   console.log(req.session.user);
 
-  res.redirect('/users/' + req.params.id);
+  res.redirect('/account');
 });
 
 exports.user_password_reset_get = asyncHandler(async (req, res, next) => {
