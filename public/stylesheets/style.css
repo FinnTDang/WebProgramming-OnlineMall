@@ -479,7 +479,7 @@ label[for='store_owner'], label[for='shopper']{
   width: 80%;
 }
 
-/* Account details page*/
+/* Account details page */
 .account-container {
   display: flex;
   justify-content: space-between;
@@ -503,12 +503,16 @@ label[for='store_owner'], label[for='shopper']{
   display: block;
   position: relative;
 }
-.account-menu a.link {
-  width: 100%;
+.account-left-box ul {
+  list-style: none;
 }
-.account-menu a:hover {
+.account-left-box a {
   text-decoration: none;
   color: black;
+  display: block;
+}
+.account-left-box li i {
+  margin-right: 10px;
 }
 .account-left-box a i {
   margin-right: 10px;
@@ -555,8 +559,14 @@ label[for='store_owner'], label[for='shopper']{
   justify-content: flex-start;
   align-items: center;
 }
+.account-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 15%
+}
 .account-detail h5 {
-  width: 12%;
+  width: 80%;
   margin: 0;
 }
 .account-detail p.form-input {
@@ -570,8 +580,20 @@ label[for='store_owner'], label[for='shopper']{
   height: 18px;
   margin: 10px;
   color: #D4AE63;
+} 
+.account-update {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
-
+.account-right-box .profile-box {
+  display: none;
+}
+.account-left-box ul {
+  list-style: none;
+  width: 100%;
+  padding: 0;
+}
 /* Copyright, Terms of Service, Privacy Policy page */
 .box-container {
   max-width: 900px;
@@ -806,7 +828,33 @@ button:hover {
   .account-left-box {
     display: none; 
   }
+  .account-right-box {
+    align-items: center;
+  }
+  .account-right-box .profile-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+  }
+  .account-detail {
+    width: 90%;
+  }
+  .account-label {
+    width: 25%;
+  }
+  .account-detail h5 {
+    width: 80%;
+  }
+  .account-detail p.form-input {
+    width: 60%;
+  }
+  
   /* Sign in Sign up */
+  .sign-container .sign-card {
+    width: 80%;
+  }
   .sign-card form .form-input {
     width: 100%;
   }
@@ -969,5 +1017,25 @@ button:hover {
     margin-top: 10px;
     width: 100%;
     text-align: right;
+  }
+  /* Account details */
+  .account-detail {
+    flex-direction: column;
+    align-items: center;
+  }
+  .account-label {
+    width: 100%;
+  }
+  .account-detail h5 {
+    width: 80%;
+  }
+  .account-detail p.form-input {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 25px;
+  }
+  /* Sign in Sign up */
+  .sign-container .sign-card {
+    width: 80%;
   }
 }
