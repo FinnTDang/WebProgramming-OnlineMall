@@ -1,0 +1,42 @@
+extends layout 
+
+block content 
+  .box-container.update-account-page
+    h1.text-center.mb-4 Edit Account Information
+      i.fas.fa-edit.ml-3 
+    form(method="POST" enctype="multipart/form-data" action="/users/" + user._id + "/update")
+      .form-group
+        label.form-label(for='mail') Email address 
+        input.form-input(name="mail" value=user.mail)
+      .form-group
+        label.form-label(for='phone') Phone number
+        input.form-input(name='phone' value=user.phone)
+      .form-group
+        label.form-label(for='password') Password 
+        input.form-input(name='password' value=user.password type='password')
+      .form-group
+        label.form-label(for='profile_image') Profile image 
+        input(type='file' accept='image/*' name='profile_image' value=user.profile_image) 
+      .form-group
+        label.form-label(for='name' ) Name 
+        input.form-input(name='name' value=user.name)
+      .form-group
+        label.form-label(for='address' ) Address
+        input.form-input(name='address' value=user.address)
+      .form-group
+        label.form-label(for='city') City
+        input.form-input(name="city" value=user.city)
+      .form-group
+        label.form-label(for='zip') Zipcode
+        input.form-input(name='zip' value=user.zip)
+      .form-group
+        label.form-label(for='country') Country 
+        select.form-input(name="country" value=user.country)
+          each country in countries 
+            option(value=country.Name) #{country.Name}
+      .d-flex.justify-content-between
+        a(href="/account")
+          button.btn-secondary(type="button") Cancel
+        button(type="submit") Save Changes 
+        
+          

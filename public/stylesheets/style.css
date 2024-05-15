@@ -487,6 +487,125 @@ label[for='store_owner'], label[for='shopper']{
   color: #D4AE63;
 }
 
+/* Account details page */
+.account-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+.account-left-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 20%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 8px;
+  padding-top: 10px;
+  height: 60%;
+}
+.account-menu {
+  width: 100%;
+  padding: 15px 0 15px 20px;
+  display: block;
+  position: relative;
+}
+.account-left-box ul {
+  list-style: none;
+}
+.account-left-box a {
+  text-decoration: none;
+  color: black;
+  display: block;
+}
+.account-left-box li i {
+  margin-right: 10px;
+}
+.account-left-box a i {
+  margin-right: 10px;
+}
+.profile-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+}
+.account-menu:hover {
+  cursor: pointer;
+  background-color: #f9f9f9;
+}
+.account-signout {
+  margin-top: 40px;
+  border-top: 1px solid #D4AE63;
+  width: 100%;
+  padding: 15px 0;
+  text-align: center;
+}
+.account-right-box {
+  width: 78%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 30px;
+}
+.account-header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.account-header a {
+  font-size: 18px;
+}
+.account-detail {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.account-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 20%
+}
+.account-detail h5 {
+  width: 80%;
+  margin: 0;
+}
+.account-detail p.form-input {
+  width: 30%;
+  margin: 10px;
+}
+.account-detail i {
+  width: 18px;
+  height: 18px;
+  margin: 10px;
+  color: #D4AE63;
+} 
+.account-update {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.account-right-box .profile-box {
+  display: none;
+}
+.account-left-box ul {
+  list-style: none;
+  width: 100%;
+  padding: 0;
+}
+/* Update Account page */
+.update-account-page .form-input {
+  background-color: white;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 60%;
+}
 /* Copyright, Terms of Service, Privacy Policy page */
 .box-container {
   max-width: 900px;
@@ -538,7 +657,7 @@ button {
   border: none;
   border-radius: 4px; 
   color: white;
-  margin: 20px 20px 0 0; 
+  margin-top: 20px; 
   padding: 8px 15px;
   text-align: center;
   cursor: pointer;
