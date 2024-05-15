@@ -17,24 +17,24 @@ block content
       .group-member
          each member, index in [["Dang Minh Triet", "Managing Director", "url('./public/images/users/user.jpeg')"], ["Do Phuong Linh", "Front-end", "url('path-to-image-for-linh.jpg')"], ["Le Duc Trung", "Back-end", "url('path-to-image-for-trung.jpg')"], ["Pham Trong Nghia", "Front-end", "url('path-to-image-for-nghia.jpg')"]]
           .member
-            button.img-mem(type='button', 'data-toggle'='modal', 'data-target'=`#modal${index}`,style= `background-image: ${member[2]};`)
+            button.img-mem(type='button', 'data-toggle'='modal', 'data-target'=`#modal${index}`,style= 'style=`background-image: ${member[2]};')
             .info-mem
               .name-p-mem
                 span.sinfo-mem(style='font-weight: 600; font-size: 22px') #{member[0]}
                 span(style='color: #DB4444; font-size: 18px;') #{member[1]}
     // Define Modals for each member
-    each member, index in [["Dang Minh Triet", "Managing Director","images/members/member1.png" ,"23",'Information Technology'], ["Do Phuong Linh", "Front-end", "path_to_do_phuong_linh_image.jpg",'21','Software Engineering'], ["Le Duc Trung", "Back-end", "path_to_le_duc_trung_image.jpg",'22','Information-Technology'], ["Pham Trong Nghia", "Front-end", "path_to_pham_trong_nghia_image.jpg",'20','Data-Science']]
+    each member, index in [["Dang Minh Triet", "Managing Director","/public/images/users/user.jpeg" ,"23",'Information Technology'], ["Do Phuong Linh", "Front-end", "path_to_do_phuong_linh_image.jpg",'21','Software Engineering'], ["Le Duc Trung", "Back-end", "path_to_le_duc_trung_image.jpg",'22','Information-Technology'], ["Pham Trong Nghia", "Front-end", "path_to_pham_trong_nghia_image.jpg",'20','Data-Science']]
       .modal.fade(tabindex='-1', role='dialog', id=`modal${index}`, aria-labelledby=`modalTitle${index}`, aria-hidden='true')
         .modal-dialog.modal-dialog-centered
           .modal-content
             .modal-header
               h5.modal-title(id=`modalTitle${index}`,style= 'font-size: 30px;color: #DB4444; ') #{member[0]}
               button.close(type='button', data-dismiss='modal', aria-label='Close')
-                span(aria-hidden='true')
+                span(aria-hidden='true') ×
             .modal-body
               .row
                 .col-md-6
-                  img.img-fluid(src=member[2], alt=`Image of ${member[0]}`)
+                  img.img-fluid(src=member[2], alt=`Image of #{member[0]}`)
                 .col-md-6(style='text-align: left;font-weight: 400; color: black;')
                   p(style= 'font-size: 23px;color: #D4AE63;')  #{member[1]}.
                   p(style= 'font-size: 20px;') Age: #{member[3]}
