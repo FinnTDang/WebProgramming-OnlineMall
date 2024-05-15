@@ -606,6 +606,7 @@ label[for='store_owner'], label[for='shopper']{
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
   width: 60%;
 }
+
 /* Copyright, Terms of Service, Privacy Policy page */
 .box-container {
   max-width: 900px;
@@ -831,42 +832,7 @@ button:hover {
   .fee-type, .fee-amount{
     width: 25%;
   }
-  /* My Account */
-  .account-container {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-  }
-  .account-left-box {
-    display: none; 
-  }
-  .account-right-box {
-    align-items: center;
-  }
-  .account-right-box .profile-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    padding: 20px;
-  }
-  .account-detail {
-    width: 90%;
-  }
-  .account-label {
-    width: 25%;
-  }
-  .account-detail h5 {
-    width: 80%;
-  }
-  .account-detail p.form-input {
-    width: 60%;
-  }
-  
   /* Sign in Sign up */
-  .sign-container .sign-card {
-    width: 80%;
-  }
   .sign-card form .form-input {
     width: 100%;
   }
@@ -1029,25 +995,5 @@ button:hover {
     margin-top: 10px;
     width: 100%;
     text-align: right;
-  }
-  /* Account details */
-  .account-detail {
-    flex-direction: column;
-    align-items: center;
-  }
-  .account-label {
-    width: 100%;
-  }
-  .account-detail h5 {
-    width: 80%;
-  }
-  .account-detail p.form-input {
-    width: 100%;
-    margin-top: 0;
-    margin-bottom: 25px;
-  }
-  /* Sign in Sign up */
-  .sign-container .sign-card {
-    width: 80%;
   }
 }
