@@ -130,7 +130,7 @@ block content
 
             .form-group
               label.form-label(for='profile_image') Profile image
-              input.form-input-file(name='profile_image', type='file', accept='image/*')
+              input.form-input-file(name='profile_image', type='file', accept='image/*' required)
 
             .form-group
               label.form-label(for='first_name') First name
@@ -174,7 +174,7 @@ block content
 
               .form-group
                 label.form-label(for='store_name') Store name
-                input.form-input(name='store_name' placeholder='What\'s your store name? *' required)
+                input.form-input(name='store_name' placeholder='What\'s your store name? *' )
 
               .form-group
                 label.form-label(for='store_category') Store category
@@ -196,13 +196,15 @@ block content
               button(type='submit') Register
           p.mt-3 Already have an account? 
             a(href='/signin', style='color: #DB4444;') Sign In
-    script.
-      $(document).ready(function() {
-        $('input[name="account_type"]').change(function() {
-          if ($('#store_owner').is(':checked')) {
-            $('#store_form').removeClass('d-none');
-          } else {
-            $('#store_form').addClass('d-none');
-          }
-        });
-      });
+      script.
+        $(document).ready(function() {
+          $('input[name="account_type"]').change(function() {
+            if ($('#store_owner').is(':checked')) {
+              $('#store_form').removeClass('d-none');
+              $('#store_name').attr('required', true);
+            } else {
+              $('#store_form').addClass('d-none');
+              $('#store_name').removeAttr('required');
+            }
+          });
+          });
