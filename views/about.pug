@@ -15,7 +15,7 @@ block content
     h1.h1-about.mt-3 Our Members
     .group-member-container
       .group-member
-         each member, index in [["Dang Minh Triet", "Managing Director", "url('/images/members/member1.png')"], ["Do Phuong Linh", "Front-end", "url('path-to-image-for-linh.jpg')"], ["Le Duc Trung", "Back-end", "url('path-to-image-for-trung.jpg')"], ["Pham Trong Nghia", "Front-end", "url('path-to-image-for-nghia.jpg')"]]
+         each member, index in [["Dang Minh Triet", "Managing Director", "url('/images/members/member1.png')"], ["Do Phuong Linh", "Front-end", "url('/images/members/member2.png')"], ["Le Duc Trung", "Back-end", "url('/images/members/member3.png')"], ["Pham Trong Nghia", "Front-end", "url('/images/members/member4.png')"]]
           .member
             button.img-mem(type='button', 'data-toggle'='modal', 'data-target'=`#modal${index}`,style=`background-image: ${member[2]};`)
             .info-mem
@@ -23,7 +23,7 @@ block content
                 span.sinfo-mem(style='font-weight: 600; font-size: 22px') #{member[0]}
                 span(style='color: #DB4444; font-size: 18px;') #{member[1]}
     // Define Modals for each member
-    each member, index in [["Dang Minh Triet", "Managing Director","/images/members/member1.png" ,"23",'Information Technology'], ["Do Phuong Linh", "Front-end", "path_to_do_phuong_linh_image.jpg",'21','Software Engineering'], ["Le Duc Trung", "Back-end", "path_to_le_duc_trung_image.jpg",'22','Information-Technology'], ["Pham Trong Nghia", "Front-end", "path_to_pham_trong_nghia_image.jpg",'20','Data-Science']]
+    each member, index in [["Dang Minh Triet", "Managing Director","/images/members/member1.png" ,"23",'Information Technology'], ["Do Phuong Linh", "Front-end", "/images/members/member2.png",'21','Software Engineering'], ["Le Duc Trung", "Back-end", "/images/members/member3.png",'22','Information-Technology'], ["Pham Trong Nghia", "Front-end", "/images/members/member4.png",'20','Data-Science']]
       .modal.fade(tabindex='-1', role='dialog', id=`modal${index}`, aria-labelledby=`modalTitle${index}`, aria-hidden='true')
         .modal-dialog.modal-dialog-centered
           .modal-content
