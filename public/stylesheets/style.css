@@ -110,6 +110,30 @@ html {
 .index-container {
   padding: 30px 50px;
 }
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 300px; 
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.card:hover {
+  border: 1px solid #D4AE63;
+}
+.card .card-img-top {
+  width: 90%;
+  height: 90%;
+}
+.card-body {
+  padding: 10px ;
+}
+.card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .divider {
   color: black;
   width: 95%;
@@ -639,6 +663,9 @@ label[for='store_owner'], label[for='shopper']{
 }
 .product-image {
   width: 50%;
+}
+.product-image img {
+  width: 90%;
 }
 .product-details {
   width: 50%;

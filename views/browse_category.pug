@@ -17,7 +17,7 @@ block content
         each store in category.stores
           .col-lg-3.mb-3.col-md-6.col-sm-12
             a.link(href=`/stores/${store._id}`)
-              .card
+              .card.shadow-box
                 img.card-img-top(src=store.store_logo alt=store.store_name)
                 .card-body
                   p.card-text.text-center= store.store_name

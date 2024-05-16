@@ -19,5 +19,10 @@ ProductSchema.virtual("url").get(function () {
   return `/stores/${this.store._id}/products/${this._id}`;
 });
 
+ProductSchema.virtual("store_url").get(function () {
+  return `/stores/${this.store._id}`;
+});
+
+
 // Export model
 module.exports = mongoose.model("Product", ProductSchema);

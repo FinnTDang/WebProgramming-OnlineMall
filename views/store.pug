@@ -28,9 +28,10 @@ block content
               a.link(href=product.url)
                 .card
                   img.card-img-top(src=product.image alt=product.name)
-                  .card-body
-                    h5.card-title= product.name
-                    p.card-text Price: #{product.price}
+              .card-body
+                a.link(href=product.url)
+                  h5.card-title= product.name
+                h5.card-text(style="color: #DB4444") $#{product.price}
       hr
       .d-flex.align-items-center.mb-3
         .cornered-rectangle
@@ -44,9 +45,10 @@ block content
               a.link(href=product.url)
                 .card
                   img.card-img-top(src=product.image alt=product.name)
-                  .card-body
-                    h5.card-title= product.name
-                    p.card-text Price: #{product.price}
+              .card-body
+                a.link(href=product.url)
+                  h5.card-title= product.name
+                h5.card-text(style="color: #DB4444") $#{product.price}
       else 
         i.fa-solid.fa-box-open.fa-5x.my-3
         h3.text-center There is no product updated yet.

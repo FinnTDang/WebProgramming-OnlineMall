@@ -60,7 +60,7 @@ exports.store_page_get = asyncHandler(async (req, res, next) => {
     query.name = { $regex: req.query.search, $options: 'i' };
   }
   const all_products = await Product.find(query).exec();
-  const new_products = await Product.find(query).sort({ date_added: -1 }).limit(5).exec();
+  const new_products = await Product.find(query).sort({ date_added: -1 }).limit(4).exec();
 
   res.render('store', { 
     store: store, 

@@ -26,17 +26,15 @@ exports.user_detail = asyncHandler(async (req, res, next) => {
 
 // Display business detail page for a specific Store Owner.
 exports.business_detail = asyncHandler(async (req, res, next) => {
-  try {
-    const user = await User.findById(req.session.user._id);
-    let isStoreOwner = false;
-    if (user.account_type === 'store owner') {
-      isStoreOwner = true;
-    }
+  let displayBusiness = true;
+  const user = await User.findById(req.session.user._id);
+  let is_store_owner = false;
+  if (user.account_type === 'store owner') {
+    is_store_owner = true;
     const store = await Store.findOne({ owner: user._id });
-    res.render('account', { title: 'Account', menu: 'Business', user, store, isStoreOwner });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Server Error');
+    res.render('account', { title: 'Account', menu: 'Business', user, store, displayBusiness, is_store_owner});
+  } else {
+    res.render('account', { title: 'Account', menu: 'Business', user, displayBusiness, is_store_owner});
   }
 });
 

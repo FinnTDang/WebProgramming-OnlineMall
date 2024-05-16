@@ -12,13 +12,13 @@ block content
       h2.text-danger.mb-0 Product Details
     .product-container
       .product-image
-        img(src=product.image alt=product.name)
-      .product-details
         h3 #{product.name}
+        img.my-3(src=product.image alt=product.name)
+      .product-details
         h4 Description
         p #{product.description}
         p Available amount: #{product.quantity}
-        h4.mt-3 $#{product.price}
+        h4.mt-3(style="color: #DB4444") $#{product.price}
         form(method="POST")
           label(for="product_quantity") Quantity:
           input(type="hidden", name="product" value=product.id)

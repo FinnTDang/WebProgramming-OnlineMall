@@ -30,45 +30,51 @@ block content
             i.fas.fa-sign-out-alt
             span Sign out
       .account-right-box.shadow-box
-        if isStoreOwner
-          .account-header 
-            h2.title Business Details
-          .profile-box
-            img(src=user.profile_image alt='Profile Picture')
-            h2.text-center.mb-0 #{user.name}
-          .row
-            .col
-              .account-detail
-                .account-label.business-label
-                  i.fas.fa-building
-                  h5.form-label Business Name
-                p.form-input #{store.business_name}
-              .account-detail
-                .account-label.business-label
-                  i.fas.fa-store
-                  h5.form-label Store Name
-                p.form-input #{store.store_name}
-              .account-detail
-                .account-label.business-label
-                  i.fas.fa-image
-                  h5.form-label Store Logo
-                img(src=store.store_logo alt='Store Logo')
-            .col
-              .account-detail
-                .account-label.business-label
-                  i.fas.fa-list
-                  h5.form-label Store Category
-                p.form-input #{store.store_category}
-              .account-detail
-                .account-label.business-label
-                  i.fa-regular.fa-calendar
-                  h5.form-label Date Created
-                p.form-input #{store.date_added}
-          .account-update  
-            a.link(href="/account/business/update")
-              button
-                i.fas.fa-edit.mr-2
-                span Edit  
+        if displayBusiness
+          if is_store_owner
+            .account-header 
+              h2.title Business Details
+            .profile-box
+              img(src=user.profile_image alt='Profile Picture')
+              h2.text-center.mb-0 #{user.name}
+            .row
+              .col
+                .account-detail
+                  .account-label.business-label
+                    i.fas.fa-building
+                    h5.form-label Business Name
+                  p.form-input #{store.business_name}
+                .account-detail
+                  .account-label.business-label
+                    i.fas.fa-store
+                    h5.form-label Store Name
+                  p.form-input #{store.store_name}
+                .account-detail
+                  .account-label.business-label
+                    i.fas.fa-image
+                    h5.form-label Store Logo
+                  img(src=store.store_logo alt='Store Logo')
+              .col
+                .account-detail
+                  .account-label.business-label
+                    i.fas.fa-list
+                    h5.form-label Store Category
+                  p.form-input #{store.store_category}
+                .account-detail
+                  .account-label.business-label
+                    i.fa-regular.fa-calendar
+                    h5.form-label Date Created
+                  p.form-input #{store.date_added}
+            .account-update  
+              a.link(href="/account/business/update")
+                button
+                  i.fas.fa-edit.mr-2
+                  span Edit  
+          else 
+            div.text-center.my-5
+              i.fa.fa-shopping-cart.fa-5x(style="color: #D4AE63")
+              h3.mt-3 Oops! Nothing to see here.
+              p This account is not registered as a business account.
         else
           .account-header 
             h2.title Personal Details
@@ -119,51 +125,6 @@ block content
                   i.fas.fa-edit.mr-2
                   span Edit
 
-        .account-header 
-          h2 Account Details
-        .profile-box
-          img(src=user.profile_image alt='Profile Picture')
-          h2.text-center.mb-0 #{user.name}
-        .account-detail
-          .account-label
-            i.fas.fa-user
-            h5.form-label Name
-          p.form-input #{user.name}
-        .account-detail
-          .account-label
-            i.fas.fa-envelope
-            h5 Mail
-          p.form-input #{user.mail}
-        .account-detail
-          .account-label
-            i.fas.fa-phone
-            h5 Phone
-          p.form-input #{user.phone}
-        .account-detail
-          .account-label
-            i.fas.fa-home
-            h5 Address
-          p.form-input #{user.address}
-        .account-detail
-          .account-label
-            i.fas.fa-city
-            h5 City
-          p.form-input #{user.city}
-        .account-detail
-          .account-label
-            i.fas.fa-map-marker-alt
-            h5 Zip Code
-          p.form-input #{user.zip}
-        .account-detail
-          .account-label
-            i.fas.fa-globe
-            h5 Country
-          p.form-input #{user.country}
-        .account-update   
-          a.link(href="/users/" + user._id + "/update")
-            button
-              i.fas.fa-edit.mr-2
-              span Edit
   else
     .sign-container
       if operation == "sign in"
