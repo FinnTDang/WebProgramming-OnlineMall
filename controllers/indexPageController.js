@@ -9,7 +9,7 @@ exports.display_index = asyncHandler(async (req, res, next) => {
 
   const featured_stores = await Store.find({ featured: true }).exec();
 
-  const featured_products = await Product.find({ index_featured: true }).exec();
+  const featured_products = await Product.find({ featured: true }).exec();
 
   console.log(new_stores, new_products, featured_stores, featured_products);
 

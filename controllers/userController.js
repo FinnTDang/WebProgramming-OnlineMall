@@ -126,7 +126,7 @@ exports.user_info_update_post = asyncHandler(async (req, res, next) => {
   current_user.address = new_user_info.address; 
   current_user.city = new_user_info.city; 
   current_user.password = new_user_info.password;
-  current_user.profile_image = new_user_info.profile_image;
+  current_user.profile_image = `/images/users/${req.params.id}.jpeg`; 
 
   await current_user.save();
 
@@ -203,7 +203,6 @@ exports.user_signin_post = asyncHandler(async (req, res, next) => {
           if (err) { return next(err) }
           console.log('Session after user match:', req.session.user);
           res.redirect('/account');
-          // res.redirect('/users/' + user._id);
         })
       }) 
     } else {
@@ -243,10 +242,12 @@ exports.user_signout = asyncHandler( async (req, res, next) => {
 
 exports.user_cart_get = asyncHandler( async (req, res, next) => {
   const cart = await Cart.findOne({ user: req.session.user._id }).populate('items').exec();
+
   if (!cart || (cart && cart.items.length === 0)) {
-    return res.render('cart', { items: [] });
-}
-  res.render('cart', { items: cart.items });
+    res.render('cart', { items: [] });
+  } else {
+    res.render('cart', { items: cart.items });
+  }
 });
 
 exports.user_cart_add_post = asyncHandler( async (req, res, next) => {

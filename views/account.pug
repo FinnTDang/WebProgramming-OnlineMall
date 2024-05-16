@@ -119,6 +119,51 @@ block content
                   i.fas.fa-edit.mr-2
                   span Edit
 
+        .account-header 
+          h2 Account Details
+        .profile-box
+          img(src=user.profile_image alt='Profile Picture')
+          h2.text-center.mb-0 #{user.name}
+        .account-detail
+          .account-label
+            i.fas.fa-user
+            h5.form-label Name
+          p.form-input #{user.name}
+        .account-detail
+          .account-label
+            i.fas.fa-envelope
+            h5 Mail
+          p.form-input #{user.mail}
+        .account-detail
+          .account-label
+            i.fas.fa-phone
+            h5 Phone
+          p.form-input #{user.phone}
+        .account-detail
+          .account-label
+            i.fas.fa-home
+            h5 Address
+          p.form-input #{user.address}
+        .account-detail
+          .account-label
+            i.fas.fa-city
+            h5 City
+          p.form-input #{user.city}
+        .account-detail
+          .account-label
+            i.fas.fa-map-marker-alt
+            h5 Zip Code
+          p.form-input #{user.zip}
+        .account-detail
+          .account-label
+            i.fas.fa-globe
+            h5 Country
+          p.form-input #{user.country}
+        .account-update   
+          a.link(href="/users/" + user._id + "/update")
+            button
+              i.fas.fa-edit.mr-2
+              span Edit
   else
     .sign-container
       if operation == "sign in"
@@ -171,7 +216,7 @@ block content
 
             .form-group
               label.form-label(for='profile_image') Profile image
-              input.form-input-file(name='profile_image', type='file', accept='image/*')
+              input.form-input-file(name='profile_image', type='file', accept='image/*' required)
 
             .form-group
               label.form-label(for='first_name') First name
@@ -215,7 +260,7 @@ block content
 
               .form-group
                 label.form-label(for='store_name') Store name
-                input.form-input(name='store_name' placeholder='What\'s your store name? *' required)
+                input.form-input(name='store_name' placeholder='What\'s your store name? *' )
 
               .form-group
                 label.form-label(for='store_category') Store category
@@ -237,13 +282,15 @@ block content
               button(type='submit') Register
           p.mt-3 Already have an account? 
             a(href='/signin', style='color: #DB4444;') Sign In
-    script.
-      $(document).ready(function() {
-        $('input[name="account_type"]').change(function() {
-          if ($('#store_owner').is(':checked')) {
-            $('#store_form').removeClass('d-none');
-          } else {
-            $('#store_form').addClass('d-none');
-          }
-        });
-      });
+      script.
+        $(document).ready(function() {
+          $('input[name="account_type"]').change(function() {
+            if ($('#store_owner').is(':checked')) {
+              $('#store_form').removeClass('d-none');
+              $('#store_name').attr('required', true);
+            } else {
+              $('#store_form').addClass('d-none');
+              $('#store_name').removeAttr('required');
+            }
+          });
+          });
