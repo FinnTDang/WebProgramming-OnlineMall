@@ -27,8 +27,9 @@ const mongoose = require("mongoose");
 exports.product_detail = asyncHandler(async (req, res, next) => {
   const product = await Product.findOne({ _id: req.params.product_id }).exec();
   const store = await Store.findOne({ _id: product.store }).exec();
+  const user = req.session.user; 
 
-  res.render('product_detail', { product: product, store: store});
+  res.render('product_detail', { product: product, store: store, user: user});
 });
 
 //READ Product create-form on GET

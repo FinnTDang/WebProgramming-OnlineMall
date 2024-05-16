@@ -62,6 +62,12 @@ html
               a.link(href='/wishlist' class=(title === 'Wishlist' ? 'active' : '')) My Wishlist 
             else
               a.link(href='/signin' class=(title === 'Sign in' ? 'active' : '')) My Wishlist 
+          li.nav-item.sidenav-icon
+            i.fas.fa-receipt.sidenav-icon
+            if user
+              a.link(href='/order' class=(title === 'Order' ? 'active' : '')) My Orders 
+            else
+              a.link(href='/signin' class=(title === 'Sign in' ? 'active' : '')) My Orders 
           hr.sidenav-divider
           if user
             li.nav-item.sidenav-icon
