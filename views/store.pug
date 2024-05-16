@@ -1,52 +1,61 @@
 extends layout 
 
 block content
-  .store-details
+  .store-home-container 
+    .store-home-header
       img(src=store.store_logo alt=store.store_name)
-      h2= store.store_name
-      p= store.business_name
-      p= store.store_category
-  //- section 
-  //- h2 New items
-  //- ul 
-  //-   each product in new_products 
-  //-     li 
-  //-       a(href=product.url)
-  //-         img(src=product.image)
-  //-         h3 #{product.name}
-  //-       p #{product.price}
-  //- section 
-  //- h2 All items
-  //- ul 
-  //-   each product in all_products 
-  //-     li 
-  //-       a(href=product.url)
-  //-         img(src=product.image)
-  //-         h3 #{product.name}
-  //-       p #{product.price}
-  h1 #{store.store_name}
-  p #{store.business_name}
+      h1.font= store.store_name
+      p By #{store.business_name}
+    .index-container 
+      .browse-header 
+        .d-flex.align-items-center.mb-3
+          .cornered-rectangle
+          h2.text-danger.mb-0 New Arrivals
+        form.search-bar(method="get" action="/stores/" + store._id)
+          input.form-input(type="text", name="search", placeholder="Search a product in this store")
+          button(type="submit")
+            i.fa.fa-search
+          if is_store_owner 
+            a(href='/stores/' + store._id + '/products/create')
+              button(type="button").ml-2
+                i.fa-solid.fa-plus.color-white
+      // New Products Section
+      h2.text-center.mb-3 New Products
+      if all_products
+        .row
+          each product in new_products
+            .col-lg-3.mb-3.col-md-6.col-sm-12
+              a.link(href=product.url)
+                .card
+                  img.card-img-top(src=product.image alt=product.name)
+              .card-body
+                a.link(href=product.url)
+                  h5.card-title= product.name
+                h5.card-text(style="color: #DB4444") $#{product.price}
+      hr
+      .d-flex.align-items-center.mb-3
+        .cornered-rectangle
+        h2.text-danger.mb-0 Our Products
+      // All Products Section
+      h2.text-center.mb-3 All Products
+      if all_products
+        .row
+          each product in all_products
+            .col-lg-3.mb-3.col-md-6.col-sm-12
+              a.link(href=product.url)
+                .card
+                  img.card-img-top(src=product.image alt=product.name)
+              .card-body
+                a.link(href=product.url)
+                  h5.card-title= product.name
+                h5.card-text(style="color: #DB4444") $#{product.price}
+      else 
+        i.fa-solid.fa-box-open.fa-5x.my-3
+        h3.text-center There is no product updated yet.
 
-  block content
-    if all_products
-      h2 New items
-      ul 
-        each product in new_products 
-          li 
-            a(href=product.url)
-              img(src=product.image)
-              h3 #{product.name}
-            p #{product.price}
-      h2 All items
-      ul 
-        each product in all_products 
-          li 
-            a(href=product.url)
-              img(src=product.image)
-              h3 #{product.name}
-            p #{product.price}
-    else 
-      p There is no product updated yet.
+    .store-home-footer
+      img(src=store.store_logo alt=store.store_name)
+      h1.font= store.store_name
+      p By #{store.business_name}
+
     
-    if is_store_owner 
-      a(href='/stores/' + store._id + '/products/create') Add product to your store

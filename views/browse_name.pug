@@ -13,11 +13,11 @@ block content
     .row
       each store in stores
         .col-lg-3.mb-3.col-md-6.col-sm-12
-          a(href=`/stores/${store._id}`)
-            .card
-              img.card-img-top(src=store.logo alt=store.name)
+          a.link(href=`/stores/${store._id}`)
+            .card.shadow-box
+              img.card-img-top(src=store.store_logo alt=store.store_name)
               .card-body
-                p.card-text.text-center= store.name
+                p.card-text.text-center= store.store_name
     hr
   .container.my-5
     .row.text-center

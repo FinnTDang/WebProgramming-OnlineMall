@@ -2,23 +2,15 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Mall Logo */
+/* Logo Font */
 @import url('https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Kurale&display=swap');
 
-.logo-1 {
+.font {
   font-family: "Petrona", serif;
   font-optical-sizing: auto;
   font-weight: 700;
-  font-style: normal;
-}
-.logo {
-  font-family: "Kurale", serif;
-  font-weight: 700;
-  font-style: normal;
   font-style: italic;
 }
-
 
 /* Header & Footer */
 .header-nav {
@@ -118,6 +110,30 @@ html {
 .index-container {
   padding: 30px 50px;
 }
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 300px; 
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.card:hover {
+  border: 1px solid #D4AE63;
+}
+.card .card-img-top {
+  width: 90%;
+  height: 90%;
+}
+.card-body {
+  padding: 10px ;
+}
+.card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .divider {
   color: black;
   width: 95%;
@@ -173,6 +189,9 @@ h2.text-danger {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
+}
+.search-bar {
+  margin-right: 30px;
 }
 .search-bar input {
   width: 265px;
@@ -518,6 +537,12 @@ label[for='store_owner'], label[for='shopper']{
   display: block;
   position: relative;
 }
+.account-menu.active {
+  background-color: #E6CE98;
+}
+.account-menu a.active {
+  font-weight: bold;
+}
 .account-left-box ul {
   list-style: none;
 }
@@ -538,13 +563,13 @@ label[for='store_owner'], label[for='shopper']{
   align-items: center;
   width: 100%;
   padding: 20px;
+  border-bottom: 1px solid #D4AE63;
 }
 .account-menu:hover {
   cursor: pointer;
-  background-color: #f9f9f9;
+  padding-left: 30px;
 }
 .account-signout {
-  margin-top: 40px;
   border-top: 1px solid #D4AE63;
   width: 100%;
   padding: 15px 0;
@@ -556,6 +581,7 @@ label[for='store_owner'], label[for='shopper']{
   flex-direction: column;
   align-items: flex-start;
   padding: 30px;
+  height: 100%;
 }
 .account-header {
   width: 100%;
@@ -566,6 +592,10 @@ label[for='store_owner'], label[for='shopper']{
 }
 .account-header a {
   font-size: 18px;
+}
+.row {
+  display: flex;
+  width: 100%;
 }
 .account-detail {
   width: 100%;
@@ -578,14 +608,17 @@ label[for='store_owner'], label[for='shopper']{
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 20%
+  width: 30%
+}
+.account-label.business-label {
+  width: 40%
 }
 .account-detail h5 {
-  width: 80%;
+  width: 90%;
   margin: 0;
 }
 .account-detail p.form-input {
-  width: 30%;
+  width: 50%;
   margin: 10px;
 }
 .account-detail i {
@@ -613,6 +646,38 @@ label[for='store_owner'], label[for='shopper']{
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
   width: 60%;
 }
+/* Store homepage */
+.store-home-header, .store-home-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+  background-color: hsl(42, 73%, 81%);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Product Details page */
+.product-container {
+  display: flex;
+  flex-direction: row;
+}
+.product-image {
+  width: 50%;
+}
+.product-image img {
+  width: 90%;
+}
+.product-details {
+  width: 50%;
+}
+.product-details label {
+  margin-right: 10px
+}
+.product-details .buy-buttons {
+  display: inline-block;
+  margin-left: 30px;
+}
+
 /* Copyright, Terms of Service, Privacy Policy page */
 .box-container {
   max-width: 900px;
@@ -858,10 +923,13 @@ button:hover {
     padding: 20px;
   }
   .account-detail {
-    width: 90%;
+    width: 100%;
   }
   .account-label {
-    width: 25%;
+    width: 30%;
+  }
+  .account-label.business-label {
+    width: 50%;
   }
   .account-detail h5 {
     width: 80%;
@@ -869,7 +937,25 @@ button:hover {
   .account-detail p.form-input {
     width: 60%;
   }
-  
+  .account-right-box .row {
+    flex-direction: column;
+  }
+  .account-header, .account-update {
+    justify-content: center;
+  }
+  /* Product details */
+  .product-container {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  .product-image {
+    width: 90%;
+    text-align: center;
+  }
+  .product-details {
+    width: 90%;
+  }
   /* Sign in Sign up */
   .sign-container .sign-card {
     width: 80%;
@@ -949,12 +1035,15 @@ button:hover {
   .search-bar {
     width: 100%;
     margin-bottom: 20px;
+    margin-right: 0;
+    display: flex;
+    justify-content: center;
   }
   .search-bar input {
-    width: 85%;
+    width: 78%;
   }
   .search-bar button {
-    width: 15%;
+    width: 10%;
   }
   /* About page */
   .about-info-container {
@@ -1042,7 +1131,7 @@ button:hover {
     flex-direction: column;
     align-items: center;
   }
-  .account-label {
+  .account-label, .account-label.business-label {
     width: 100%;
   }
   .account-detail h5 {
@@ -1053,6 +1142,8 @@ button:hover {
     margin-top: 0;
     margin-bottom: 25px;
   }
+  /* Product details */
+
   /* Sign in Sign up */
   .sign-container .sign-card {
     width: 80%;

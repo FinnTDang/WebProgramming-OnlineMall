@@ -15,7 +15,7 @@ html
     header.header-nav
       div.mobile-nav
         i#menubar.fas.fa-bars
-      h1.logo Exclusive
+      h1.font Exclusive
       div.navbar.navbar-expand-lg
         ul.navbar-nav
           li.nav-item
@@ -43,21 +43,30 @@ html
           li.nav-item
             i.fa-solid.fa-user.sidenav-icon
             if user
-              a.link(href='/account' class=(title === 'Account' ? 'active' : '')) My Account
+              a.link(href='/account' class=(menu === 'Personal' ? 'active' : '')) My Account
             else
-              a.link(href='/signin' class=(title === 'Sign In' ? 'active' : '')) My Account
+              a.link(href='/signin' class=(title === 'Sign in' ? 'active' : '')) My Account
+          if user && user.account_type === 'store owner'
+            li.nav-item.sidenav-icon
+              i.fa-solid.fa-user-tie.sidenav-icon
+              a.link(href='/account/business' class=((menu === 'Business')? 'active' : '')) My Business
           li.nav-item.sidenav-icon
             i.fas.fa-shopping-cart.sidenav-icon
             if user
               a.link(href='/cart' class=(title === 'Cart' ? 'active' : '')) My Cart 
             else
-              a.link(href='/signin' class=(title === 'Sign In' ? 'active' : '')) My Cart 
+              a.link(href='/signin' class=(title === 'Sign in' ? 'active' : '')) My Cart 
           li.nav-item.sidenav-icon
             i.fas.fa-heart.sidenav-icon
             if user
               a.link(href='/wishlist' class=(title === 'Wishlist' ? 'active' : '')) My Wishlist 
             else
-              a.link(href='/signin' class=(title === 'Sign In' ? 'active' : '')) My Wishlist 
+              a.link(href='/signin' class=(title === 'Sign in' ? 'active' : '')) My Wishlist 
+          hr.sidenav-divider
+          if user
+            li.nav-item.sidenav-icon
+              i.fas.fa-sign-out-alt.sidenav-icon
+              a.link(href='/signout') Sign out
           //- if !user
           //-   li.nav-item
           //-     i.fa-solid.fa-user.sidenav-icon
@@ -73,7 +82,7 @@ html
           //-     i.fas.fa-sign-out-alt.sidenav-icon
           //-     a.link(href='/signout') Sign out
           div#sidenav-header
-            h1.logo Exclusive
+            h1.font Exclusive
             a#sidenav-close.link(href='#')
               i.fa-solid.fa-circle-arrow-right
       script(src='/script.js')      
@@ -83,7 +92,7 @@ html
     footer.footer
       div.footer-columns
         div.footer-logo 
-          h1.logo Exclusive
+          h1.font Exclusive
         div.footer-column
           h5.footer-header Support
           p RMIT University - SGS Campus, Vietnam

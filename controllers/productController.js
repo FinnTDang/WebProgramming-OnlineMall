@@ -10,14 +10,12 @@ exports.product_list = asyncHandler(async (req, res, next) => {
 
 //READ featured Products on GET
 exports.product_featured = asyncHandler(async (req, res, next) => {
-  // res.send("NOT IMPLEMENTED: Featured products");
   console.log('Featured products');
   next();
 });
 
 //READ new Products on GET
 exports.product_new = asyncHandler(async (req, res, next) => {
-  // res.send("NOT IMPLEMENTED: New products");
   console.log('New products');
   next();
 });
@@ -28,8 +26,9 @@ const mongoose = require("mongoose");
 //READ Product detail on GET
 exports.product_detail = asyncHandler(async (req, res, next) => {
   const product = await Product.findOne({ _id: req.params.product_id }).exec();
+  const store = await Store.findOne({ _id: product.store }).exec();
 
-  res.render('product_detail', { product: product });
+  res.render('product_detail', { product: product, store: store});
 });
 
 //READ Product create-form on GET

@@ -4,33 +4,36 @@ block content
   .index-container
     .d-flex.align-items-center.mb-3
       .cornered-rectangle
-      h2.text-danger.mb-0 New Arrival
+      h2.text-danger.mb-0 New Arrivals
     // New Stores Section
     h2.text-center New Stores
     .row
       each store in new_stores
         .col-lg-3.mb-3.col-md-6.col-sm-12
-          a(href=`/stores/${store._id}`)
-            .card
+          a.link(href=`/stores/${store._id}`)
+            .card.shadow-box
               img.card-img-top(src=store.store_logo alt=store.store_name)
               .card-body
                 p.card-text.text-center= store.store_name
     .text-center
       a(href='/browse_name') 
         button View All Stores
-
+    hr
     // New Products Section
     h2.text-center.mt-5 New Products
     .row
       each product in new_products
         .col-lg-3.mb-3.col-md-6.col-sm-12
-          a(href=product.url)
-            .card
+          a.link(href=product.url)
+            .card.shadow-box
               img.card-img-top(src=product.image alt=product.name)
-              .card-body
-                h5.card-title= product.name
-                p.card-text Price: #{product.price}
-                a(href=product.store_url) #{product.store_name}
+          .card-body
+            a.link(href=product.url)
+              h5.card-title= product.name
+            a.link(href=product.store_url) 
+              h6.card-title= product.store.store_name
+            h5.card-text(style="color: #DB4444") $#{product.price}
+              
                 
     hr
     .d-flex.align-items-center.mb-3
@@ -41,27 +44,29 @@ block content
     .row
       each store in featured_stores
         .col-lg-3.mb-3.col-md-6.col-sm-12
-          a(href=`/stores/${store._id}`)
-            .card
+          a.link(href=`/stores/${store._id}`)
+            .card.shadow-box
               img.card-img-top(src=store.store_logo alt=store.store_name)
               .card-body
                 p.card-text.text-center= store.store_name
     .text-center
       a(href='/browse_name') 
         button View All Stores
-
+    hr
     // Featured Products Section
     h2.text-center.mt-5 Featured Products
     .row
       each product in featured_products
         .col-lg-3.mb-3.col-md-6.col-sm-12
-          a(href=product.url)
-            .card
+          a.link(href=product.url)
+            .card.shadow-box
               img.card-img-top(src=product.image alt=product.name)
-              .card-body
-                h5.card-title= product.name
-                p.card-text Price: #{product.price}
-                a(href=product.store_url) #{product.store_name}
+          .card-body
+            a.link(href=product.url)
+              h5.card-title= product.name
+            a.link(href=product.store_url) 
+              h6.card-title= product.store.store_name
+            h5.card-text(style="color: #DB4444") $#{product.price}
     hr
   .container.my-5
     .row.text-center
