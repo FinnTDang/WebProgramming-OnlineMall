@@ -30,6 +30,7 @@ const StoreSchema = new Schema({
   date_added: { type: Date, default: Date.now },
   featured: { type: Boolean },
   date_added: { type: Date, default: Date.now },
+  wishlisted_number: { type: Number, default: 0 }
 });
 
 // Virtual for user's URL
