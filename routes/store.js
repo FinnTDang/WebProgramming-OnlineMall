@@ -45,4 +45,10 @@ router.post('/stores/:id/products/create', product_upload.single('product_image'
 
 router.get('/stores/:store_id/products/:product_id', product_controller.product_detail);
 
+//SEND FORM TO THESE ROUTES
+router.post('/stores/:store_id/wishlist', store_controller.wishlist_post);
+
+router.post('/products/:product_id/wishlist', product_controller.wishlist_post);
+
 module.exports = router;
+

@@ -2,6 +2,7 @@ const { default: mongoose } = require("mongoose");
 const Product = require("../models/product");
 const Store = require("../models/store");
 const asyncHandler = require("express-async-handler");
+const User = require("../models/user");
 
 //READ all Stores alphabetically on GET
 exports.store_list_alphabet = asyncHandler(async (req, res, next) => {
@@ -105,4 +106,26 @@ exports.all_products = asyncHandler(async (req, res, next) => {
   console.log(products);
 
   res.render('all_products', { title: 'All Products', products: products });
+});
+
+exports.wishlist_post = asyncHandler(async (req, res, next) => {
+  if (req.session.user) {
+    const user = await User.findOne({ _id: req.session.user._id }).exec();
+
+    if (user.store_wishlist.includes(req.params.store_id)) {
+      next();
+    }
+
+    const store = await Store.findOne({ _id: req.params.store_id }).exec();
+  
+    user.store_wishlist.push(store);
+  
+    await user.save();
+  
+    store.wishlisted_number = store.wishlisted_number + 1;
+  
+    await store.save();
+  } else {
+    res.redirect('/signin');
+  }
 });

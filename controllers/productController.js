@@ -1,6 +1,8 @@
 const Product = require("../models/product");
 const Store = require("../models/store");
+const User = require("../models/user");
 const asyncHandler = require("express-async-handler");
+const mongoose = require("mongoose");
 
 //Display all Products on GET
 exports.product_list = asyncHandler(async (req, res, next) => {
@@ -19,9 +21,6 @@ exports.product_new = asyncHandler(async (req, res, next) => {
   console.log('New products');
   next();
 });
-
-/**Featured and new Products, depending on the request head, will display it mall-wise or store-wise */
-const mongoose = require("mongoose");
 
 //READ Product detail on GET
 exports.product_detail = asyncHandler(async (req, res, next) => {
@@ -72,5 +71,27 @@ exports.product_update_post = asyncHandler(async (req, res, next) => {
 //DELETE Product on POST
 exports.product_delete_post = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: Delete product");
+});
+
+exports.wishlist_post = asyncHandler(async (req, res, next) => {
+  if (req.session.user) {
+    const user = await User.findOne({ _id: req.session.user._id }).exec();
+
+    if (user.product_wishlist.includes(req.params.product_id)) {
+      next();
+    }
+
+    const product = await Product.findOne({ _id: req.params.product_id }).exec();
+  
+    user.product_wishlist.push(product);
+  
+    await user.save();
+  
+    product.wishlisted_number = product.wishlisted_number + 1;
+  
+    await product.save();
+  } else {
+    res.redirect('/signin');
+  }
 });
 

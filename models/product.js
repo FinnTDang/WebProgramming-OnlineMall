@@ -11,7 +11,8 @@ const ProductSchema = new Schema({
   time_sold: { type: Number, default: 0 },
   date_added: { type: Date, default: Date.now },
   index_featured: { type: Boolean },
-  store_featured: { type: Boolean }
+  store_featured: { type: Boolean },
+  wishlisted_number: { type: Number, default: 0 }
 });
 
 // Virtual for user's URL

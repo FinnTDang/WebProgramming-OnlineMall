@@ -17,6 +17,8 @@ const UserSchema = new Schema({
   },
   profile_image: { type: String },
   password: { type: String, required: true },
+  store_wishlist: [{ type: Schema.Types.ObjectId, ref: "Store" }],
+  product_wishlist: [{ type: Schema.Types.ObjectId, ref: "Product" }]
 });
 
 // Virtual for user's URL
