@@ -1,29 +1,19 @@
 extends layout 
 
 block content 
-  h1 My Cart 
+  .browse-container
+    //- .browse-header
+    //-   div.d-flex.align-items-center
+    //-     .cornered-rectangle
+    //-     h2.text-danger.mb-0 My Cart
 
-  if items.length != 0
-    p There's item
-  else 
-    p There's no item
-  //- if items
-  //-   form(method="POST" action="/checkout") 
-  //-     each item in items 
-  //-       img(src=product.image)
-  //-       a(href="/product.url") #{product.name}  
-  //-       a(href=product.store.url) #{product.store.name} 
-  //-       p Price #{product.price}
-  //-       p Quantity #{product.quantity} 
-  //-       button(onclick="update cart") +
-  //-       button(onclick="update cart") -
-  //-       p #{product.total_amount} 
-  //-       button(onclick="update cart") Delete 
-  //-       input(type="checkbox" name="products" value=product.id)
-
-  //-     p Total amount #{cart.total_amount}
-  //-     button(type="clear" onclick="update cart") 
-  //-     button(type="submit") Place order  
-  //- else 
-  //-   p No item in the cart
+    if items.length != 0
+      p There's item
+    else
+      .text-center.my-5
+        i.fa.fa-shopping-cart.fa-5x(style="color: #D4AE63")
+        h3.mt-3 Oops! Your cart is empty.
+        p No item is found in your cart.
+        a(href='/') 
+          button Shop Now 
 

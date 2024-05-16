@@ -43,9 +43,21 @@ html
           li.nav-item
             i.fa-solid.fa-user.sidenav-icon
             if user
-              a.link(href='/users/' + user._id) My Account
+              a.link(href='/account' class=(title === 'Account' ? 'active' : '')) My Account
             else
-              a.link(href='/signin') My Account
+              a.link(href='/signin' class=(title === 'Sign In' ? 'active' : '')) My Account
+          li.nav-item.sidenav-icon
+            i.fas.fa-shopping-cart.sidenav-icon
+            if user
+              a.link(href='/cart' class=(title === 'Cart' ? 'active' : '')) My Cart 
+            else
+              a.link(href='/signin' class=(title === 'Sign In' ? 'active' : '')) My Cart 
+          li.nav-item.sidenav-icon
+            i.fas.fa-heart.sidenav-icon
+            if user
+              a.link(href='/wishlist' class=(title === 'Wishlist' ? 'active' : '')) My Wishlist 
+            else
+              a.link(href='/signin' class=(title === 'Sign In' ? 'active' : '')) My Wishlist 
           //- if !user
           //-   li.nav-item
           //-     i.fa-solid.fa-user.sidenav-icon
@@ -81,7 +93,7 @@ html
           div.footer-column
             h5.footer-header Account
             if user
-              a.link(href='/users/' + user._id) My Account
+              a.link(href='/account') My Account
               a.link(href='/wishlist') Wishlist
               a.link(href='/cart') Cart
             else

@@ -12,9 +12,16 @@ exports.user_list = asyncHandler(async (req, res, next) => {
 
 // Display detail page for a specific User.
 exports.user_detail = asyncHandler(async (req, res, next) => {
-  const user = await User.findOne({ _id: req.params.id }).exec();
-  res.render('user', { user: user });
-  // res.render('account', { title: 'Account', user: user });
+  if (!req.session.user) {
+    res.redirect('/signin');
+  } else {
+    const user = await User.findOne({ _id: req.session.user._id }).exec();
+    if (user) {
+      res.render('account', { title: 'Account', user: user });
+    } else {
+      res.status(404).send('User not found');
+    }
+  }
 });
 
 //Display user login
@@ -158,8 +165,7 @@ exports.user_signin_post = asyncHandler(async (req, res, next) => {
         req.session.save(function (err) {
           if (err) { return next(err) }
           console.log('Session after user match:', req.session.user);
-          // res.render('account', { title: 'Account', user: user });
-          res.redirect('/users/' + user._id);
+          res.redirect('/account');
         })
       }) 
     } else {
@@ -200,7 +206,11 @@ exports.user_signout = asyncHandler( async (req, res, next) => {
 exports.user_cart_get = asyncHandler( async (req, res, next) => {
   const cart = await Cart.findOne({ user: req.session.user._id }).populate('items').exec();
 
-  res.render('cart', { items: cart.items });
+  if (!cart || (cart && cart.items.length === 0)) {
+    res.render('cart', { items: [] });
+  } else {
+    res.render('cart', { items: cart.items });
+  }
 });
 
 exports.user_cart_add_post = asyncHandler( async (req, res, next) => {

@@ -2,22 +2,76 @@ extends layout
 
 block content
   if user
-    h1 My Account
-    p Welcome #{user.name}
-    //-   img(src=account.profile_pic)
-    //-   h2 Name #{account.full_name}
-    //-   h2 Email address #{account.mail}
-    //-   h2 Phone number #{account.phone}
-    //-   h2 Country #{account.country}
-    //-   h2 City #{account.city} 
-    //-   h2 Zip code #{account.zip}
-    //-   h2 Address #{account.address}
-    //-   h2 Account type #{account.type}
-    //-   if account.type == "store owner"
-    //-     h2 Store(s)
-    //-     a 
-    //-       #{store.name}
-    //-       #{store.logo}
+    .account-container 
+      .account-left-box
+        .profile-box
+          img(src=user.profile_image alt='Profile Picture')
+          h2.text-center.mb-0 #{user.name}
+        hr
+        .account-menu(style='background-color: #E6CE98;')
+          a(href="/account" style='font-weight: bold;') 
+            i.fas.fa-user
+            span My Account
+        ul
+          li.account-menu
+            a(href="/cart")
+              i.fas.fa-shopping-cart
+              span My Cart
+          li.account-menu
+            a(href="/wishlist")
+              i.fas.fa-heart
+              span My Wishlist
+        hr   
+        .account-signout
+          a.link(href='/signout') 
+            i.fas.fa-sign-out-alt
+            span Sign out
+      .account-right-box.shadow-box
+        .account-header 
+          h2 Account Details
+        .profile-box
+          img(src=user.profile_image alt='Profile Picture')
+          h2.text-center.mb-0 #{user.name}
+        .account-detail
+          .account-label
+            i.fas.fa-user
+            h5.form-label Name
+          p.form-input #{user.name}
+        .account-detail
+          .account-label
+            i.fas.fa-envelope
+            h5 Mail
+          p.form-input #{user.mail}
+        .account-detail
+          .account-label
+            i.fas.fa-phone
+            h5 Phone
+          p.form-input #{user.phone}
+        .account-detail
+          .account-label
+            i.fas.fa-home
+            h5 Address
+          p.form-input #{user.address}
+        .account-detail
+          .account-label
+            i.fas.fa-city
+            h5 City
+          p.form-input #{user.city}
+        .account-detail
+          .account-label
+            i.fas.fa-map-marker-alt
+            h5 Zip Code
+          p.form-input #{user.zip}
+        .account-detail
+          .account-label
+            i.fas.fa-globe
+            h5 Country
+          p.form-input #{user.country}
+        .account-update   
+          a.link(href="/users/" + user._id + "/update")
+            button
+              i.fas.fa-edit.mr-2
+              span Edit
   else
     .sign-container
       if operation == "sign in"
@@ -28,7 +82,7 @@ block content
         .sign-card.shadow-box
           h2.mb-2.mt-2 Sign in to 
             span.logo Exclusive
-          p.mb-5 Log in to your account to continue shopping!
+          p.mb-5.text-center Log in to your account to continue shopping!
           form(action='/signin', method='POST')
             .form-group
               label.form-label(for='mail') Email or Phone Number:
@@ -51,7 +105,7 @@ block content
         .sign-card.shadow-box
           h2 Welcome to 
             span.logo Exclusive
-          p.mb-5 Create your account to start shopping!
+          p.mb-5.text-center Create your account to start shopping!
           form(method='POST', action='/signup', enctype='multipart/form-data', class='needs-validation')
             .form-group
               label.form-label(for='mail') Email address

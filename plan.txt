@@ -1,2 +1,4 @@
 TO-DO:
-- Fix dynamic route styling
+- Wishlist
+- Order and cart and product logic
+- Store owner's product and store update
