@@ -44,7 +44,6 @@ html
             i.fa-solid.fa-user.sidenav-icon
             if user
               a.link(href='/account' class=(title === 'Account' ? 'active' : '')) My Account
-              //- a.link(href='/users/' + user._id) My Account
             else
               a.link(href='/signin' class=(title === 'Sign In' ? 'active' : '')) My Account
           li.nav-item.sidenav-icon
@@ -59,7 +58,6 @@ html
               a.link(href='/wishlist' class=(title === 'Wishlist' ? 'active' : '')) My Wishlist 
             else
               a.link(href='/signin' class=(title === 'Sign In' ? 'active' : '')) My Wishlist 
-          
           //- if !user
           //-   li.nav-item
           //-     i.fa-solid.fa-user.sidenav-icon
@@ -95,7 +93,6 @@ html
           div.footer-column
             h5.footer-header Account
             if user
-              //- a.link(href='/users/' + user._id) My Account
               a.link(href='/account') My Account
               a.link(href='/wishlist') Wishlist
               a.link(href='/cart') Cart

@@ -12,10 +12,6 @@ exports.user_list = asyncHandler(async (req, res, next) => {
 
 // Display detail page for a specific User.
 exports.user_detail = asyncHandler(async (req, res, next) => {
-  // const user = await User.findOne({ _id: req.params.id }).exec();
-  // res.render('user', { user: user });
-  // res.render('account', { title: 'Account', user: user });
-  // console.log(req.params.id);
   if (!req.session.user) {
     res.redirect('/signin');
   } else {
@@ -170,7 +166,6 @@ exports.user_signin_post = asyncHandler(async (req, res, next) => {
           if (err) { return next(err) }
           console.log('Session after user match:', req.session.user);
           res.redirect('/account');
-          // res.redirect('/users/' + user._id);
         })
       }) 
     } else {
@@ -210,10 +205,12 @@ exports.user_signout = asyncHandler( async (req, res, next) => {
 
 exports.user_cart_get = asyncHandler( async (req, res, next) => {
   const cart = await Cart.findOne({ user: req.session.user._id }).populate('items').exec();
+
   if (!cart || (cart && cart.items.length === 0)) {
-    return res.render('cart', { items: [] });
-}
-  res.render('cart', { items: cart.items });
+    res.render('cart', { items: [] });
+  } else {
+    res.render('cart', { items: cart.items });
+  }
 });
 
 exports.user_cart_add_post = asyncHandler( async (req, res, next) => {
