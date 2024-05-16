@@ -9,6 +9,24 @@ block content
 
     if items.length != 0
       p There's item
+      .row
+      form(method="post" action="/checkout") 
+        each item in items
+          input(type="checkbox", name="items" value=item._id)
+          .col-lg-3.mb-3.col-md-6.col-sm-12
+            a.link(href='/stores/' + item.product.store + '/' + item.product._id)
+              .card.shadow-box
+                img.card-img-top(src=item.product.image alt=item.product.name)
+              .card-body
+                a.link(href='/stores/' + item.product.store + '/' + item.product._id)
+                  h5.card-title= item.product.name
+                a.link(href='/stores/' + item.product.store) 
+                  h6.card-title= item.product.store.store_name
+                h6.card-text(style="color: #DB4444") $#{item.product.price} 
+                input(name="quantities" value=item.quantity type="number")
+                h6.card-text Total price
+                h5.card-text(id="total-price-" + item._id style="color: #DB4444") 
+        button(type="submit") Checkout
     else
       .text-center.my-5
         i.fa.fa-shopping-cart.fa-5x(style="color: #D4AE63")
@@ -16,4 +34,7 @@ block content
         p No item is found in your cart.
         a(href='/') 
           button Shop Now 
+    
+
+
 

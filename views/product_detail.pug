@@ -19,6 +19,11 @@ block content
         p #{product.description}
         p Available amount: #{product.quantity}
         h4.mt-3(style="color: #DB4444") $#{product.price}
+        if item
+          p.font-weight-bold.text-red 
+            | You have 
+            a(href="/cart" style="color: #DB4444") #{item.quantity} of this product in your cart. 
+            | Add more below:
         form(method="POST")
           label(for="product_quantity") Quantity:
           input(type="hidden", name="product" value=product.id)
@@ -30,6 +35,8 @@ block content
             else
               button(type="button" onclick='showLoginModal()') Add to cart 
               button.ml-2(type="button" onclick='showLoginModal()') Buy Now
+            //Notification for added product
+            
             // Modal for Login Prompt
             .modal#loginModal.fade(tabindex='-1', role='dialog', aria-labelledby='modalLabel', aria-hidden='true')
               .modal-dialog.modal-dialog-centered(role='document', style='max-width: 500px;')
