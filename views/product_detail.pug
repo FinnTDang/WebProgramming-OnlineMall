@@ -24,10 +24,31 @@ block content
           input(type="hidden", name="product" value=product.id)
           input(name="product_quantity" type="number" min="1" max=product.quantity required)
           .buy-buttons
-            button(type="submit" formaction="/cart") Add to cart 
-            button.ml-2(type="submit" formaction="/checkout") Buy Now
-        
+            if user
+              button(type="submit" formaction="/cart") Add to cart 
+              button.ml-2(type="button" formaction="/checkout") Buy Now
+            else
+              button(type="button" onclick='showLoginModal()') Add to cart 
+              button.ml-2(type="button" onclick='showLoginModal()') Buy Now
+            // Modal for Login Prompt
+            .modal#loginModal.fade(tabindex='-1', role='dialog', aria-labelledby='modalLabel', aria-hidden='true')
+              .modal-dialog.modal-dialog-centered(role='document', style='max-width: 500px;')
+                .modal-content
+                  .modal-header
+                    h2.modal-title(style='font-size: 1.5rem;') Login Required
+                    button.close(data-dismiss='modal') ×
+                  .modal-body.text-center
+                    p(style='font-size: 1rem;') You need to log in to continue purchasing products.
+                    a(href='/signin') 
+                      button(type="button") Log in
+            script.
+              function showLoginModal() {
+                $('#loginModal').modal('show');
+              }
+            
   .store-home-footer
       img(src=store.store_logo alt=store.store_name)
       h1.font= store.store_name
       p By #{store.business_name}
+
+  
