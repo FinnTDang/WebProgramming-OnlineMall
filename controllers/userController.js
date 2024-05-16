@@ -104,7 +104,7 @@ exports.user_info_update_post = asyncHandler(async (req, res, next) => {
   current_user.address = new_user_info.address; 
   current_user.city = new_user_info.city; 
   current_user.password = new_user_info.password;
-  current_user.profile_image = new_user_info.profile_image;
+  current_user.profile_image = `/images/users/${req.params.id}.jpeg`; 
 
   await current_user.save();
 
