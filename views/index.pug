@@ -4,17 +4,17 @@ block content
   .index-container
     .d-flex.align-items-center.mb-3
       .cornered-rectangle
-      h2.text-danger.mb-0 New Arrival
+      h2.text-danger.mb-0 New Arrivals
     // New Stores Section
     h2.text-center New Stores
     .row
       each store in new_stores
         .col-lg-3.mb-3.col-md-6.col-sm-12
-          a(href=`/stores/${store._id}`)
+          a.link(href=`/stores/${store._id}`)
             .card
-              img.card-img-top(src=store.logo alt=store.name)
+              img.card-img-top(src=store.store_logo alt=store.store_name)
               .card-body
-                p.card-text.text-center= store.name
+                p.card-text.text-center= store.store_name
     .text-center
       a(href='/browse_name') 
         button View All Stores
@@ -24,7 +24,7 @@ block content
     .row
       each product in new_products
         .col-lg-3.mb-3.col-md-6.col-sm-12
-          a(href=product.url)
+          a.link(href=product.url)
             .card
               img.card-img-top(src=product.image alt=product.name)
               .card-body

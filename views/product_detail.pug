@@ -1,16 +1,33 @@
 extends layout 
 
-block content 
-  h1 #{title}
-  
-  img(src=product.image)
-  h2 #{product.name}
-  p #{product.price}
-  p #{product.description}
-  p Available amount: #{product.quantity}
-
-  form(method="POST")
-    input(type="hidden", name="product" value=product.id)
-    input(name="product_quantity")
-    button(type="submit" formaction="/cart") Add to cart 
-    button(type="submit" formaction="/checkout") Order right away
+block content
+  .store-home-header
+    img(src=store.store_logo alt=store.store_name)
+    h1.font= store.store_name
+    p By #{store.business_name}
+  .index-container 
+    // Product Details Section
+    .d-flex.align-items-center.mb-3
+      .cornered-rectangle
+      h2.text-danger.mb-0 Product Details
+    .product-container
+      .product-image
+        img(src=product.image alt=product.name)
+      .product-details
+        h3 #{product.name}
+        h4 Description
+        p #{product.description}
+        p Available amount: #{product.quantity}
+        h4.mt-3 $#{product.price}
+        form(method="POST")
+          label(for="product_quantity") Quantity:
+          input(type="hidden", name="product" value=product.id)
+          input(name="product_quantity" type="number" min="1" max=product.quantity required)
+          .buy-buttons
+            button(type="submit" formaction="/cart") Add to cart 
+            button.ml-2(type="submit" formaction="/checkout") Buy Now
+        
+  .store-home-footer
+      img(src=store.store_logo alt=store.store_name)
+      h1.font= store.store_name
+      p By #{store.business_name}

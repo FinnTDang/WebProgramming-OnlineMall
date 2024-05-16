@@ -49,6 +49,12 @@ router.get('/users/:id/update', user_controller.user_info_update_get);
 
 router.post('/users/:id/update', upload.single('profile_image'), user_controller.user_info_update_post);
 
+router.get('/account/business', user_controller.business_detail);
+
+router.get('/account/business/update', user_controller.business_detail_update_get);
+
+router.post('/account/business/update', upload.single('store_logo'), user_controller.business_detail_update_post);
+
 router.get('/cart', user_controller.user_cart_get);
 
 router.post('/cart', user_controller.user_cart_add_post);

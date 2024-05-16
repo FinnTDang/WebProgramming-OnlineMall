@@ -10,21 +10,33 @@ exports.user_list = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: User list");
 });
 
-// Display detail page for a specific User.
+// Display personal detail page for a specific User.
 exports.user_detail = asyncHandler(async (req, res, next) => {
-  // const user = await User.findOne({ _id: req.params.id }).exec();
-  // res.render('user', { user: user });
-  // res.render('account', { title: 'Account', user: user });
-  // console.log(req.params.id);
   if (!req.session.user) {
     res.redirect('/signin');
   } else {
     const user = await User.findOne({ _id: req.session.user._id }).exec();
     if (user) {
-      res.render('account', { title: 'Account', user: user });
+      res.render('account', { title: 'Account', menu: 'Personal', user: user });
     } else {
       res.status(404).send('User not found');
     }
+  }
+});
+
+// Display business detail page for a specific Store Owner.
+exports.business_detail = asyncHandler(async (req, res, next) => {
+  try {
+    const user = await User.findById(req.session.user._id);
+    let isStoreOwner = false;
+    if (user.account_type === 'store owner') {
+      isStoreOwner = true;
+    }
+    const store = await Store.findOne({ owner: user._id });
+    res.render('account', { title: 'Account', menu: 'Business', user, store, isStoreOwner });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server Error');
   }
 });
 
@@ -91,7 +103,13 @@ exports.author_delete_post = asyncHandler(async (req, res, next) => {
 
 
 exports.user_info_update_get = asyncHandler(async (req, res, next) => {
-  res.render('account_info_update', { user: req.session.user, countries: countries, is_store_owner: req.session.user.account_type == "store owner" });
+  res.render('account_info_update', { user: req.session.user, countries: countries, updateBusiness: false});
+});
+
+exports.business_detail_update_get = asyncHandler(async (req, res, next) => {
+  const user = await User.findById(req.session.user._id);
+  const store = await Store.findOne({ owner: user._id });
+  res.render('account_info_update', { user: req.session.user, store: store, updateBusiness: true});
 });
 
 // Handle User update on POST.
@@ -117,6 +135,21 @@ exports.user_info_update_post = asyncHandler(async (req, res, next) => {
   console.log(req.session.user);
 
   res.redirect('/account');
+});
+
+exports.business_detail_update_post = asyncHandler(async (req, res, next) => {
+  const current_user = await User.findOne({ _id: req.params.id });
+  const store = await Store.findOne({ owner: current_user._id });
+
+  const new_business_info = req.body;
+
+  store.business_name = new_business_info.business_name;
+  store.store_name = new_business_info.store_name;
+  store.store_category = new_business_info.store_category;
+  store.store_logo = new_business_info.store_logo;
+
+  await store.save();
+  res.redirect('/account/business');
 });
 
 exports.user_password_reset_get = asyncHandler(async (req, res, next) => {
