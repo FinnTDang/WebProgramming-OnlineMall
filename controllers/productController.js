@@ -31,7 +31,8 @@ exports.product_detail = asyncHandler(async (req, res, next) => {
   const user = req.session.user ? await User.findById(req.session.user._id) : null;
   const cart = user ? await Cart.findOne({ user: user._id }) : null;
   const item = cart ? await Item.findOne({ product: req.params.product_id, cart: cart._id }) : null;
-  const is_wishlisted = user ? product._id in user.product_wishlist : false;
+  let wishlisted_products = user ? user.product_wishlist.map(item => item.toString()) : [];
+  const is_wishlisted = wishlisted_products.includes(product._id.toString());
 
   console.log(item);
 
@@ -84,3 +85,25 @@ exports.product_delete_post = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: Delete product");
 });
 
+
+exports.wishlist_post = asyncHandler(async (req, res, next) => {
+  if (req.session.user) {
+    const user = await User.findOne({ _id: req.session.user._id }).exec();
+
+    if (user.product_wishlist.includes(req.params.product_id)) {
+      next();
+    }
+
+    const product = await Product.findOne({ _id: req.params.product_id }).exec();
+  
+    user.product_wishlist.push(product);
+  
+    await user.save();
+  
+    product.wishlisted_number = product.wishlisted_number + 1;
+  
+    await product.save();
+  } else {
+    res.redirect('/signin');
+  }
+});

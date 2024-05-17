@@ -72,7 +72,7 @@ exports.store_page_get = asyncHandler(async (req, res, next) => {
     all_products: all_products, 
     new_products: new_products,
     is_store_owner: is_store_owner,
-    is_wishlisted: is_wishlisted, 
+    is_wishlisted: is_wishlisted
   });
 });
 

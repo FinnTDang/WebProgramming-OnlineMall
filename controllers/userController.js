@@ -341,14 +341,14 @@ exports.checkout_post = asyncHandler( async(req, res, next) => {
   // delete the instances from the cart
   await Item.findByIdAndDelete({ $in: req.body.items }).exec();
 
-  res.redirect('/order');
+  res.redirect('/successful_order');
 });
 
-exports.user_order_get = asyncHandler( async(req, res, next) => {
-  const orders = await Order.find({ user: req.session.user._id }).exec();
+// exports.user_order_get = asyncHandler( async(req, res, next) => {
+//   const orders = await Order.find({ user: req.session.user._id }).exec();
 
-  res.render('placed_order', { orders: orders });
-});
+//   res.render('orders', { orders: orders });
+// });
 
 exports.user_wishlist_post = asyncHandler( async(req, res, next) => {
   const user = await User.findOne({ _id: req.session.user._id }).exec();

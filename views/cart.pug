@@ -10,7 +10,7 @@ block content
     if items.length != 0
       .container.my-4.cart-container
         table.table
-          thead.thead-light
+          thead.shadow-box
             tr.d-flex
               th.product-col(style= 'background-color: #D4AE63;color: black;') Product
               th.price-col(style= 'background-color: #D4AE63;color: black;') Price
@@ -61,11 +61,21 @@ block content
           .cart-subtotal
             p Total: 
             p $#{total}
+          .d-flex.m-3.align-items-start.justify-content-start
+            p.mr-2 Payment Method:
+            .d-flex.flex-column
+              div.mb-1
+                input(type="radio" value="bank" checked=true)
+                label.ml-1 Cash on Delivery
+              div
+                input(type="radio" value="bank" disabled=true) 
+                label.ml-1.text-muted Bank (currently unavailable)
+              
           .d-flex.justify-content-between
             a(href='/') 
               button(type="button") Continue Shopping ?
-            a(href='/checkout')
-              button(type="button") Order
+            form(method="POST" action="/successful_order")
+              button(type="submit") Order
     else
       .text-center.my-5
         i.fa.fa-shopping-cart.fa-5x(style="color: #D4AE63")
@@ -74,21 +84,3 @@ block content
         a(href='/') 
           button Shop Now
 
-      //- .row
-      //- form(method="post" action="/checkout") 
-      //-   each item in items
-      //-     input(type="checkbox", name="items" value=item._id)
-      //-     .col-lg-3.mb-3.col-md-6.col-sm-12
-      //-       a.link(href='/stores/' + item.product.store + '/' + item.product._id)
-      //-         .card.shadow-box
-      //-           img.card-img-top(src=item.product.image alt=item.product.name)
-      //-         .card-body
-      //-           a.link(href='/stores/' + item.product.store + '/' + item.product._id)
-      //-             h5.card-title= item.product.name
-      //-           a.link(href='/stores/' + item.product.store) 
-      //-             h6.card-title= item.product.store.store_name
-      //-           h6.card-text(style="color: #DB4444") $#{item.product.price} 
-      //-           input(name="quantities" value=item.quantity type="number")
-      //-           h6.card-text Total price
-      //-           h5.card-text(id="total-price-" + item._id style="color: #DB4444") 
-      //-   button(type="submit") Checkout
