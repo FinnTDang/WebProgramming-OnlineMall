@@ -193,7 +193,7 @@ exports.password_change_post = asyncHandler(async (req, res, next) => {
 // Handle Authentication - Used as middleware
 exports.user_signin_post = asyncHandler(async (req, res, next) => {
   if (req.method == "POST") {
-    const user = await User.findOne({ mail: `${req.body.mail}` }).exec(); 
+    const user = await User.findOne({$or: [{mail: req.body.mail}, {phone: req.body.mail}] }).exec(); 
     console.log(user);
     if (!user) { res.send('No account has been created with this email.'); }
     if (user.password == req.body.password) {
