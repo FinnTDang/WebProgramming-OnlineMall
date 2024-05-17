@@ -295,8 +295,8 @@ h2.text-danger {
   max-height: 320px;
 }
 .modal-dialog-centered {
-max-width:850px;
-margin-top: 70px;
+  max-width: 80%;
+  margin-top: 70px;
 }
 
 /* Contact page */
@@ -612,7 +612,7 @@ label[for='store_owner'], label[for='shopper']{
   width: 30%
 }
 .account-label.business-label {
-  width: 40%
+  width: 40%;
 }
 .account-detail h5 {
   width: 90%;
@@ -640,6 +640,13 @@ label[for='store_owner'], label[for='shopper']{
   list-style: none;
   width: 100%;
   padding: 0;
+}
+.profile-box .profile-image {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 1px solid #D4AE63;
+  margin-bottom: 20px;
 }
 /* Update Account page */
 .update-account-page .form-input {
@@ -674,9 +681,54 @@ label[for='store_owner'], label[for='shopper']{
 .product-details label {
   margin-right: 10px
 }
+.product-details .form-input {
+  width: 60px;
+  text-align: center;
+}
 .product-details .buy-buttons {
   display: inline-block;
   margin-left: 30px;
+}
+
+/* Cart page */
+.cart-total {
+  border: 1px solid #D4AE63;
+  padding: 20px 30px;
+  margin-top: 30px;
+}
+.cart-subtotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 20px;
+  padding: 20px 0 10px 0;
+  border-bottom: 1px solid #D4AE63;
+}
+.cart-subtotal p {
+  margin: 0;
+}
+.product-col {
+  flex-grow: 2;
+  max-width: 397px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.price-col, .quantity-col, .subtotal-col {
+  flex-grow: 1; 
+  max-width: 247px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantity-col .form-input {
+  width: 100px;
+  text-align: center;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+  opacity: 1;
 }
 
 /* Copyright, Terms of Service, Privacy Policy page */
@@ -960,6 +1012,21 @@ button:hover {
   .product-details {
     width: 90%;
   }
+  /* Cart page */
+  .container.my-4.cart-container {
+    max-width: 90%;
+  }
+  .product-col {
+    flex-grow: 2.5;
+    max-width: 385px;
+  }
+  .price-col, .quantity-col, .subtotal-col {
+    flex-grow: 0.5; 
+    max-width: 130px;
+  }
+  .quantity-col .form-input {
+    width: 80px;
+  }
   /* Sign in Sign up */
   .sign-container .sign-card {
     width: 80%;
@@ -1060,10 +1127,10 @@ button:hover {
   .about-right {
     width: 100%; 
   }
-  .modal-dialog {
-    max-width: 95%;
+  .modal-dialog-centered {
+    max-width: 80%;
     margin-top: 60px;
-    margin-left: 20px; 
+    margin-left: 50px;
   }
   .modal-title {
     font-size: 20px;

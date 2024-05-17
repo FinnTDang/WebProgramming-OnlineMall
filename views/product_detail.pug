@@ -27,7 +27,7 @@ block content
       .product-details
         h4 Description
         p #{product.description}
-        p Available amount: #{product.quantity}
+        p In stock: #{product.quantity}
         h4.mt-3(style="color: #DB4444") $#{product.price}
         if item
           p.font-weight-bold.text-red 
@@ -37,11 +37,11 @@ block content
         form(method="POST")
           label(for="product_quantity") Quantity:
           input(type="hidden", name="product" value=product.id)
-          input(name="product_quantity" type="number" min="1" max=product.quantity required)
+          input.form-input(name="product_quantity" type="number" min="1" max=product.quantity required)
           .buy-buttons
             if user
-              button(type="submit" formaction="/cart") Add to cart 
-              button.ml-2(type="button" formaction="/checkout") Buy Now
+              button(type="submit" formaction="/cart") Add to cart
+              button.ml-2(type="submit" formaction="/cart") Buy Now
             else
               button(type="button" onclick='showLoginModal()') Add to cart 
               button.ml-2(type="button" onclick='showLoginModal()') Buy Now
