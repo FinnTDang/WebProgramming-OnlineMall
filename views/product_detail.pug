@@ -31,13 +31,12 @@ block content
         h4.mt-3(style="color: #DB4444") $#{product.price}
         if item
           p.font-weight-bold.text-red 
-            | You have 
-            a(href="/cart" style="color: #DB4444") #{item.quantity} of this product in your cart. 
-            | Add more below:
+            | You now have #{item.quantity} of this item in 
+            a(href="/cart" style="color: #DB4444") your cart. 
         form(method="POST")
           label(for="product_quantity") Quantity:
           input(type="hidden", name="product" value=product.id)
-          input.form-input(name="product_quantity" type="number" min="1" max=product.quantity required)
+          input.form-input(name="product_quantity" value="1" type="number" min="1" max=product.quantity onkeydown="return false")
           .buy-buttons
             if user
               button(type="submit" formaction="/cart") Add to cart

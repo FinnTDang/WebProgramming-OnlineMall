@@ -25,7 +25,7 @@ block content
                     span.ml-2 #{item.product.name}
                 td.price-col.text-center $#{item.product.price}
                 td.quantity-col.text-center
-                  input.form-input(type='number', value=item.quantity, min='1' max=item.product.quantity)
+                  input.form-input(type='number', value=item.quantity, min='1' max=item.product.quantity onkeydown="return false")
                 td.subtotal-col.text-center $#{item.product.price * item.quantity}
         .cart-total
           h3 Cart Total
