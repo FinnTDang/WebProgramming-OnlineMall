@@ -341,3 +341,44 @@ exports.user_order_get = asyncHandler( async(req, res, next) => {
   res.render('placed_order', { orders: orders });
 });
 
+exports.user_wishlist_post = asyncHandler( async(req, res, next) => {
+  const user = await User.findOne({ _id: req.session.user._id }).exec();
+
+  // Turn id objects into strings
+  let wishlisted_stores = []; 
+  let wishlisted_products = [];
+  user.product_wishlist.forEach((item) => wishlisted_products.push(item.toString()));
+  user.store_wishlist.forEach((item) => wishlisted_stores.push(item.toString()));
+
+  console.log('wishlisted_stores:', wishlisted_stores);
+  console.log('wishlisted_products:', wishlisted_products);
+  console.log();
+
+  if (req.body.type == "store" && !(wishlisted_stores.includes(req.body.store))) {
+    user.store_wishlist.push(req.body.store);
+    await user.save();
+  } else if (req.body.type == "product" && !(wishlisted_products.includes(req.body.product))) {
+    user.product_wishlist.push(req.body.product);
+    await user.save();
+  } else if (req.body.type == "store" && (wishlisted_stores.includes(req.body.store))) {
+    const index = user.store_wishlist.indexOf(req.body.store);
+    user.store_wishlist.splice(index, 1);
+    await user.save();
+  } else if (req.body.type == "product" && (wishlisted_products.includes(req.body.product))) {
+    const index = user.product_wishlist.indexOf(req.body.product);
+    user.product_wishlist.splice(index, 1);
+    await user.save();
+  }
+
+  res.redirect('back');
+});
+
+exports.user_wishlist_get = asyncHandler( async(req, res, next) => {
+  const user = await User.findOne({ _id: req.session.user._id }).populate('store_wishlist').populate('product_wishlist').exec();
+
+  const wishlist_items = user.store_wishlist + user.product_wishlist;
+
+  console.log(wishlist_items);
+
+  res.render('wishlist', { items: wishlist_items });
+});

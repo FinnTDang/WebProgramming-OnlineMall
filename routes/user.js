@@ -77,4 +77,8 @@ router.post('/checkout', user_controller.checkout_post);
 
 router.get('/order', user_controller.user_order_get);
 
+router.post('/wishlist', user_controller.user_wishlist_post);
+
+router.get('/wishlist', user_controller.user_wishlist_get);
+
 module.exports = router;

@@ -20,6 +20,16 @@ block content
               button(type="button").ml-2
                 i.fa-solid.fa-plus.color-white
       // New Products Section
+      if is_wishlisted
+        form(action="/wishlist" method="POST")
+          input(type="hidden" name="store" value=store._id)
+          input(type="hidden" name="type" value="store")
+          button(type="submit") filled heart
+      else if !is_wishlisted
+        form(action="/wishlist" method="POST")
+          input(type="hidden" name="store" value=store._id)
+          input(type="hidden" name="type" value="store")
+          button(type="submit") empty heart
       h2.text-center.mb-3 New Products
       if all_products
         .row
