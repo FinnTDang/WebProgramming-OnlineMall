@@ -25,7 +25,7 @@ block content
     // Define Modals for each member
     each member, index in [["Dang Minh Triet", "Managing Director","/images/members/member1.png" ,"23",'Information Technology'], ["Do Phuong Linh", "Front-end", "/images/members/member2.png",'21','Software Engineering'], ["Le Duc Trung", "Back-end", "/images/members/member3.png",'22','Information-Technology'], ["Pham Trong Nghia", "Front-end", "/images/members/member4.png",'20','Data-Science']]
       .modal.fade(tabindex='-1', role='dialog', id=`modal${index}`, aria-labelledby=`modalTitle${index}`, aria-hidden='true')
-        .modal-dialog.modal-dialog-centered
+        .modal-dialog.modal-dialog-centered(role='document', style='max-width: 80%;')
           .modal-content
             .modal-header
               h5.modal-title(id=`modalTitle${index}`,style= 'font-size: 30px;color: #DB4444; ') #{member[0]}

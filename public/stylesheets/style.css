@@ -295,8 +295,8 @@ h2.text-danger {
   max-height: 320px;
 }
 .modal-dialog-centered {
-max-width:850px;
-margin-top: 70px;
+  max-width: 80%;
+  margin-top: 70px;
 }
 
 /* Contact page */
@@ -612,7 +612,7 @@ label[for='store_owner'], label[for='shopper']{
   width: 30%
 }
 .account-label.business-label {
-  width: 40%
+  width: 40%;
 }
 .account-detail h5 {
   width: 90%;
@@ -1127,10 +1127,10 @@ button:hover {
   .about-right {
     width: 100%; 
   }
-  .modal-dialog {
-    max-width: 95%;
+  .modal-dialog-centered {
+    max-width: 80%;
     margin-top: 60px;
-    margin-left: 20px; 
+    margin-left: 50px;
   }
   .modal-title {
     font-size: 20px;
