@@ -23,7 +23,21 @@ Link here
 
 ## Login Information
 To access the full features of the website, please login using the following credentials:
-Login info here
+Shopper 1
+Email:
+Password:
+
+Shopper 2
+Email:
+Password:
+
+Store Ownerr:
+Email:
+Password:
+
+Admin
+Email: admin@ad.min
+Password: admin
 
 # Setting Up
 
