@@ -353,7 +353,7 @@ label[for='phone_prefer'], label[for='email_prefer']{
 }
 label.contact-day {
   margin-bottom: 0;
-  margin-right: 65px;
+  margin-right: 60px;
 }
 .form-group .form-group {
   margin: auto 0;
@@ -934,6 +934,9 @@ button:hover {
     margin: 0;
     font-size: 20px;
   }
+  .sign-out-nav {
+    margin-bottom: 70px;
+  }
   /* Footer */
   .footer-column .link {
     font-size: 16px;
@@ -1356,7 +1359,7 @@ button:hover {
     margin-bottom: 10px;
   }
   /*Order page*/
-  .browse-header {
+  .browse-header.cart-header {
     display: none;
   }
 

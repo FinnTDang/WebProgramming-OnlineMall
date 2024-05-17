@@ -70,23 +70,9 @@ html
               a.link(href='/signin' class=(title === 'Sign in' ? 'active' : '')) My Orders 
           hr.sidenav-divider
           if user
-            li.nav-item.sidenav-icon
+            li.nav-item.sidenav-icon.sign-out-nav
               i.fas.fa-sign-out-alt.sidenav-icon
               a.link(href='/signout') Sign out
-          //- if !user
-          //-   li.nav-item
-          //-     i.fa-solid.fa-user.sidenav-icon
-          //-     a.link(href='/signin') Sign in
-          //-   li.nav-item
-          //-     i.fas.fa-user-plus.sidenav-icon
-          //-     a.link(href='/signup') Sign up
-          //- else 
-          //-   li.nav-item
-          //-     i.fa-solid.fa-user.sidenav-icon
-          //-     a.link(href= '/users/' + user._id) #{user.name}
-          //-   li.nav-item
-          //-     i.fas.fa-sign-out-alt.sidenav-icon
-          //-     a.link(href='/signout') Sign out
           div#sidenav-header
             h1.font Exclusive
             a#sidenav-close.link(href='#')
