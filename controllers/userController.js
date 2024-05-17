@@ -2,9 +2,12 @@ const User = require("../models/user");
 const Store = require("../models/store");
 const Cart = require("../models/cart");
 const Item = require("../models/item");
+const Product = require("../models/product");
+const Order = require("../models/order");
 const asyncHandler = require("express-async-handler");
 const countries = require("../public/countries.json");
 const mongoose = require("mongoose");
+const product = require("../models/product");
 
 exports.user_list = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: User list");
@@ -209,7 +212,6 @@ exports.user_signin_post = asyncHandler(async (req, res, next) => {
   }
 });
 
-// Handle user layout variable
 exports.user_brief = asyncHandler(async (req, res, next) => {
   if (req.session.user) {
     res.locals.user = req.session.user;
@@ -217,7 +219,6 @@ exports.user_brief = asyncHandler(async (req, res, next) => {
   next();
 });
 
-//Handle authentication for sites
 exports.user_authenticate = asyncHandler(async (req, res, next) => {
   if (!req.session.user) {
     res.redirect('/signin');
@@ -225,7 +226,6 @@ exports.user_authenticate = asyncHandler(async (req, res, next) => {
   next();
 })
 
-// Handle signing out.
 exports.user_signout = asyncHandler( async (req, res, next) => {
   req.session.user = null
   req.session.save(function (err) {
@@ -239,27 +239,56 @@ exports.user_signout = asyncHandler( async (req, res, next) => {
 });
 
 exports.user_cart_get = asyncHandler( async (req, res, next) => {
-  const cart = await Cart.findOne({ user: req.session.user._id }).populate('items').exec();
+  const cart = await Cart.findOne({ user: req.session.user })
+    .populate({path: 'items', 
+      populate: { path: 'product', 
+        populate: { path: 'store' } 
+    }})
+    .exec();
+
+
+  // await cart.populate('items').exec();
 
   if (!cart || (cart && cart.items.length === 0)) {
     res.render('cart', { items: [] });
   } else {
+    console.log(cart.items)
     res.render('cart', { items: cart.items });
   }
 });
 
 exports.user_cart_add_post = asyncHandler( async (req, res, next) => {
   const cart = await Cart.findOne({ user: req.session.user._id }).exec();
+  const product = await Product.findOne({ _id: req.body.product }).exec();
+  const item = await Item.findOne({ product: req.body.product, cart: cart._id });
 
-  const new_item = new Item({
-    _id: new mongoose.Types.ObjectId(),
-    cart: cart,
-    product: req.body.product_id,
-    quantity: req.body.quantity,
-    aggregate_price: req.body.aggregate_price
-  });
+  if (item == null) {
+    console.log(req.body);
+    console.log(req.body.product_quantity * product.price);
+  
+    const new_item = new Item({
+      _id: new mongoose.Types.ObjectId(),
+      cart: cart,
+      product: req.body.product,
+      quantity: req.body.product_quantity,
+      aggregate_price: req.body.product_quantity * product.price
+    });
+  
+    await new_item.save();
+  
+    cart.items.push(new_item);
+  
+    await cart.save();
+  
+    res.redirect('back');
+  } else {
+    item.quantity = parseInt(item.quantity) + parseInt(req.body.product_quantity);
+    item.aggregate_price = item.quantity * product.price;
 
-  await new_item.save();
+    await item.save();
+
+    res.redirect('back');
+  }
 });
 
 exports.user_cart_update_post = asyncHandler( async(req, res, next) => {
@@ -269,4 +298,46 @@ exports.user_cart_update_post = asyncHandler( async(req, res, next) => {
     await Item.findOneAndUpdate({_id: req.body.item_id}, { quantity: req.body.quantity, aggregate_price: req.body.aggregate_price }).exec();
   }
 });
-//Acc creation + cart creation successful
+
+exports.checkout_post = asyncHandler( async(req, res, next) => {
+  // create a new order with the data
+  let sum = 0;
+  let product_ids = [];
+
+  const items = await Item.find({ _id: { $in: req.body.items } }).exec();
+  for (let i = 0; i < req.body.items.length; i++) {
+    items[i].quantity = req.body.items.quantities[i];
+    items[i].aggregate_price = parseInt(items[i].product.price) * parseInt(req.body.items.quantities[i]);
+    sum = sum + items[i].aggregate_price;
+    await items[i].save();
+
+    product_ids.push(items[i].product);
+  }
+  const new_order = new Order({
+    _id: new mongoose.Types.ObjectId,
+    user: req.session.user._id,
+    items: req.body.items,
+    sum: sum
+  })
+  await new_order.save();
+
+  // change the quantity of products
+  const products = await Product.find({ _id: { $in: product_ids } }).exec();
+  for (let i = 0; i < req.body.items.length; i++) {
+    products[i].quantity = parseInt(products[i].quantity) - parseInt(req.body.items.quantities[i]);
+    
+    await products[i].save();
+  }
+
+  // delete the instances from the cart
+  await Item.findByIdAndDelete({ $in: req.body.items }).exec();
+
+  res.redirect('/order');
+});
+
+exports.user_order_get = asyncHandler( async(req, res, next) => {
+  const orders = await Order.find({ user: req.session.user._id }).exec();
+
+  res.render('placed_order', { orders: orders });
+});
+

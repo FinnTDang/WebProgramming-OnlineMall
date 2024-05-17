@@ -1080,7 +1080,33 @@ button:hover {
   .about-right {
     width: 100%; 
   }
-
+  .modal-dialog {
+    max-width: 95%;
+    margin-top: 50px;
+    margin-left: 20px; 
+  }
+  .modal-title {
+    font-size: 20px;
+  }
+  .modal-body p {
+    font-size: 16px;
+  }
+  .modal-body img {
+    width: 100%;
+    height: auto;
+  }
+  .modal-content {
+    max-height: 80vh;
+  }
+  .modal-body {
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+  }
+  .modal-body .col-md-6 {
+    max-width: 100%;
+    padding: 0;
+  }
   /* Contact page */
   .contact-container {
     flex-direction: column ;
