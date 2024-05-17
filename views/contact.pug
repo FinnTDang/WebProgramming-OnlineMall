@@ -1,6 +1,16 @@
 extends layout 
 
 block content
+  // CSS styles
+  style.
+    .error-message {
+      color: #ff0000;
+      font-size: 0.8rem;
+      font-weight: bold;
+      margin-top: 0.2rem; /* Adjust margin for spacing */
+      margin-left: 0.7rem;
+    }
+  
   .contact-container
     div.contact-info-box.shadow-box
       h4
@@ -18,39 +28,132 @@ block content
 
     div.contact-form-box.shadow-box
       h3 Please fill out this form
-      form(action='/contact', method='post')
+      form(action='/contact', method='post', id='contactForm')
+        // Contact purpose dropdown
         .form-group
           label.form-label(for='contact_purpose') Contact Purpose
-          select#contact_purpose.form-input(name="contact_purpose")
+          select#contact_purpose.form-input(name="contact_purpose" required=true)
             option(value='Business inquiry') Business inquiry
             option(value='Event hosting') Event hosting
             option(value='Other') Other
+        
+        // Name input
         .form-group
           label.form-label(for='contact_name') Name
-          input#contact_name.form-input(type='text', name='contact_name' placeholder='Your Name *', required=true)
+          input#contact_name.form-input(type='text', name='contact_name' placeholder='Your Name *' required=true)
+          p.error-message#nameError
+          
+        // Email input
         .form-group
           label.form-label(for='contact_email') Email
-          input#contact_email.form-input(type='email', name='contact_email' placeholder='Your Email *', required=true)
-        .form-group 
+          input#contact_email.form-input(type='email', name='contact_email' placeholder='Your Email *' required=true)
+          p.error-message#emailError
+        
+        // Phone input
+        .form-group
           label.form-label(for='contact_phone') Phone
-          input#contact_phone.form-input(type='text', name='contact_phone' placeholder='Your Phone *', required=true)
+          input#contact_phone.form-input(type='text', name='contact_phone' placeholder='Your Phone *' required=true)
+          p.error-message#phoneError
+        
+        // Contact preference radio buttons
         .form-group
           label.form-label Contact Preference
           .form-group
-            input#phone_prefer.form-input(name="contact_preference" type="radio" value="phone") 
+            input#phone_prefer.form-input(name="contact_preference" type="radio" value="phone" required=true) 
             label(for="phone_prefer") Phone 
           .form-group
-            input#email_prefer.form-input(name="contact_preference" type="radio" value="email") 
+            input#email_prefer.form-input(name="contact_preference" type="radio" value="email" required=true) 
             label(for="email_prefer") Email
+          p.error-message#preferenceError
+        
+        // Contact days checkboxes
         .form-group
           label.form-label Contact Days
           each day in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
             .form-group
               input.form-input(id=day, type='checkbox', name='contact_day', value=day)
               label.contact-day(for=day) #{day}
+          p.error-message#dayError
+        
+        // Message textarea
         .form-group.message
           label.form-label(for='contact_message') Message
-          textarea#contact_message.form-input(name='message' placeholder='What do you want to say to us? *')
+          textarea#contact_message.form-input(name='message' placeholder='What do you want to say to us? *' required=true)
+          p.error-message#messageError
         
-        button.btn-secondary.mr-3(type="clear") Clear
-        button(type="submit") Send 
+        // Submit and clear buttons
+        button.btn-secondary.mr-3(type="button", onclick="clearForm()") Clear
+        button.btn-primary(type="submit") Send 
+      
+      // JavaScript for form validation
+      script.
+        // Function to clear form fields
+        function clearForm() {
+          document.getElementById('contactForm').reset();
+        }
+
+        // Function to validate contact form
+        function validateContactForm() {
+          let isValid = true;
+          
+          // Reset error messages
+          document.getElementById('nameError').innerText = '';
+          document.getElementById('emailError').innerText = '';
+          document.getElementById('phoneError').innerText = '';
+          document.getElementById('preferenceError').innerText = '';
+          document.getElementById('dayError').innerText = '';
+          document.getElementById('messageError').innerText = '';
+          
+          // Name validation
+          const nameInput = document.getElementById('contact_name').value.trim();
+          if (nameInput.length < 3) {
+            document.getElementById('nameError').innerText = 'Name must contain at least 3 characters.';
+            isValid = false;
+          }
+
+          // Email validation
+          const emailInput = document.getElementById('contact_email').value.trim();
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailPattern.test(emailInput)) {
+            document.getElementById('emailError').innerText = 'Please enter a valid email address.';
+            isValid = false;
+          }
+
+          // Phone validation
+          const phoneInput = document.getElementById('contact_phone').value.trim();
+          const phonePattern = /^\d{9,11}$/;
+          if (!phonePattern.test(phoneInput)) {
+            document.getElementById('phoneError').innerText = 'Please enter a valid phone number (9 to 11 digits).';
+            isValid = false;
+          }
+
+          // Contact preference validation
+          const preferenceInput = document.querySelector('input[name="contact_preference"]:checked');
+          if (!preferenceInput) {
+            document.getElementById('preferenceError').innerText = 'Please select a preferred contact method.';
+            isValid = false;
+          }
+
+          // Contact days validation
+          const dayInputs = document.querySelectorAll('input[name="contact_day"]:checked');
+          if (dayInputs.length === 0) {
+            document.getElementById('dayError').innerText = 'Please select at least one contact day.';
+            isValid = false;
+          }
+
+          // Message length validation
+          const messageInput = document.getElementById('contact_message').value.trim();
+          if (messageInput.length < 50 || messageInput.length > 500) {
+            document.getElementById('messageError').innerText = 'Message must be between 50 and 500 characters.';
+            isValid = false;
+          }
+
+          return isValid;
+        }
+
+        // Form submission event listener
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+          if (!validateContactForm()) {
+            event.preventDefault(); // Prevent form submission if validation fails
+          }
+        });
