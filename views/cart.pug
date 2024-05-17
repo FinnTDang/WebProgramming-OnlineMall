@@ -70,13 +70,11 @@ block content
             div
               input(type="radio" value="bank" disabled=true) 
               label.ml-1.text-muted Bank (currently unavailable)
-        .d-flex.justify-content-between
-          a(href='/') 
+          .d-flex.justify-content-between
+            a(href='/') 
               button(type="button") Continue Shopping ?
-          a(href='/checkout')
-            button(type="button") Order
-          form(method="POST" action="/successful_order")
-            button(type="submit") Order
+            form(method="POST" action="/successful_order")
+              button(type="submit") Order
     else
       .text-center.my-5
         i.fa.fa-shopping-cart.fa-5x(style="color: #D4AE63")
