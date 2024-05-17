@@ -44,7 +44,7 @@ exports.store_list = asyncHandler(async (req, res, next) => {
 
 exports.store_page_get = asyncHandler(async (req, res, next) => {
   const store = await Store.findOne({ _id: req.params.id }).exec();
-  const user = await User.findOne({ _id: req.session.user._id }).exec();
+  const user = req.session.user ? await User.findById(req.session.user._id) : null;
 
   console.log("not store:", !store);
   if (!store) {
@@ -52,10 +52,8 @@ exports.store_page_get = asyncHandler(async (req, res, next) => {
     return;
   }
 
-  let is_store_owner;
-  if (req.session.user) {
-    is_store_owner = req.session.user._id == store.owner;
-  }
+  let is_store_owner = user ? req.session.user._id == store.owner : false;
+
   console.log("is_store_owner:", is_store_owner);
 
   let query = { store: req.params.id }; 
@@ -65,8 +63,7 @@ exports.store_page_get = asyncHandler(async (req, res, next) => {
   const all_products = await Product.find(query).exec();
   const new_products = await Product.find(query).sort({ date_added: -1 }).limit(4).exec();
 
-  let wishlisted_stores = []; 
-  user.store_wishlist.forEach((item) => wishlisted_stores.push(item.toString()));
+  let wishlisted_stores = user ? user.store_wishlist.map(item => item.toString()) : [];
   const is_wishlisted = wishlisted_stores.includes(store._id.toString());
   console.log("is_wishlisted:", is_wishlisted);
 

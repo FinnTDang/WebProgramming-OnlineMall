@@ -28,18 +28,18 @@ exports.product_new = asyncHandler(async (req, res, next) => {
 exports.product_detail = asyncHandler(async (req, res, next) => {
   const product = await Product.findOne({ _id: req.params.product_id }).exec();
   const store = await Store.findOne({ _id: product.store }).exec();
-  const cart = await Cart.findOne({ user: req.session.user._id });
-  const item = await Item.findOne({ product: req.params.product_id, cart: cart._id }).exec();
+  const user = req.session.user ? await User.findById(req.session.user._id) : null;
+  const cart = user ? await Cart.findOne({ user: user._id }) : null;
+  const item = cart ? await Item.findOne({ product: req.params.product_id, cart: cart._id }) : null;
+  const is_wishlisted = user ? product._id in user.product_wishlist : false;
 
   console.log(item);
 
   console.log(req.session.user);
 
-  const is_wishlisted = product._id in req.session.user.product_wishlist;
-
   console.log(is_wishlisted);
 
-  res.render('product_detail', { product: product, store: store, user: req.session.user, item: item, is_wishlisted: is_wishlisted });
+  res.render('product_detail', { product: product, store: store, user: user, item: item, is_wishlisted: is_wishlisted });
 });
 
 //READ Product create-form on GET

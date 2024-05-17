@@ -38,7 +38,7 @@ const faqData = [
     questions: [
       {
         question: "What payment methods do you accept?",
-        answer: "We accept Visa, Mastercard, American Express, and PayPal.",
+        answer: "We accept Visa, Mastercard, American Express, PayPal, and cash on delivery.",
       },
       {
         question: "Can I use multiple promo codes on one order?",
@@ -55,7 +55,7 @@ const faqData = [
     questions: [
       {
         question: "How do I find the right size for me?",
-        answer: "Please refer to our comprehensive size guide available on each product page. Measure yourself and compare your measurements with the guide for the best fit.",
+        answer: "Please refer to our comprehensive item details available on each product page. Measure yourself and compare your measurements with the guide for the best fit.",
       },
       {
         question: "Are product measurements accurate?",

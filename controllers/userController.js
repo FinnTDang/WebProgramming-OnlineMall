@@ -233,7 +233,7 @@ exports.user_signout = asyncHandler( async (req, res, next) => {
 
     req.session.regenerate(function (err) {
       if (err) next(err)
-      res.redirect('/login')
+      res.redirect('/signin')
     })
   })
 });
