@@ -5,7 +5,7 @@ block content
     .account-container 
       .account-left-box
         .profile-box
-          img(src=user.profile_image alt='Profile Picture')
+          img.profile-image(src=user.profile_image alt='Profile Picture')
           h2.text-center.mb-0 #{user.name}
         .account-menu(class=(menu === 'Personal' ? 'active' : ''))
           a(href="/account" class=(menu === 'Personal' ? 'active' : '')) 
@@ -39,7 +39,7 @@ block content
             .account-header 
               h2.title Business Details
             .profile-box
-              img(src=user.profile_image alt='Profile Picture')
+              img.profile-image(src=user.profile_image alt='Profile Picture')
               h2.text-center.mb-0 #{user.name}
             .row
               .col
@@ -83,7 +83,7 @@ block content
           .account-header 
             h2.title Personal Details
           .profile-box
-            img(src=user.profile_image alt='Profile Picture')
+            img.profile-image(src=user.profile_image alt='Profile Picture')
             h2.text-center.mb-0 #{user.name}
           .row
             .col

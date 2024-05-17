@@ -2,18 +2,53 @@ extends layout
 
 block content 
   .browse-container
-    //- .browse-header
-    //-   div.d-flex.align-items-center
-    //-     .cornered-rectangle
-    //-     h2.text-danger.mb-0 My Cart
+    .browse-header
+      div.d-flex.align-items-center
+        .cornered-rectangle
+        h2.text-danger.mb-0 My Cart
 
     if items.length != 0
-      p There's item
+      .container.my-4
+        .table-responsive
+          table.table
+            thead.thead-light.box-container
+              tr.d-flex
+                th.flex-grow-1.text-center Product
+                th.flex-grow-1.text-center Price
+                th.flex-grow-1.text-center Quantity
+                th.flex-grow-1.text-center Subtotal
+            tbody
+              each product in products
+                tr
+                  td #{product.name}
+                  td $#{product.price}
+                  td
+                    input(type='number', value=product.quantity, min='1')
+                  td $#{product.subtotal}
+          .cart-total
+            h3 Cart Total
+            .cart-subtotal
+              p Subtotal:
+              p $#{subtotal}
+            .cart-subtotal
+              p Shipping: 
+              p $0
+            .cart-subtotal
+              p Transaction Fee:
+              p $2
+            .cart-subtotal
+              p Total: 
+              p $#{total}
+            .d-flex.justify-content-between
+              a(href='/store') 
+                button(type="button") Continue Shopping ?
+              a(href='/checkout')
+                  button(type="button") Order
     else
       .text-center.my-5
         i.fa.fa-shopping-cart.fa-5x(style="color: #D4AE63")
         h3.mt-3 Oops! Your cart is empty.
         p No item is found in your cart.
         a(href='/') 
-          button Shop Now 
+          button Shop Now   
 
