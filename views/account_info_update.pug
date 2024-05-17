@@ -60,9 +60,9 @@ block content
           select.form-input(name="country" value=user.country)
             each country in countries 
               option(value=country.Name selected=(user.country === country.name)) #{country.Name}
-      .d-flex.justify-content-between
-        a(href="/account")
-          button.btn-secondary(type="button") Cancel
-        button(type="submit") Save Changes 
-        
+        .d-flex.justify-content-between
+          a(href="/account")
+            button.btn-secondary(type="button") Cancel
+          button(type="submit") Save Changes 
+          
           

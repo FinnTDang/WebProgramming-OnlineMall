@@ -2,11 +2,11 @@ extends layout
 
 block content
   .browse-container
-    .browse-header
+    .browse-header.cart-header
       div.d-flex.align-items-center
         .cornered-rectangle
         h2.text-danger.mb-0 My Orders
-    if orders
+    if orders.length != 0
       each order in orders
         .container.my-4.cart-container
           .order-header.d-flex.justify-content-between
@@ -30,8 +30,8 @@ block content
                   td(data-label="Subtotal") $#{item.product.price * item.quantity}
     else 
       .text-center.my-5
-        i.fa-solid.fa-receipt.fa-5x(style="color: #DB4444")
+        i.fa-solid.fa-receipt.fa-5x(style="color: #D4AE63")
         h3.mt-3 Oops! Your order list is empty.
         p You haven't placed any order in our mall yet.
         a(href='/')
-          button.btn.btn-primary Shop Now
+          button Shop Now
