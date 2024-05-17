@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const admin_controller = require('../controllers/adminController');
+const fees_controller = require('../controllers/feesController');
 
-router.get('/administrators', admin_controller.admin_list);
-router.get('/administrators/create-new', admin_controller.admin_create_get);
-router.post('/administrators/create-new', admin_controller.admin_create_post);
-router.get('/administrators/:id/edit', admin_controller.admin_update_get);
-router.post('/administrators/:id/edit', admin_controller.admin_update_post);
-router.get('/administrators/:id', admin_controller.admin_detail);
+router.get('/fees', fees_controller.fees_list);
+router.get('/fees/create-new', fees_controller.fees_create_get);
+router.post('/fees/create-new', fees_controller.fees_create_post);
+router.get('/fees/:id/edit', fees_controller.fees_update_get);
+router.post('/fees/:id/edit', fees_controller.fees_update_post);
+router.get('/fees/:id', fees_controller.fees_detail);
 
 module.exports = router;
