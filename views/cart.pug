@@ -25,7 +25,7 @@ block content
                     span.ml-2 #{item.product.name}
                 td.price-col $#{item.product.price}
                 td.quantity-col
-                  input.form-input(type='number', value=item.quantity, min='1', max=item.product.quantity, onkeydown="return false")
+                  input.form-input(type='number', value=item.quantity, min='0', max=item.product.quantity, onkeydown="return false")
                 td.subtotal-col $#{item.product.price * item.quantity}
 
         // Responsive layout for phones
@@ -42,7 +42,7 @@ block content
                 span $#{item.product.price}
               .cart-item-header Quantity
               .cart-item-details
-                input.form-input(type='number', value=item.quantity, min='1', max=item.product.quantity, onkeydown="return false")
+                input.form-input(type='number', value=item.quantity, min='0', max=item.product.quantity, onkeydown="return false")
               .cart-item-header Subtotal
               .cart-item-details
                 span $#{item.product.price * item.quantity}
@@ -71,7 +71,7 @@ block content
                 input(type="radio" value="bank" disabled=true) 
                 label.ml-1.text-muted Bank (currently unavailable)
           .d-flex.justify-content-between
-            a(href='/') 
+            a(href='#' onclick="() => window.history.back()") 
               button(type="button") Continue Shopping ?
             form(method="POST" action="/successful_order")
               button(type="submit") Order
