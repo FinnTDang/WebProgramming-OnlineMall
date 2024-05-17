@@ -1,5 +1,7 @@
 TO-DO:
-- Wishlisted signifier at product and store detail
-- Order and cart and product logic
-- Store owner's product and store update
-- Profile picture + country
+Figure out how to change the total price of the cart
+Figure out how to make an item dissapear from the cart
+=> Make a fetch?
+Continue shopping 
+
+Check slide theo ý mình nói

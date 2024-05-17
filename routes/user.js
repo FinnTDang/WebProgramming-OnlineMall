@@ -69,8 +69,6 @@ router.get('/reset-password/:mail/:code', user_controller.password_change_get);
 
 router.post('/reset-password/:mail/:code', user_controller.password_change_post);
 
-router.post('/cart/item-delete', user_controller.user_cart_update_post);
-
 router.post('/cart/item-update', user_controller.user_cart_update_post);
 
 router.post('/checkout', user_controller.checkout_post);

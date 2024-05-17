@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h2.text-center.mt-3 Edit Fee
+  p.text-center.mb-3 Edit the details of the fee.
+
+  form(method='POST' action='/fees/#{fee._id}/edit')
+    .form-group
+      label(for='fee_type') Fee Type:
+      input#fee_type.form-control(type='text' name='fee_type' value=fee.fee_type)
+    .form-group
+      label(for='description') Description:
+      input#description.form-control(type='text' name='description' value=fee.description)
+    .form-group
+      label(for='amount') Amount:
+      input#amount.form-control(type='text' name='amount' value=fee.amount)
+    button.btn.btn-primary(type='submit') Save Changes

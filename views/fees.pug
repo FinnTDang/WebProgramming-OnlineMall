@@ -14,15 +14,23 @@ block content
           th.fee-type Fee Type
           th Description
           th.fee-amount Amount          
+          if isAdmin
+            th Actions
       tbody
         tr
           td Premium Membership
           td Annual fee for accessing exclusive discounts and promotions.
           td $20/year
+          if isAdmin
+            td 
+              a(href='/fees/1/edit') Edit
         tr
           td Transaction Fee
           td Fixed fee for each purchase made through the mall's payment system.
           td $2 per Transaction
+          if isAdmin
+            td 
+              a(href='/fees/2/edit') Edit
 
     .fees-card.shadow-box
       .fee-details
@@ -47,15 +55,23 @@ block content
           th.fee-type Fee Type
           th Description
           th.fee-amount Amount
+          if isAdmin
+            th Actions
       tbody
         tr
           td Monthly Renting Fee
           td Monthly rent for using a store space in the mall.
           td $50/month
+          if isAdmin
+            td 
+              a(href='/fees/3/edit') Edit
         tr
           td Commission Fee
           td Percentage charged on each product sale made in the mall.
           td 5% of Sales
+          if isAdmin
+            td 
+              a(href='/fees/4/edit') Edit
 
     .fees-card.shadow-box
       .fee-details

@@ -6,7 +6,6 @@ block content
       div.d-flex.align-items-center
         .cornered-rectangle
         h2.text-danger.mb-0 My Cart
-
     if items.length != 0
       .container.my-4.cart-container
         table.table
@@ -18,64 +17,73 @@ block content
               th.subtotal-col(style= 'background-color: #D4AE63;color: black;') Subtotal
           tbody
             each item in items
-              tr.d-flex
-                td.product-col
-                  a.link(href=item.product.url)
-                    img.card-img-top(src=item.product.image alt=item.product.name style="width: 50px; height: 50px; object-fit: cover;")
-                    span.ml-2 #{item.product.name}
-                td.price-col $#{item.product.price}
-                td.quantity-col
-                  input.form-input(type='number', value=item.quantity, min='1', max=item.product.quantity, onkeydown="return false")
-                td.subtotal-col $#{item.product.price * item.quantity}
+              form(action="/cart/item-update" method="POST" id=`cartUpdateForm-${item._id}`)
+                tr.d-flex
+                  td.product-col
+                    a.link(href=item.product.url)
+                      img.card-img-top(src=item.product.image alt=item.product.name style="width: 50px; height: 50px; object-fit: cover;")
+                      span.ml-2 #{item.product.name}
+                  td.price-col $#{item.product.price}
+                  td.quantity-col
+                    input.form-input(type='number' name='quantity' id=item._id value=item.quantity, min='0', max=item.product.quantity)
+                    input(type='hidden' name="item" value=item._id)
+                  td.subtotal-col $#{item.product.price * item.quantity}
+              script.
+                document.getElementById('#{item._id}').addEventListener("blur", (e) => {
+                  if (!e.target.value.trim()) {
+                    e.target.value = #{item.quantity};
+                  } else {
+                    document.getElementById('cartUpdateForm-' + '#{item._id}').submit();
+                  }
+                });
+                       
 
-        // Responsive layout for phones
-        .cart-items
-          each item in items
-            .cart-item
-              .cart-item-header Product
-              .cart-item-details
-                a.link(href=item.product.url)
-                  img(src=item.product.image alt=item.product.name)
-                span #{item.product.name}
-              .cart-item-header Price
-              .cart-item-details
-                span $#{item.product.price}
-              .cart-item-header Quantity
-              .cart-item-details
-                input.form-input(type='number', value=item.quantity, min='1', max=item.product.quantity, onkeydown="return false")
-              .cart-item-header Subtotal
-              .cart-item-details
-                span $#{item.product.price * item.quantity}
-        
-        .cart-total
-          h3 Cart Total
-          .cart-subtotal
-            p Subtotal:
-            p $#{subtotal}
-          .cart-subtotal
-            p Shipping: 
-            p $0
-          .cart-subtotal
-            p Transaction Fee:
-            p $2
-          .cart-subtotal
-            p Total: 
-            p $#{total}
-          .d-flex.m-3.align-items-start.justify-content-start
-            p.mr-2 Payment Method:
-            .d-flex.flex-column
-              div.mb-1
-                input(type="radio" value="bank" checked=true)
-                label.ml-1 Cash on Delivery
-              div
-                input(type="radio" value="bank" disabled=true) 
-                label.ml-1.text-muted Bank (currently unavailable)
-              
-          .d-flex.justify-content-between
-            a(href='/') 
-              button(type="button") Continue Shopping ?
-            form(method="POST" action="/successful_order")
-              button(type="submit") Order
+            // Responsive layout for phones
+      .cart-items
+        each item in items
+          .cart-item
+            .cart-item-header Product
+            .cart-item-details
+              a.link(href=item.product.url)
+                img(src=item.product.image alt=item.product.name)
+              span #{item.product.name}
+            .cart-item-header Price
+            .cart-item-details
+              span $#{item.product.price}
+            .cart-item-header Quantity
+            .cart-item-details
+              input.form-input(type='number', name="quantity" value=item.quantity, min='1', max=item.product.quantity)
+              input(type='hidden' name="item" value=item._id)
+            .cart-item-header Subtotal
+            .cart-item-details
+              span $#{item.product.price * item.quantity}
+          script.
+            document.getElementById('#{item._id}').addEventListener("blur", (e) => {
+              if (!e.target.value.trim()) {
+                e.target.value = #{item.quantity};
+              } else {
+                document.getElementById('cartUpdateForm-' + '#{item._id}').submit();
+              }
+            });
+      .cart-total
+        h3 Cart Total
+        .cart-subtotal
+          p Subtotal:
+          p $#{subtotal}
+        .cart-subtotal
+          p Shipping: 
+          p $0
+        .cart-subtotal
+          p Transaction Fee:
+          p $2
+        .cart-subtotal
+          p Total: 
+          p $#{total}
+        .d-flex.justify-content-between
+          a(href='/') 
+            button(type="button") Continue Shopping ?
+          a(href='/checkout')
+            button(type="button") Order
     else
       .text-center.my-5
         i.fa.fa-shopping-cart.fa-5x(style="color: #D4AE63")
@@ -83,4 +91,5 @@ block content
         p No item is found in your cart.
         a(href='/') 
           button Shop Now
+
 
