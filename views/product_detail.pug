@@ -11,6 +11,16 @@ block content
       .cornered-rectangle
       h2.text-danger.mb-0 Product Details
     .product-container
+      if is_wishlisted
+        form(action="/wishlist" method="POST")
+          input(type="hidden" name="product" value=product._id)
+          input(type="hidden" name="type" value="product")
+          button(type="submit") filled heart
+      else if !is_wishlisted
+        form(action="/wishlist" method="POST")
+          input(type="hidden" name="product" value=product._id)
+          input(type="hidden" name="type" value="product")
+          button(type="submit") empty heart
       .product-image
         h3 #{product.name}
         img.my-3(src=product.image alt=product.name)

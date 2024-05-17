@@ -33,7 +33,13 @@ exports.product_detail = asyncHandler(async (req, res, next) => {
 
   console.log(item);
 
-  res.render('product_detail', { product: product, store: store, user: req.session.user, item: item });
+  console.log(req.session.user);
+
+  const is_wishlisted = product._id in req.session.user.product_wishlist;
+
+  console.log(is_wishlisted);
+
+  res.render('product_detail', { product: product, store: store, user: req.session.user, item: item, is_wishlisted: is_wishlisted });
 });
 
 //READ Product create-form on GET
@@ -76,27 +82,5 @@ exports.product_update_post = asyncHandler(async (req, res, next) => {
 //DELETE Product on POST
 exports.product_delete_post = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: Delete product");
-});
-
-exports.wishlist_post = asyncHandler(async (req, res, next) => {
-  if (req.session.user) {
-    const user = await User.findOne({ _id: req.session.user._id }).exec();
-
-    if (user.product_wishlist.includes(req.params.product_id)) {
-      next();
-    }
-
-    const product = await Product.findOne({ _id: req.params.product_id }).exec();
-  
-    user.product_wishlist.push(product);
-  
-    await user.save();
-  
-    product.wishlisted_number = product.wishlisted_number + 1;
-  
-    await product.save();
-  } else {
-    res.redirect('/signin');
-  }
 });
 

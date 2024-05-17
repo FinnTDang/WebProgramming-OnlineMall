@@ -1,4 +1,5 @@
 TO-DO:
-- Wishlist
+- Wishlisted signifier at product and store detail
 - Order and cart and product logic
 - Store owner's product and store update
+- Profile picture + country
