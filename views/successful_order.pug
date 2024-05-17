@@ -1,4 +1,9 @@
 extends layout 
 
 block content 
-  p Success
+  .browse-container
+    .text-center.my-5
+      i.fa-solid.fa-circle-check.fa-5x.my-3.text-success
+      h2 Your order has been placed successfully!
+      a(href='/orders')
+        button View My Order

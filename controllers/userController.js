@@ -250,7 +250,7 @@ exports.user_cart_get = asyncHandler( async (req, res, next) => {
   // await cart.populate('items').exec();
 
   if (!cart || (cart && cart.items.length === 0)) {
-    res.render('cart', { items: [] });
+    res.render('cart', { title: 'Cart', items: [] });
   } else {
     console.log(cart.items)
     let subtotal = 0;
@@ -262,7 +262,7 @@ exports.user_cart_get = asyncHandler( async (req, res, next) => {
     const shipping = 0; 
     const transactionFee = 2;
     const total = subtotal + shipping + transactionFee;
-    res.render('cart', { items: cart.items, subtotal, total});
+    res.render('cart', { title: 'Cart', items: cart.items, subtotal, total});
   }
 });
 
@@ -284,15 +284,15 @@ exports.user_cart_add_post = asyncHandler( async (req, res, next) => {
   
     cart.items.push(new_item);
   
-    await cart.save();
-  
-    res.redirect('back');
   } else {
     item.quantity = parseInt(item.quantity) + parseInt(req.body.product_quantity);
     item.aggregate_price = item.quantity * product.price;
-
     await item.save();
-
+  }
+  await cart.save();
+  if (req.body.actionType === 'buy') {
+    res.redirect('/cart'); 
+  } else {
     res.redirect('back');
   }
 });
@@ -342,14 +342,14 @@ exports.checkout_post = asyncHandler( async(req, res, next) => {
   // delete the instances from the cart
   await Item.findByIdAndDelete({ $in: req.body.items }).exec();
 
-  res.redirect('/order');
+  res.redirect('/successful_order');
 });
 
-exports.user_order_get = asyncHandler( async(req, res, next) => {
-  const orders = await Order.find({ user: req.session.user._id }).exec();
+// exports.user_order_get = asyncHandler( async(req, res, next) => {
+//   const orders = await Order.find({ user: req.session.user._id }).exec();
 
-  res.render('placed_order', { orders: orders });
-});
+//   res.render('orders', { orders: orders });
+// });
 
 exports.user_wishlist_post = asyncHandler( async(req, res, next) => {
   const user = await User.findOne({ _id: req.session.user._id }).exec();
@@ -390,5 +390,10 @@ exports.user_wishlist_get = asyncHandler( async(req, res, next) => {
 
   console.log(wishlist_items);
 
-  res.render('wishlist', { items: wishlist_items });
+  res.render('wishlist', {
+    title: 'Wishlist',
+    items: wishlist_items,
+    stores: user.store_wishlist, 
+    products: user.product_wishlist
+  });
 });

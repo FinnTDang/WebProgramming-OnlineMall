@@ -73,10 +73,16 @@ router.post('/cart/item-update', user_controller.user_cart_update_post);
 
 router.post('/checkout', user_controller.checkout_post);
 
-router.get('/order', user_controller.user_order_get);
+// router.get('/order', user_controller.user_order_get);
 
 router.post('/wishlist', user_controller.user_wishlist_post);
 
 router.get('/wishlist', user_controller.user_wishlist_get);
+
+router.get('/orders', order_controller.orders_display);
+
+router.post('/successful_order', order_controller.order_create);
+
+router.get('/successful_order', order_controller.successful_order_display);
 
 module.exports = router;
