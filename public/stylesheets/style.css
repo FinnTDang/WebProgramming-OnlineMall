@@ -274,12 +274,11 @@ h2.text-danger {
   align-items: center;
   justify-content: flex-start;
 }
-.modal-dialog.custom-modal-size {
-  max-width: 250px; 
-  margin: auto; 
-}
+
 .modal-content {
   padding: 10px; 
+  max-height: 80vh;
+  overflow-y: auto;
 }
 .modal-title, .modal-body p {
   font-size: 0.85rem;
@@ -293,9 +292,11 @@ h2.text-danger {
   object-fit: cover;
   border-radius: 20px;
   box-shadow: 8px 8px 7px #e2be77; 
+  max-height: 320px;
 }
 .modal-dialog-centered {
-max-width: 950px;
+max-width:850px;
+margin-top: 70px;
 }
 
 /* Contact page */
@@ -861,6 +862,9 @@ button:hover {
   .group-member {
     gap: 100px;
   }
+  .modal-dialog-centered{
+    margin-top: 80px;
+  }
   /* Contact page */
   .contact-info-box {
     width: 30%;
@@ -1058,7 +1062,7 @@ button:hover {
   }
   .modal-dialog {
     max-width: 95%;
-    margin-top: 50px;
+    margin-top: 60px;
     margin-left: 20px; 
   }
   .modal-title {
