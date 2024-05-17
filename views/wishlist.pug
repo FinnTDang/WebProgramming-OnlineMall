@@ -1,5 +1,44 @@
 extends layout 
 
 block content 
-    if items 
-        p There's item
+  .browse-container
+    .browse-header
+      div.d-flex.align-items-center
+        .cornered-rectangle
+        h2.text-danger.mb-0 My Wishlist
+    if items.length 
+      h3.mb-3 Favorite Stores 
+        span (#{stores.length})
+      .row
+        each store in stores
+          .col-lg-3.mb-3.col-md-6.col-sm-12
+            a.link(href=`/stores/${store._id}`)
+              .card.shadow-box
+                img.card-img-top(src=store.store_logo alt=store.store_name)
+                .card-body
+                  p.card-text.text-center= store.store_name
+      hr
+      h3.mb-3 Favorite Products 
+        span (#{products.length})
+      if products
+        .row
+          each product in products
+            .col-lg-3.mb-3.col-md-6.col-sm-12
+              a.link(href=product.url)
+                .card.shadow-box
+                  img.card-img-top(src=product.image alt=product.name)
+              .card-body
+                a.link(href=product.url)
+                  h5.card-title= product.name
+                a.link(href=product.store_url) 
+                  h6.card-title= product.store.store_name
+                h5.card-text(style="color: #DB4444") $#{product.price} 
+  
+    else 
+      .text-center.my-5
+        i.fa-solid.fa-heart-crack.fa-5x(style="color: #DB4444")
+        h3.mt-3 Oops! Your wishlist is empty.
+        p Browse stores and products to add to your wishlist!
+        a(href='/') 
+          button Browse Now   
+      

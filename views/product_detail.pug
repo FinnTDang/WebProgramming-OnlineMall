@@ -11,16 +11,6 @@ block content
       .cornered-rectangle
       h2.text-danger.mb-0 Product Details
     .product-container
-      if is_wishlisted
-        form(action="/wishlist" method="POST")
-          input(type="hidden" name="product" value=product._id)
-          input(type="hidden" name="type" value="product")
-          button(type="submit") filled heart
-      else if !is_wishlisted
-        form(action="/wishlist" method="POST")
-          input(type="hidden" name="product" value=product._id)
-          input(type="hidden" name="type" value="product")
-          button(type="submit") empty heart
       .product-image
         h3 #{product.name}
         img.my-3(src=product.image alt=product.name)
@@ -31,21 +21,39 @@ block content
         h4.mt-3(style="color: #DB4444") $#{product.price}
         if item
           p.font-weight-bold.text-red 
-            | You now have #{item.quantity} of this item in 
+            | You currently have #{item.quantity} of this product in 
             a(href="/cart" style="color: #DB4444") your cart. 
-        form(method="POST")
-          label(for="product_quantity") Quantity:
-          input(type="hidden", name="product" value=product.id)
-          input.form-input(name="product_quantity" value="1" type="number" min="1" max=product.quantity onkeydown="return false")
-          .buy-buttons
-            if user
-              button(type="submit" formaction="/cart") Add to cart
-              button.ml-2(type="submit" formaction="/cart") Buy Now
-            else
-              button(type="button" onclick='showLoginModal()') Add to cart 
-              button.ml-2(type="button" onclick='showLoginModal()') Buy Now
-            //Notification for added product
-            
+        .product-form  
+          form.cart-form(method="POST" action="/cart")
+            label(for="product_quantity") Quantity:
+            input(type="hidden", name="product" value=product.id)
+            input.form-input(name="product_quantity" value="1" type="number" min="1" max=product.quantity onkeydown="return false")
+            input(type="hidden", name="actionType" id="actionType")
+            .buy-buttons
+              if user
+                button(type="submit" onclick="document.getElementById('actionType').value='add'") Add to cart
+                button.ml-2(type="submit" onclick="document.getElementById('actionType').value='buy'") Buy Now
+              else
+                button(type="button" onclick='showLoginModal("You need to log in to add this item to cart.")') Add to cart 
+                button.ml-2(type="button" onclick='showLoginModal("You need to log in to continue purchasing items.")') Buy Now
+          // wishlist button
+          if user
+            if is_wishlisted
+              form.wishlist-form(action="/wishlist" method="POST")
+                input(type="hidden" name="product" value=product._id)
+                input(type="hidden" name="type" value="product")
+                button(type="submit" style="background-color: white; border: 1px solid #DB4444;") 
+                  i.fa-solid.fa-heart(style="color: #DB4444; font-size: 20px;")
+            else if !is_wishlisted
+              form.wishlist-form(action="/wishlist" method="POST")
+                input(type="hidden" name="product" value=product._id)
+                input(type="hidden" name="type" value="product")
+                button(type="submit" style="background-color: white; border: 1px solid #DB4444;")
+                  i.fa-regular.fa-heart(style="color: #DB4444; font-size: 20px;")
+          else
+            button(type="button" onclick='showLoginModal("You need to log in to add this item to your wishlist.")' style="background-color: white; border: 1px solid #DB4444;")
+              i.fa-regular.fa-heart(style="color: #DB4444; font-size: 20px;")
+
             // Modal for Login Prompt
             .modal#loginModal.fade(tabindex='-1', role='dialog', aria-labelledby='modalLabel', aria-hidden='true')
               .modal-dialog.modal-dialog-centered(role='document', style='max-width: 500px;')
@@ -54,11 +62,12 @@ block content
                     h2.modal-title(style='font-size: 1.5rem;') Login Required
                     button.close(data-dismiss='modal') ×
                   .modal-body.text-center
-                    p(style='font-size: 1rem;') You need to log in to continue purchasing products.
+                    p#modalMessage(style='font-size: 1rem;') You need to log in to continue.
                     a(href='/signin') 
                       button(type="button") Log in
             script.
-              function showLoginModal() {
+              function showLoginModal(message) {
+                document.getElementById('modalMessage').innerText = message;
                 $('#loginModal').modal('show');
               }
             

@@ -38,7 +38,7 @@ const faqData = [
     questions: [
       {
         question: "What payment methods do you accept?",
-        answer: "We accept Visa, Mastercard, American Express, PayPal, and cash on delivery.",
+        answer: "Currently, we only provide cash on delivery method. We are working on adding more payment options such as credit cards and mobile payments. Stay tuned for updates.",
       },
       {
         question: "Can I use multiple promo codes on one order?",

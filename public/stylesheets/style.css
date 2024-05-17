@@ -22,7 +22,7 @@ html {
   padding: 20px 30px;
   position: sticky;
   top: 0;
-  z-index: 9999;
+  z-index: 999;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 .navbar {
@@ -685,6 +685,17 @@ label[for='store_owner'], label[for='shopper']{
   width: 60px;
   text-align: center;
 }
+.product-details .product-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.product-details .cart-form {
+  width: 60%;
+}
+.product-details .wishlist-form {
+  width: 15%;
+}
 .product-details .buy-buttons {
   display: inline-block;
   margin-left: 30px;
@@ -1239,7 +1250,11 @@ button:hover {
     margin-top: 0;
     margin-bottom: 25px;
   }
-  /* Product details */
+  /* Product details */ 
+  .product-details .buy-buttons {
+    width: 100%;
+    margin: 0;
+  }
 
   /* Sign in Sign up */
   .sign-container .sign-card {
