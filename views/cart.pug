@@ -8,60 +8,62 @@ block content
         h2.text-danger.mb-0 My Cart
 
     if items.length != 0
-      .container.my-4
-        .table-responsive
-          table.table
-            thead.thead-light.box-container
+      .container.my-4.cart-container
+        table.table
+          thead.thead-light.box-container
+            tr.d-flex
+              th.product-col.text-center Product
+              th.price-col.text-center Price
+              th.quantity-col.text-center Quantity
+              th.subtotal-col.text-center Subtotal
+          tbody
+            each item in items
               tr.d-flex
-                th.flex-grow-1.text-center Product
-                th.flex-grow-1.text-center Price
-                th.flex-grow-1.text-center Quantity
-                th.flex-grow-1.text-center Subtotal
-            tbody
-              each product in products
-                tr
-                  td #{product.name}
-                  td $#{product.price}
-                  td
-                    input(type='number', value=product.quantity, min='1')
-                  td $#{product.subtotal}
-          .cart-total
-            h3 Cart Total
-            .cart-subtotal
-              p Subtotal:
-              p $#{subtotal}
-            .cart-subtotal
-              p Shipping: 
-              p $0
-            .cart-subtotal
-              p Transaction Fee:
-              p $2
-            .cart-subtotal
-              p Total: 
-              p $#{total}
-            .d-flex.justify-content-between
-              a(href='/store') 
-                button(type="button") Continue Shopping ?
-              a(href='/checkout')
-                  button(type="button") Order
-      .row
-      form(method="post" action="/checkout") 
-        each item in items
-          input(type="checkbox", name="items" value=item._id)
-          .col-lg-3.mb-3.col-md-6.col-sm-12
-            a.link(href='/stores/' + item.product.store + '/' + item.product._id)
-              .card.shadow-box
-                img.card-img-top(src=item.product.image alt=item.product.name)
-              .card-body
-                a.link(href='/stores/' + item.product.store + '/' + item.product._id)
-                  h5.card-title= item.product.name
-                a.link(href='/stores/' + item.product.store) 
-                  h6.card-title= item.product.store.store_name
-                h6.card-text(style="color: #DB4444") $#{item.product.price} 
-                input(name="quantities" value=item.quantity type="number")
-                h6.card-text Total price
-                h5.card-text(id="total-price-" + item._id style="color: #DB4444") 
-        button(type="submit") Checkout
+                td.product-col.text-center
+                  a.link(href=item.product.url)
+                    img.card-img-top(src=item.product.image alt=item.product.name style="width: 50px; height: 50px; object-fit: cover;")
+                    span.ml-2 #{item.product.name}
+                td.price-col.text-center $#{item.product.price}
+                td.quantity-col.text-center
+                  input.form-input(type='number', value=item.quantity, min='1' max=item.product.quantity)
+                td.subtotal-col.text-center $#{item.product.price * item.quantity}
+        .cart-total
+          h3 Cart Total
+          .cart-subtotal
+            p Subtotal:
+            p $#{subtotal}
+          .cart-subtotal
+            p Shipping: 
+            p $0
+          .cart-subtotal
+            p Transaction Fee:
+            p $2
+          .cart-subtotal
+            p Total: 
+            p $#{total}
+          .d-flex.justify-content-between
+            a(href='/') 
+              button(type="button") Continue Shopping ?
+            a(href='/checkout')
+                button(type="button") Order
+      //- .row
+      //- form(method="post" action="/checkout") 
+      //-   each item in items
+      //-     input(type="checkbox", name="items" value=item._id)
+      //-     .col-lg-3.mb-3.col-md-6.col-sm-12
+      //-       a.link(href='/stores/' + item.product.store + '/' + item.product._id)
+      //-         .card.shadow-box
+      //-           img.card-img-top(src=item.product.image alt=item.product.name)
+      //-         .card-body
+      //-           a.link(href='/stores/' + item.product.store + '/' + item.product._id)
+      //-             h5.card-title= item.product.name
+      //-           a.link(href='/stores/' + item.product.store) 
+      //-             h6.card-title= item.product.store.store_name
+      //-           h6.card-text(style="color: #DB4444") $#{item.product.price} 
+      //-           input(name="quantities" value=item.quantity type="number")
+      //-           h6.card-text Total price
+      //-           h5.card-text(id="total-price-" + item._id style="color: #DB4444") 
+      //-   button(type="submit") Checkout
     else
       .text-center.my-5
         i.fa.fa-shopping-cart.fa-5x(style="color: #D4AE63")

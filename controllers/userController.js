@@ -253,7 +253,16 @@ exports.user_cart_get = asyncHandler( async (req, res, next) => {
     res.render('cart', { items: [] });
   } else {
     console.log(cart.items)
-    res.render('cart', { items: cart.items });
+    let subtotal = 0;
+
+    cart.items.forEach(item => {
+        subtotal += item.quantity * item.product.price; 
+    });
+
+    const shipping = 0; 
+    const transactionFee = 2;
+    const total = subtotal + shipping + transactionFee;
+    res.render('cart', { items: cart.items, subtotal, total});
   }
 });
 

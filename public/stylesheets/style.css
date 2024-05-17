@@ -680,6 +680,10 @@ label[for='store_owner'], label[for='shopper']{
 .product-details label {
   margin-right: 10px
 }
+.product-details .form-input {
+  width: 60px;
+  text-align: center;
+}
 .product-details .buy-buttons {
   display: inline-block;
   margin-left: 30px;
@@ -689,6 +693,7 @@ label[for='store_owner'], label[for='shopper']{
 .cart-total {
   border: 1px solid #D4AE63;
   padding: 20px 30px;
+  margin-top: 30px;
 }
 .cart-subtotal {
   display: flex;
@@ -700,6 +705,29 @@ label[for='store_owner'], label[for='shopper']{
 }
 .cart-subtotal p {
   margin: 0;
+}
+.product-col {
+  flex-grow: 2;
+  max-width: 397px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.price-col, .quantity-col, .subtotal-col {
+  flex-grow: 1; 
+  max-width: 247px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantity-col .form-input {
+  width: 100px;
+  text-align: center;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+  opacity: 1;
 }
 
 /* Copyright, Terms of Service, Privacy Policy page */
@@ -979,6 +1007,21 @@ button:hover {
   }
   .product-details {
     width: 90%;
+  }
+  /* Cart page */
+  .container.my-4.cart-container {
+    max-width: 90%;
+  }
+  .product-col {
+    flex-grow: 2.5;
+    max-width: 385px;
+  }
+  .price-col, .quantity-col, .subtotal-col {
+    flex-grow: 0.5; 
+    max-width: 130px;
+  }
+  .quantity-col .form-input {
+    width: 80px;
   }
   /* Sign in Sign up */
   .sign-container .sign-card {
