@@ -8,8 +8,13 @@ block content
         h2.text-danger.mb-0 My Cart
     if items.length != 0
       .container.my-4.cart-container
-        table.table
-          th.subtotal-col(style= 'background-color: #D4AE63;color: black;') Subtotal
+        table.table#cart
+          thead.thead-light
+            tr.d-flex
+              th.product-col(style= 'background-color: #D4AE63;color: black;') Product
+              th.price-col(style= 'background-color: #D4AE63;color: black;') Price
+              th.quantity-col(style= 'background-color: #D4AE63;color: black;') Quantity
+              th.subtotal-col(style= 'background-color: #D4AE63;color: black;') Subtotal
           tbody
             each item in items
               form(action="/cart/item-update" method="POST" id=`cartUpdateForm-${item._id}`)
@@ -74,11 +79,20 @@ block content
         .cart-subtotal
           p Total: 
           p $#{total}
-        .d-flex.justify-content-between
-          a(href='/') 
-            button(type="button") Continue Shopping ?
-          a(href='/checkout')
-            button(type="button") Order
+        .payment-method
+          p Payment Method:
+          .d-flex.flex-column
+            div.mb-1
+              input(type="radio" value="bank" checked=true)
+              label.ml-1 Cash on Delivery
+            div
+              input(type="radio" value="bank" disabled=true) 
+              label.ml-1.text-muted Bank (currently unavailable)
+          .d-flex.justify-content-between
+            a(href='#' onclick="() => window.history.back()") 
+              button(type="button") Continue Shopping ?
+            form(method="POST" action="/successful_order")
+              button(type="submit") Order
     else
       .text-center.my-5
         i.fa.fa-shopping-cart.fa-5x(style="color: #D4AE63")
