@@ -1315,7 +1315,7 @@ button:hover {
     width: 80%;
   }
   /*Cart page*/
-  .table {
+  .table#cart {
     display: none; /* Hide the table on small screens */
   }
 
