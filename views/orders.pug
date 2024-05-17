@@ -1,6 +1,6 @@
-extends layout 
+extends layout
 
-block content 
+block content
   .browse-container
     .browse-header
       div.d-flex.align-items-center
@@ -10,29 +10,28 @@ block content
       each order in orders
         .container.my-4.cart-container
           .order-header.d-flex.justify-content-between
-              h4 Order Date: #{order.date_added.toLocaleDateString()}
-              h4 Total: $#{order.sum}
+            h4 Order Date: #{order.date_added.toLocaleDateString()}
+            h4 Total: $#{order.sum}
           table.table
             thead.shadow-box
-              tr.d-flex
-                th.product-col(style= 'background-color: #D4AE63;color: black;') Product
-                th.price-col(style= 'background-color: #D4AE63;color: black;') Price
-                th.quantity-col(style= 'background-color: #D4AE63;color: black;') Quantity
-                th.subtotal-col(style= 'background-color: #D4AE63;color: black;') Subtotal
+              tr
+                th Product
+                th Price
+                th Quantity
+                th Subtotal
             tbody
               each item in order.items
-                tr.d-flex
-                  td.product-col
+                tr
+                  td(data-label="Product")
                     img.card-img-top(src=item.product.image alt=item.product.name style="width: 50px; height: 50px; object-fit: cover;")
                     span.ml-2 #{item.product.name}
-                  td.price-col $#{item.product.price}
-                  td.quantity-col #{item.quantity}
-                  td.subtotal-col $#{item.product.price * item.quantity}
-          
+                  td(data-label="Price") $#{item.product.price}
+                  td(data-label="Quantity") #{item.quantity}
+                  td(data-label="Subtotal") $#{item.product.price * item.quantity}
     else 
       .text-center.my-5
         i.fa-solid.fa-receipt.fa-5x(style="color: #DB4444")
         h3.mt-3 Oops! Your order list is empty.
-        p You haven't placed any order in our mall yet. 
-        a(href='/') 
-          button Shop Now
+        p You haven't placed any order in our mall yet.
+        a(href='/')
+          button.btn.btn-primary Shop Now

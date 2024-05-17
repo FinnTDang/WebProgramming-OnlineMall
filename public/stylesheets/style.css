@@ -835,6 +835,24 @@ button:hover {
   background-color: #c62828;
 }
 
+/*Order page*/
+.table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th, .table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .table th {
+    background-color: #D4AE63;;
+  }
 /* Responsive styling */
 /* For tablets */
 @media (max-width: 1199px) {
@@ -1336,7 +1354,57 @@ button:hover {
   .cart-item-details input {
     margin-bottom: 10px;
   }
+  /*Order page*/
+  .browse-header {
+    display: none;
+  }
+
+  .table, .table thead, .table tbody, .table th, .table td, .table tr {
+    display: block;
+  }
+
+  .table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .table tr {
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+  }
+
+  .table td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .table td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 6px;
+    white-space: nowrap;
+    font-weight: bold;
+    color: #D4AE63; 
+  }
+
+  .table td[data-label="Product"] {
+    display: flex;
+    align-items: center;
+  }
+
+  .table td[data-label="Product"] img {
+    margin-right: 10px;
+  }
 }
+
+
+
 /*hide responsive for cart page*/
 @media (min-width: 768px) {
   .cart-items {
