@@ -272,9 +272,6 @@ exports.user_cart_add_post = asyncHandler( async (req, res, next) => {
   const item = await Item.findOne({ product: req.body.product, cart: cart._id });
 
   if (item == null) {
-    console.log(req.body);
-    console.log(req.body.product_quantity * product.price);
-  
     const new_item = new Item({
       _id: new mongoose.Types.ObjectId(),
       cart: cart,
@@ -301,11 +298,15 @@ exports.user_cart_add_post = asyncHandler( async (req, res, next) => {
 });
 
 exports.user_cart_update_post = asyncHandler( async(req, res, next) => {
-  if (req.path == "/cart/item-delete") {
-    await Item.deleteOne({ _id: req.body.item_id  }).exec();
-  } else if (req.path == "/cart/item-update") {
-    await Item.findOneAndUpdate({_id: req.body.item_id}, { quantity: req.body.quantity, aggregate_price: req.body.aggregate_price }).exec();
-  }
+    if (req.body.quantity == 0) {
+      await Item.findOneAndDelete({_id: req.body.item}).exec();
+    } else {
+      await Item.findOneAndUpdate({_id: req.body.item}, {
+        quantity: req.body.quantity
+      }).exec();
+    }
+
+    res.redirect('back');
 });
 
 exports.checkout_post = asyncHandler( async(req, res, next) => {
