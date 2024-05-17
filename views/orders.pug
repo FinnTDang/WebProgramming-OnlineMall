@@ -2,7 +2,7 @@ extends layout
 
 block content
   .browse-container
-    .browse-header.cart-header
+    .browse-header
       div.d-flex.align-items-center
         .cornered-rectangle
         h2.text-danger.mb-0 My Orders
@@ -23,8 +23,9 @@ block content
               each item in order.items
                 tr
                   td(data-label="Product")
-                    img.card-img-top(src=item.product.image alt=item.product.name style="width: 50px; height: 50px; object-fit: cover;")
-                    span.ml-2 #{item.product.name}
+                    a.link(href=item.product.url)
+                      img.card-img-top(src=item.product.image alt=item.product.name style="width: 50px; height: 50px; object-fit: cover;")
+                      span.ml-2 #{item.product.name}
                   td(data-label="Price") $#{item.product.price}
                   td(data-label="Quantity") #{item.quantity}
                   td(data-label="Subtotal") $#{item.product.price * item.quantity}
