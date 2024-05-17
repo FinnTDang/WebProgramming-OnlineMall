@@ -73,4 +73,8 @@ router.post('/cart/item-delete', user_controller.user_cart_update_post);
 
 router.post('/cart/item-update', user_controller.user_cart_update_post);
 
+router.post('/checkout', user_controller.checkout_post);
+
+router.get('/order', user_controller.user_order_get);
+
 module.exports = router;

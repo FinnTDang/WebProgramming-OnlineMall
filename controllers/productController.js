@@ -1,6 +1,8 @@
 const Product = require("../models/product");
 const Store = require("../models/store");
 const User = require("../models/user");
+const Item = require("../models/item");
+const Cart = require("../models/cart");
 const asyncHandler = require("express-async-handler");
 const mongoose = require("mongoose");
 
@@ -26,9 +28,12 @@ exports.product_new = asyncHandler(async (req, res, next) => {
 exports.product_detail = asyncHandler(async (req, res, next) => {
   const product = await Product.findOne({ _id: req.params.product_id }).exec();
   const store = await Store.findOne({ _id: product.store }).exec();
-  const user = req.session.user; 
+  const cart = await Cart.findOne({ user: req.session.user._id });
+  const item = await Item.findOne({ product: req.params.product_id, cart: cart._id }).exec();
 
-  res.render('product_detail', { product: product, store: store, user: user});
+  console.log(item);
+
+  res.render('product_detail', { product: product, store: store, user: req.session.user, item: item });
 });
 
 //READ Product create-form on GET
