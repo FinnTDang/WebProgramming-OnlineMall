@@ -17,12 +17,7 @@ block content
       .product-details
         h4 Description
         p #{product.description}
-        p In stock: #{product.quantity}
         h4.mt-3(style="color: #DB4444") $#{product.price}
-        if item
-          p.font-weight-bold.text-red 
-            | You currently have #{item.quantity} of this product in 
-            a(href="/cart" style="color: #DB4444") your cart. 
         .product-form  
           form.cart-form(method="POST" action="/cart")
             label(for="product_quantity") Quantity:
