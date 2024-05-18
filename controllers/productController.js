@@ -30,17 +30,14 @@ exports.product_detail = asyncHandler(async (req, res, next) => {
   const store = await Store.findOne({ _id: product.store }).exec();
   const user = req.session.user ? await User.findById(req.session.user._id) : null;
   const cart = user ? await Cart.findOne({ user: user._id }) : null;
-  const item = cart ? await Item.findOne({ product: req.params.product_id, cart: cart._id }) : null;
   let wishlisted_products = user ? user.product_wishlist.map(item => item.toString()) : [];
   const is_wishlisted = wishlisted_products.includes(product._id.toString());
-
-  console.log(item);
 
   console.log(req.session.user);
 
   console.log(is_wishlisted);
 
-  res.render('product_detail', { product: product, store: store, user: user, item: item, is_wishlisted: is_wishlisted });
+  res.render('product_detail', { product: product, store: store, user: user, is_wishlisted: is_wishlisted });
 });
 
 //READ Product create-form on GET
@@ -55,7 +52,6 @@ exports.product_create_post = asyncHandler(async (req, res, next) => {
     name: req.body.product_name,
     store: req.params.id,
     price: parseInt(req.body.product_price),
-    quantity: parseInt(req.body.product_quantity),
     description: req.body.product_description,
     image: '/images/products/' + req.id.toString() + '.jpeg'
   });
