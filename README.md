@@ -19,7 +19,7 @@ Le Duc Trung - s3979718<br>
 https://github.com/FinnTDang/WebProgramming-OnlineMall
 
 ## Demonstration Video URL
-Link here
+[Web Programming S1 2024 - Group 3 Demo Video] (https://youtu.be/SP4QVs0YpK0)
 
 ## Login Information
 To access the full features of the website, please login using the following credentials:
