@@ -2,13 +2,10 @@ extends layout
 
 block content
   .error-container
-    // h1 404
-    // h2 Page Not Found
-    // p The page you are looking for might have been removed or is temporarily unavailable.
-
-    h2= message
-      //- h2= error.status
-      //- pre #{error.stack}
+    h1 404
+    h2 Page Not Found
+    p The page you are looking for might have been removed or is temporarily unavailable.
+    p= message
       
     a(href='/') 
       button Back To Home

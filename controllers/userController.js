@@ -110,7 +110,7 @@ exports.user_info_update_get = asyncHandler(async (req, res, next) => {
 exports.business_detail_update_get = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.session.user._id);
   const store = await Store.findOne({ owner: user._id });
-  res.render('account_info_update', { user: req.session.user, store: store, updateBusiness: true});
+  res.render('account_info_update', { user: user, store: store, updateBusiness: true});
 });
 
 // Handle User update on POST.
@@ -140,18 +140,27 @@ exports.user_info_update_post = asyncHandler(async (req, res, next) => {
 
 exports.business_detail_update_post = asyncHandler(async (req, res, next) => {
   const current_user = await User.findOne({ _id: req.params.id });
+  if (!current_user) {
+    return res.status(404).render('error');
+  }
+
   const store = await Store.findOne({ owner: current_user._id });
+  if (!store) {
+    return res.status(404).render('error');
+  }
 
-  const new_business_info = req.body;
+  const { business_name, store_name, store_category, store_logo } = req.body;
 
-  store.business_name = new_business_info.business_name;
-  store.store_name = new_business_info.store_name;
-  store.store_category = new_business_info.store_category;
-  store.store_logo = new_business_info.store_logo;
+  if (business_name) store.business_name = business_name;
+  if (store_name) store.store_name = store_name;
+  if (store_category) store.store_category = store_category;
+  if (store_logo) store.store_logo = store_logo;
 
   await store.save();
+  
   res.redirect('/account/business');
 });
+
 
 exports.user_password_reset_get = asyncHandler(async (req, res, next) => {
   res.render('password');
@@ -292,7 +301,7 @@ exports.user_cart_add_post = asyncHandler( async (req, res, next) => {
   await cart.save();
   if (req.body.actionType === 'buy') {
     req.from_buy_now = true;
-    req.product_url = "/stores/" + product.store + "/products/" + product._id
+    req.product_url = "/stores/" + product.store;
     next();
   } else {
     res.redirect('back');

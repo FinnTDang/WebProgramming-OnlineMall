@@ -23,10 +23,10 @@ block content
         .form-group
           label.form-label(for='store_logo') Logo
           input.form-input-file(name='store_logo', type='file', accept='image/*' value=store.store_logo)
-      .d-flex.justify-content-between
-        a(href="/account/business")
-          button.btn-secondary(type="button") Cancel
-        button(type="submit") Save Changes 
+        .d-flex.justify-content-between
+          a(href="/account/business")
+            button.btn-secondary(type="button") Cancel
+          button(type="submit") Save Changes 
     else 
       h2.text-center.mb-4 Edit Personal Details
         i.fas.fa-edit.ml-3 

@@ -76,7 +76,7 @@ block content
                   span Edit  
           else 
             div.text-center.my-5
-              i.fa.fa-shopping-cart.fa-5x(style="color: #D4AE63")
+              i.fa.fa-box-open.fa-5x(style="color: #D4AE63")
               h3.mt-3 Oops! Nothing to see here.
               p This account is not registered as a business account.
         else
@@ -160,7 +160,7 @@ block content
             .cornered-rectangle
             h2.text-danger.mb-0 Sign Up
         .sign-card.shadow-box
-          h2 Welcome to 
+          h2.text-center Welcome to 
             span.font Exclusive
           p.mb-5.text-center Create your account to start shopping!
           form(method='POST', action='/signup', enctype='multipart/form-data', class='needs-validation')

@@ -52,7 +52,7 @@ block content
               span $#{item.product.price}
             .cart-item-header Quantity
             .cart-item-details
-              input.form-input(type='number', name="quantity" value=item.quantity, min='1', max=item.product.quantity)
+              input.form-input(type='number', name="quantity" value=item.quantity, min='1', max=item.product.quantity, onkeydown="return false")
               input(type='hidden' name="item" value=item._id)
             .cart-item-header Subtotal
             .cart-item-details
@@ -88,11 +88,11 @@ block content
             div
               input(type="radio" value="bank" disabled=true) 
               label.ml-1.text-muted Bank (currently unavailable)
-          .d-flex.justify-content-between
-            a(href=from_buy_now ? product_url : "/")
-              button(type="button") Continue Shopping ?
-            form(method="POST" action="/successful_order")
-              button(type="submit") Order
+        .d-flex.justify-content-between
+          a(href=from_buy_now ? product_url : "/")
+            button(type="button") Continue Shopping ?
+          form(method="POST" action="/successful_order")
+            button(type="submit") Order
     else
       .text-center.my-5
         i.fa.fa-shopping-cart.fa-5x(style="color: #D4AE63")
