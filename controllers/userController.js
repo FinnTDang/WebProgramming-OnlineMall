@@ -262,7 +262,7 @@ exports.user_cart_get = asyncHandler( async (req, res, next) => {
     const shipping = 0; 
     const transactionFee = 2;
     const total = subtotal + shipping + transactionFee;
-    res.render('cart', { title: 'Cart', items: cart.items, subtotal, total});
+    res.render('cart', { title: 'Cart', items: cart.items, subtotal, total, from_buy_now: req.from_buy_now, product_url: req.product_url});
   }
 });
 
@@ -291,7 +291,9 @@ exports.user_cart_add_post = asyncHandler( async (req, res, next) => {
   }
   await cart.save();
   if (req.body.actionType === 'buy') {
-    res.redirect('/cart'); 
+    req.from_buy_now = true;
+    req.product_url = "/stores/" + product.store + "/products/" + product._id
+    next();
   } else {
     res.redirect('back');
   }

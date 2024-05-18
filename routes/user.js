@@ -57,7 +57,7 @@ router.post('/account/business/update', upload.single('store_logo'), user_contro
 
 router.get('/cart', user_controller.user_cart_get);
 
-router.post('/cart', user_controller.user_cart_add_post);
+router.post('/cart', user_controller.user_cart_add_post, user_controller.user_cart_get);
 
 router.get('/reset-password', user_controller.user_password_reset_get);
 
