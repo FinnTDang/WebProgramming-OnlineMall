@@ -12,7 +12,7 @@ exports.orders_display = asyncHandler(async (req, res, next) => {
   }
 
   const orders = await Order.find({ user: user._id }).populate({path: 'items', populate: { path: 'product'}}).sort({ date_added: -1 });
-  res.render('orders', { orders: orders });
+  res.render('orders', { title: 'Orders', orders: orders });
 });
 
 //Display Order on GET

@@ -1,7 +1,0 @@
-TO-DO:
-Figure out how to change the total price of the cart
-Figure out how to make an item dissapear from the cart
-=> Make a fetch?
-Continue shopping 
-
-Check slide theo ý mình nói

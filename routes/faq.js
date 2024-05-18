@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
   }
 
   res.render('faq', {
-      title: 'FAQ',
+      title: 'FAQs',
       categories: faqData,
       selectedCategory,
       questions,

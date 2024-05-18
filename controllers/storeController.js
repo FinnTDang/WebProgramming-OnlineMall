@@ -68,6 +68,7 @@ exports.store_page_get = asyncHandler(async (req, res, next) => {
   console.log("is_wishlisted:", is_wishlisted);
 
   res.render('store', { 
+    title: store.store_name,
     store: store, 
     all_products: all_products, 
     new_products: new_products,

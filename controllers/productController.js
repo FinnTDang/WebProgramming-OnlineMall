@@ -37,7 +37,7 @@ exports.product_detail = asyncHandler(async (req, res, next) => {
 
   console.log(is_wishlisted);
 
-  res.render('product_detail', { product: product, store: store, user: user, is_wishlisted: is_wishlisted });
+  res.render('product_detail', { title: product.name, product: product, store: store, user: user, is_wishlisted: is_wishlisted });
 });
 
 //READ Product create-form on GET
