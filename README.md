@@ -23,28 +23,17 @@ https://github.com/FinnTDang/WebProgramming-OnlineMall
 
 ## Login Information
 To access the full features of the website, please login using the following credentials:
-Shopper 1
-Email:
-Password:
-
-Shopper 2
-Email:
-Password:
+Shopper 
+Email: linhdo@gmail.com
+Password: 123456
 
 Store Ownerr:
-Email:
-Password:
+Email: dctrung0108@gmail.com
+Password: 123456
 
 Admin
 Email: admin@ad.min
 Password: admin
-
-# Setting Up
-
-## Requirements
--
-- 
--
 
 ## Installation:
 1. Clone the repository: git clone https://github.com/FinnTDang/WebProgramming-OnlineMall.git
